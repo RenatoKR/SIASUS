@@ -7,14 +7,14 @@ Repositório automatizado com mirror dos arquivos do **Sistema de Informações 
 - **BPA** - Boletim de Produção Ambulatorial
 - **BDSIA** - Base de Dados SIA (Tabelas Nacionais)
 
-## 📦 Arquivos BPA (Últimos 6 Meses)
+## 📦 Arquivos BPA (Últimos 6 Disponíveis)
 
 > **Total:** 2 arquivos | **Tamanho:** 15M
 
-| Arquivo | Competência | Tamanho | Download |
-|---------|-------------|---------|----------|
-| `BPAMAG0411.exe` | Novembro/2004 | 7.3M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bpa/BPAMAG0411.exe) |
-| `BPAMAG0410.exe` | Outubro/2004 | 7.3M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bpa/BPAMAG0410.exe) |
+| Arquivo | Tamanho | Download |
+|---------|---------|----------|
+| `BPAMAG0411.exe` | 7.3M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bpa/BPAMAG0411.exe) |
+| `BPAMAG0410.exe` | 7.3M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bpa/BPAMAG0410.exe) |
 
 ## 🗃️ Arquivos BDSIA (Últimos 6 Meses)
 
@@ -123,8 +123,8 @@ Este repositório apenas facilita o acesso aos arquivos oficiais.
 
 <div align="center">
 
-**🤖 Atualizado automaticamente** | Última execução: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+**🤖 Atualizado automaticamente** | Última execução: 2026-02-07 03:22:55 UTC
 
-📦 Tamanho total: $TOTAL_SIZE
+📦 Tamanho total: 135M
 
 </div>
