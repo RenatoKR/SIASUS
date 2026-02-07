@@ -1,0 +1,4278 @@
+----- LerNotas.Txt ----------------------------------------------------
+
+- SUPORTE TELEFONICO - 136 opção 8 seguida da opção 7
+
+- Participe do FORUM DATASUS - SISTEMAS DE INFORMACOES AMBULATORIAIS         
+
+  ENDERECOS:
+  SIA/VERSIA http://forum.datasus.gov.br/viewforum.php?f=218
+  FPO        http://forum.datasus.gov.br/viewforum.php?f=222
+  APAC/BPA   http://forum.datasus.gov.br/viewforum.php?f=214
+  RAAS       http://forum.datasus.gov.br/viewforum.php?f=227
+
+
+- ATENCAO : Nao utilize programas externos para abrir ou ler ou alterar os
+            arquivos .DBF do sistema, o DATASUS nao se responsabiliza por
+            programas externos, como por exemplo a planilha eletronia EXCEL.
+
+
+- ADVERTENCIA: REALIZE COPIA DE SEGURANCA em midia removivel apos o backup em c:!
+  compactar a sub-pasta BACKUP que se encontra na pasta do SIA.
+  e gravar o arquivo gerado em CD/DVD/SSD ou qualquer outra midia removivel.
+ 
+- Pagina para acompanhamento de remessas:  http://sia.datasus.gov.br/
+
+========================================================================================
+Versão 05.31 12/01/2026 Obrigatória competência 12/2025
+========================================================================================
+ - Ajustar rotina de cálculo do valor bruto para os procedimentos de Radioterapia, 
+ considerando sobra nas competências em que o financiamento é MAC.
+ 
+ - Atender portarias, Nº 3.380/2025 e GM/MS Nº 9.037/2025, tratam de regulamentações 
+ importantes no âmbito do Sistema Único de Saúde (SUS). 
+    - Não permitir quinto digito 0 nas APAC;
+    - Desativar campo de marcação de emendas parlamentares na APAC no quinto digito 9.
+  
+========================================================================================
+Versão 05.30 11/12/2025 Obrigatória competência 11/2025
+========================================================================================
+
+ - Aplicar incremento nos procedimentos de radioterapia em unidades habilitadas a 
+partir da competência 11/2025, Portaria SAES nº 8.516 de 23 de outubro de 2025.
+
+========================================================================================
+Versão 05.29 30/09/2025 Obrigatória competência 10/2025
+========================================================================================
+1 - A partir da competência 10/2025, o sistema deverá reconhecer uma APAC executada no 
+âmbito do Programa Agora Tem Especialista quando;
+  O procedimento principal possuir o Atributo Complementar "052" e 053" no SIGTAP;
+  O quinto dígito do número de autorização da APAC ser preenchido com valor "9" (nove); e
+  O caráter de atendimento ser "01 - Eletivo".
+2 - Uma numeração de APAC com quinto dígito "9" (nove) só deve ser permitida para procedimentos 
+APAC principal que possua atributo complementar "052" ou 053" no SIGTAP.
+
+3 - Toda APAC com o quinto dígito 9, deverá ter identificação do paciente somente por CPF; 
+uma vez que contém procedimentos com atributo complementar 058 -Obrigatório CPF. 
+Excetuam-se desta regra os cidadãos dos povos originários do Brasil, identificados no campo 
+“Raça” como “Indígena”.
+
+4 - Uma numeração de APAC com quinto dígito "9" (nove), deve ter o novo campo: 
+  - Fonte Orçamentária - Ampliação do Acesso a serviços Especializados
+  - Recurso de Emendas Parlamentares 
+
+4.1 - Campo Fonte Orçamentária - Ampliação do Acesso a serviços Especializados" com as opções de preenchimento dos seguintes códigos:    
+    01-MOD.1-SERVICO DE SAUDE - AES; 
+    02-MOD.2-EQUIPE VOLANTES-AES; 
+    03-CREDITO FINANC.PARC.VENCIDAS E VICENDAS; 
+    04-CREDITO FINANCEIRO TRANSACAO TRIBUTARIA;    
+
+4.2 - Campo Recurso de Emendas Parlamentares
+    S - SIM
+    N - NAO
+
+5 - Validações 
+
+5.1 - Regra - Fonte Orçamentária: código 01.
+	- Número da APAC com quinto dígito igual a 9; - Procedimentos com regra condicionada 0015; Permitida apenas em unidades com Habilitação 38.02. 
+	- Se Emenda Parlamentar = SIM:  Deve possuir financiamento tipo Fundo de Ações Estratégicas e Compensação (FAEC) do Programa Agora Tem Especialistas;   
+	- Se Emenda Parlamentar = NÃO: Deve possuir financiamento tipo Fundo de Ações Estratégicas e Compensação (FAEC).
+
+5.2 - Regra - Fonte Orçamentária: código 02.
+        - Número da APAC com quinto dígito igual a 9;  Procedimentos com atributo complementar '059' e  Regra condicionada 0014; - Permitida apenas em unidades com Habilitação 38.03. 
+        - Se Emenda Parlamentar = SIM:  Deve possuir financiamento tipo Fundo de Ações Estratégicas e Compensação (FAEC) do Programa Agora Tem Especialistas;   
+	- Se Emenda Parlamentar = NÃO: Deve possuir tipo financiamento do tipo Média e Alta Complexidade (MAC).
+
+5.3 - Regra - Fonte Orçamentária: código 03 E 04.
+        - Número da APAC com quinto dígito igual a 9; Procedimentos com regra condicionada 0013; Permitida apenas em unidades com Habilitação 38.05. 
+        - Deve possuir financiamento do tipo Médio e Alta Complexidade (MAC).
+
+5.4 - Regra - Fonte Orçamentária: código EM BRANCO
+        - Número da APAC com quinto dígito igual a 9; Emenda Parlamentar = SIM; Procedimentos com regra condicionada 0014 E ( Atributo complementar 052 ou 053: permitida apenas em unidades com Habilitação 38.02, 38.03 e 38.05). 
+        - Deve possuir financiamento tipo Fundo de Ações Estratégicas e Compensação (FAEC) do Programa Agora Tem Especialistas; 
+
+- Ajuste na rotina do cálculo do valor bruto dos procedimentos da Telesaúde com  financiamento  Gestão  SUS,
+não exige programação física e orçamentária PORTARIA  SAES nº 2326 de 06/12/24.
+
+========================================================================================
+Versão 05.28 / 05.27 10/10/2025 Obrigatória competência 09/2025
+========================================================================================
+
+Notificação:   
+Prezados Gestores, informamos que a versão do SIA 05.26 contempla a correção do financiamento 
+(passando para FAEC com subtipo específico, com recursos de parcela única vinculados) e 
+valoração dos procedimentos principais de Ofertas de Cuidados Integrados (OCI) da produção 
+de APAC com recursos provenientes de Parcela Única. 
+Desta forma, gestores que apresentaram produção com recursos de Parcela Única, ou seja, 
+APAC com quinto dígito 0 (zero), devem realizar o reprocessamento a partir da competência 
+07/2025, obrigatoriamente.    
+Segue relação de Gestores com produção de APAC com recursos de Parcela Única, e que devem 
+realizar o reprocessamento:  
+
+https://docs.google.com/spreadsheets/d/1khAX1VxSCAsB-TW131IAgcfuqXuLEURU/edit?usp=sharing&ouid=…
+
+
+- Ajuste na rotina consistência nas criticas de 'PROC.PRINC EXIGE CPF OBRIGATORIO' e 'PROC.PRINC.
+EXIGE HABILITACAO NAO ENCONTRADA NO CNES'.
+
+
+
+========================================================================================
+Versão 05.26 08/10/2025 Obrigatória competência 09/2025
+========================================================================================
+
+Notificação:   
+Prezados Gestores, informamos que a versão do SIA 05.26 contempla a correção do financiamento 
+(passando para FAEC com subtipo específico, com recursos de parcela única vinculados) e 
+valoração dos procedimentos principais de Ofertas de Cuidados Integrados (OCI) da produção 
+de APAC com recursos provenientes de Parcela Única. 
+Desta forma, gestores que apresentaram produção com recursos de Parcela Única, ou seja, 
+APAC com quinto dígito 0 (zero), devem realizar o reprocessamento a partir da competência 
+07/2025, obrigatoriamente.    
+Segue relação de Gestores com produção de APAC com recursos de Parcela Única, e que devem 
+realizar o reprocessamento:  
+
+https://docs.google.com/spreadsheets/d/1khAX1VxSCAsB-TW131IAgcfuqXuLEURU/edit?usp=sharing&ouid=…
+
+- Se APAC com quinto dígito 0 (zero) , aplicar complemento federal onerando o financiamento do tipo 
+undo de Ações Estratégicas e Compensações (FAEC), no Subtipo de financiamento código 040089 Emendas 
+Parlamentares, independentemente do atributo financiamento vinculado ao procedimento principal no SIGTAP.
+
+- Se APAC normal, CNRAC, quinto dígito 6, não devem ser cobradas as novas habilitações do Programa 
+Agora Tem Especialistas nos procedimentos realizados.
+
+========================================================================================
+Versão 05.25 08/09/2025 Obrigatória competência 08/2025
+========================================================================================
+
+Informamos que na APAC de Medicamento - Laudo 6, é necessário informar o CID principal em 
+cada um dos procedimentos, tanto principal quanto secundário, conforme era anteriormente.
+
+Nesta competência, a aplicação incluirá o CID do procedimento principal nos demais 
+procedimentos que não possuem a informação do CID.
+
+========================================================================================
+Versão 05.24 19/08/2025 Não Obrigatória competência 07/2025
+========================================================================================
+
+Ajuste na rotina calculo de valor bruto, calculo do valor local.
+
+========================================================================================
+Versão 05.23 15/08/2025 Não Obrigatória competência 07/2025
+========================================================================================
+
+Crítica ficou para próxima competência 08/2025.
+
+É permitido apenas 1 CID principal por APAC. Se houver mais de 1 CID principal registrado 
+fora da sequencia 01, rejeitar a APAC na consistência e atribuir a seguinte mensagem de erro: 
+"Só é permitido 1 CID principal na APAC".
+
+Ajuste em descrição de mensagem de erro.
+
+========================================================================================
+Versão 05.22 29/07/2025 Obrigatória competência 07/2025
+========================================================================================
+
+1 - Numeração especial de APAC para fins de controle das ações e serviços executados 
+com recursos provenientes de parcela única de custeio da Atenção Especializada, estabelecido 
+na Portaria GM/MS nº 6.916, de 6 de maio de 2025.
+
+2 - A partir da competência 07/2025, o sistema deverá reconhecer uma APAC executada com 
+recurso de parcela única quando:
+   - O procedimento principal possuir o Atributo Complementar "052" ou 053" no SIGTAP; 
+   - O quinto dígito do número de autorização da APAC ser preenchido com valor "0" (Zero); 
+   - O caráter de atendimento ser "01 - Eletivo".
+
+Uma numeração de APAC com quinto dígito "0" (Zero) só deve ser permitida para procedimento 
+APAC principal que possua atributo complementar "052" ou 053" no SIGTAP.
+
+É permitido apenas 1 CID principal por APAC. Se houver mais de 1 CID principal registrado 
+fora da sequencia 01, rejeitar a APAC na consistência e atribuir a seguinte mensagem de erro: 
+"Só é permitido 1 CID principal na APAC".
+
+========================================================================================
+Versão 05.21 10/06/2025 Obrigatória competência 05/2025
+========================================================================================
+
+- Foi removida mensagens utilizadas em teste de homologação, mensagens indevidas no 
+ambiente de produção na importação do arquivo FPO.
+
+========================================================================================
+Versão 05.20 09/06/2025 Obrigatória competência 05/2025
+========================================================================================
+
+- Implementar regra para validar o procedimento "04.07.01.038-6 - Cirurgia Bariátrica por 
+Videolaparoscopia" nos dados complementares de APAC de PÓS-CIRURGIA BARIÁTRICA, que deve 
+ter as opções de preenchimento (S=Sim e N=Não).
+
+- Implementar regra exclusivamente para APAC de OCI (procedimento de principal do Grupo 09),
+a Data Diagnóstico Cito/histopatológico deve ser menor ou igual à data de alta/óbito da APAC
+(data de saída/encerramento).
+
+- É necessário atualizar o tamanho dos campos de valores das tabelas S_VPA, S_IPU e S_PAP 
+para NUMBER(15,2).
+
+========================================================================================
+Versão 05.19 13/05/2025 Não Obrigatória competência 04/2025
+========================================================================================
+
+- Ajustar a implementação da regra data de Solicitação da APAC deve ser igual ou anterior à data 
+de início da validade da APAC, obrigatória para competência 05/2025.
+
+- Ajustar a implementação da revogação de óbito quando informado o CPF do paciente. 
+
+========================================================================================
+Versão 05.18 23/04/2025 Obrigatória competência 04/2025
+========================================================================================
+
+- Implementação da regra quando o procedimento principal da APAC possuir o atributo complementar 
+“056 - Exige procedimento de tomografia computadorizada”, a APAC deverá exigir o registro pelo 
+menos 1 procedimento do subgrupo “02.06 - Diagnóstico por tomografia” da Tabela de Procedimentos 
+do SUS, respeitando as compatibilidades estabelecidas entre procedimento principal e secundários;
+
+- Implementação da regra quando o procedimento principal da APAC possuir o atributo complementar
+ “057 - Exige procedimento de ressonância magnética”, a APAC deverá exigir o registro pelo menos 
+1 procedimento do subgrupo “02.07 - Diagnóstico por ressonância magnética” da Tabela de Procedimentos 
+do SUS, respeitando as compatibilidades estabelecidas entre procedimento principal e secundários;
+
+- Implementação da regra quando o procedimento principal da APAC possuir o atributo complementar 
+“058 - Obrigatório CPF”, a APAC deverá exigir que a identificação do paciente atendido seja realizada 
+por meio do CPF. Exceto quando o paciente tiver raça/cor "05-Indígena", que poderá ser identificado 
+por meio do Cartão Nacional de Saúde (CNS).
+
+- Ajustar a implementação da regra data de Solicitação da APAC deve ser igual ou anterior à data 
+de início da validade da APAC
+
+- Ajustar a implementação da regra data de Autorização da APAC deve ser igual ou superior à data 
+de Solicitação da APAC
+
+- Ajustar a implementação da regra não permitir que o CNS do Médico Responsável e o CNS do Médico 
+Autorizador sejam iguais
+
+- Ajustar a implementação da regra para APAC de OCI (procedimento de principal do Grupo 09) fazer 
+os seguintes ajustes:
+	- Retirar as validações entre as datas de Solicitação e de Autorização em relação ao campo 
+"Data Diagnóstico Cito/histopatológico".
+	- Inserir a seguinte regra: a Data Diagnóstico Cito/histopatológico deve ser maior ou igual 
+à data de início da validade da APAC
+
+- Corrigir operacionalização da regra contratual 71.06 (ESTABELECIMENTO SEM GERAÇÃO DE CREDITO 
+TOTAL - INCLUINDO FAEC), conforme determina a PORTARIA Nº 329, DE 6 DE OUTUBRO DE 2009.
+
+- Ajuste no relatório "PRODUCAO DE OCI COM CNES TERCEIRO" alteração no nome, incluir 
+"Observação: Este relatório não corresponde, exclusivamente, à produção aprovada".
+
+========================================================================================
+Versão 05.17 17/04/2025 não Obrigatória competência 03/2025
+========================================================================================
+
+- Ajuste na geração dos relatórios que estavam sendo gerados com valores zerados. 
+- Ajuste na critica de APACs de OCI na consistência de procedimento secundários.
+
+========================================================================================
+Versão 05.16 31/03/2025 Obrigatória competência 03/2025
+========================================================================================
+
+- Importar e consistir o campo opcional para digitar o código do "CNES Terceiro" na digitação 
+de procedimento secundário. Esse campo deverá ser habilitado apenas para APAC com procedimento 
+principal do Grupo 09 -Procedimentos para Ofertas de Cuidados Integrados. Deve-se validar 
+se o CNES terceiro informado é de fato um terceiro do CNES principal conforme cadastro no CNES.  
+
+- Devido ao novo campo de "CNES Terceiro" em procedimento secundário de OCI, criar o relatório 
+anexo no SIA.
+
+- Ajustar a implementação da regra de que " Quando o procedimento principal possuir a regra 
+condicionada "0011 - CONDICIONA O REGISTRO DE PROCEDIMENTOS SECUNDÁRIOS NA APAC", a APAC 
+deverá exigir o registro de, pelo menos, 2 procedimentos secundários, sendo um deles, 
+obrigatoriamente, o “03.01.01.007-2” OU o “03.01.01.030-7 ” para o seguinte:
+
+- A aplicação não deve permitir o registro de APAC com apenas os procedimentos secundários 
+“03.01.01.007-2” e o “03.01.01.030-7”, pois é necessário que tenha algum outro procedimento 
+secundário além desses.
+
+- Portanto, a regra correta é: deve haver no mínimo 2 procedimentos secundários, sendo um deles 
+obrigatoriamente, o “03.01.01.007-2” OU o “03.01.01.030-7”, mas nunca APENAS esses dois 
+procedimentos. Deve haver sempre um outro secundário além deles.
+
+========================================================================================
+Versão 05.15 26/03/2025 Não Obrigatória competência 02/2025
+========================================================================================
+
+- Ajuste na consistência de procedimento: 
+  "HABILITAÇÃO 29.02 SÓ PODE SER UTIL.PROG.NAC.RED.FILAS". 
+
+========================================================================================
+Versão 05.14 14/03/2025 Obrigatória competência 02/2025
+========================================================================================
+
+- Ajuste na critica de APACs de OCI na consistência de procedimento secundários. 
+
+========================================================================================
+Versão 05.13 10/03/2025 Obrigatória competência 02/2025
+========================================================================================
+
+- Exigir versão FPO 02.78 
+- Ajuste na critica de APACs de OCI para que seja exigido CID principal.
+- Alterar a mensagem de erro "PROFISSIONAL EM DESACORDO COM PT-SAS 134/11" para "PROF.COM MAIS 2 VINC.PUBLICO OU PROF.COM CARG.H MAIOR 168H"
+- Correção no relatório de Produção com Quantidade Máxima Excedente por Paciente/Competência.
+
+
+========================================================================================
+Versão 05.12 19/02/2025 Obrigatória competência 01/2025
+========================================================================================
+
+  Ajuste na consistência de APAC do campo quantidade. "EXCEDE QUANTIDADE MAXIMA DO PROCEDIMENTO".
+
+========================================================================================
+Versão 05.11 23/01/2025 Obrigatória competência 01/2025
+========================================================================================
+
+  A partir da competência 01/2025, o SIA deverá ser capaz de reconhecer e obrigar o registro, 
+numa mesma APAC, de procedimentos que possuem compatibilidade obrigatória, do tipo APAC 
+(Proc. Principal) x APAC (Proc. Secundário) (Obrigatória), conforme Anexo V da PORTARIA 
+SAES/MS Nº 2.331, DE 10 DE DEZEMBRO DE 2024.
+
+  O sistema SIA, passa exigir a versão Obrigatória do FPO 02.76.  
+
+========================================================================================
+Versão 05.10 10/01/2025 Obrigatória competência 12/2024
+========================================================================================
+
+   Ajuste na consistência de APAC do campo "Pessoa em situação de rua?".
+   Ajuste na importação de APAC do campo "Pessoa em situação de rua?".
+	
+
+========================================================================================
+Versão 05.09 09/01/2025 Obrigatória competência 12/2024
+========================================================================================
+
+   Inclusão do campo "Pessoa em situação de rua?" nas tabelas (BPI, APA), evoluir a aplicação 
+de processamento para receber o "Pessoa em situação de rua?".   
+
+Versão 05.08 06/12/2024 Obrigatória competência 11/2024
+========================================================================================
+
+   Ajuste na consistência, limitar o prazo de apresentação da APAC que possua procedimento 
+principal contendo o atributo complementar "054-APAC com validade fixa de 2 competências",
+apresentação deve ser na vigência da APAC. 
+Exemplo: 
+   DT_INI = 01/07/2024 até DT_FIN = 30/08/2024 - Apresentação nos movimentos 07/2024 e 08/2024.   
+
+========================================================================================
+Versão 05.07 01/10/2024 
+
+Ajuste na tela de pesquisa de APAC, ajuste no relatório Qtd Máxima e ajuste na rotina de consistência de APAC.
+Criação de novo index na S_APA para o campo de CPF_PCT.
+
+========================================================================================
+Versão 05.06 10/09/2024 
+
+Ajuste na rotina de consistência de APAC para procedimento impossíveis de coexistirem.
+
+========================================================================================
+Versão 05.05 06/09/2024 
+
+1- Disponibilizar versão do SIA referente à competência 08/2024, com seguintes alterações:
+
+Para APACs do PMAE, não permitir a quantidade ZERO (000) para os procedimentos realizados (principais e/ou secundários).
+
+Ajuste na rotina de consistência de APAC para procedimento impossíveis de coexistirem. 
+
+
+
+========================================================================================
+Versão 05.04 08/08/2024 
+
+1- Disponibilizar versão do SIA referente à competência 07/2024, com seguintes alterações:
+
+Sistema deverá reconhecer uma APAC do Programa Mais Acesso a Especialistas (PMAE) 
+
+- O procedimento principal possuir o Atributo Complementar "053" no SIGTAP  e  quinto dígito do número de autorização ser preenchido com valor "7"; O caráter de atendimento ser "01 - Eletivo".
+
+- Numeração de APAC com quinto dígito "7" só deve ser permitida para procedimento APAC principal que possua atributo complementar "053 - Programa Mais Acesso a Especialistas (PMAE)".
+
+- APAC com procedimento principal com Atributo Complementar "053" no SIGTAP só deve admitir os motivos de saída:
+1.1 - Alta Curado;
+1.2 - Alta Melhorado;
+1.4 - Alta a pedido;
+1.5 - Alta com previsão de retorno para acompanhamento do paciente;
+4.1 - Óbito - Com declaração de óbito fornecida pelo médico assistente;
+4.2 - Óbito - Com declaração de óbito fornecida pelo Instituto Médico Legal - IML; e
+4.3 - Óbito - Com declaração de óbito fornecida pelo Serviço de Verificação de óbito - SVO.
+
+- Quando o procedimento principal possuir a regra condicionada "0011 - CONDICIONA O REGISTRO DE PROCEDIMENTOS SECUNDÁRIOS NA APAC", a APAC deverá exigir o registro de, pelo menos, 2 procedimentos secundários, sendo um deles, obrigatoriamente, o “03.01.01.007-2” OU o “03.01.01.030-7”.
+
+- Caso o procedimento principal possua o atributo complementar código "054 - APAC com validade fixa de 2 competências", o período entre a data de início e fim de validade da APAC deve ser de 2 competências e com apresentação única, não admitindo APAC de continuidade.
+
+- Quando o procedimento principal for do subgrupo 0901 e o secundário possuir o atributo complementar “055 - Exige data do resultado diagnóstico de Neoplasia”, deve ser obrigatório validar os dados complementares do laudo geral.
+                 
+========================================================================================
+
+Liberar versão não obrigatória correção na rotina de consistência critica BPA-I mensagem 
+"PROFISSIONAL NAO CADASTRADO NA DATA DE ATENDIMENTO".
+
+========================================================================================
+Versão 05.03 01/07/2024 
+- VERSAO NÃO Obrigatória                 
+========================================================================================
+
+Liberar versão não obrigatória correção na rotina de consistência critica BPA-I mensagem 
+"PROFISSIONAL NAO CADASTRADO NA DATA DE ATENDIMENTO".
+
+========================================================================================
+Versão 05.02 22/05/2024 
+- VERSAO NÃO Obrigatória                 
+========================================================================================
+
+Liberar versão obrigatória correção na rotina de importação dos instrumento de registro 
+(RAS) para importar o campo CPF.
+
+========================================================================================
+Versão 05.01 16/05/2024 
+- VERSAO NÃO Obrigatória                 
+========================================================================================
+
+Liberar versão obrigatória correção na rotina de importação dos instrumento de registro 
+(APA) para importar o campo CPF. 
+
+========================================================================================
+13/05/2024 VERSAO 05.00  
+- VERSAO OBRIGATORIA.
+========================================================================================
+
+Inclusão do campo "CPF do indivíduo" nas tabelas (BPI, APA, RAS e PRD), evoluir a aplicação de processamento para receber o CPF do indivíduo.
+ 
+Implementar validação do campo CPF ou CNS na tela de consistência para os instrumento de registro (BPI, APA, RAS).
+
+Implementar validação do campo CPF ou CNS na rotina de calculo do valor bruto, para os instrumento de registro (BPI, APA, RAS e PRD).
+
+Implementar na rotina de importação dos instrumento de registro (BPI, APA e RAS) para importar o campo CPF. 
+
+Implementar na rotina de geração de remessa, inclusão do campo "CPF do indivíduo" nas tabelas (BPI, APA, RAS E PRD). 
+
+
+27/03/2024 VERSAO 04.33  
+
+- VERSAO OBRIGATORIA.
+
+PORTARIA SAES/MS Nº 1.483, DE 20 DE FEVEREIRO DE 2024: Inclui e altera atributo complementar e altera procedimentos
+integrantes do Programa Nacional de Redução das Filas de Cirurgias Eletivas, Exames Complementares e Consultas
+Especializadas (PNRF), na Tabela de Procedimentos, Medicamentos, Órteses, Próteses e Materiais Especiais do SUS.
+
+Art. 1º Fica alterado, na Tabela de Procedimentos, Medicamentos, Órteses, Próteses e Materiais Especiais do Sistema 
+Único de Saúde - SUS (Tabela de Procedimentos do SUS), o nome do Atributo Complementar "051-Programa Nacional de Redução 
+das Filas de Procedimentos Eletivos" para "051-Programa Nacional de Redução das Filas de Procedimentos Eletivos Hospitalares".
+
+Art. 2º Fica incluído, na Tabela de Procedimentos do SUS, o atributo complementar "052-Programa Nacional de Redução das Filas 
+de Procedimentos Eletivos Ambulatoriais".
+
+- VALIDO A PARTIR DA COMPETENCIA MAR/2024 EM DIANTE.
+
+
+
+
+26/01/2024 VERSAO 04.32  
+
+- VERSAO OBRIGATORIA.
+
+Disponibilizar nova versão do SIA para a competência 01/2024 com a atualização do rol de procedimentos em que incide a regra contratual "71.17 - A Portaria SAES nº 1.148, de 21 de dezembro de 2023, anexa, atualiza o rol de procedimento para aplicação da regra contratual "71.17".
+
+
+17/01/2024 VERSAO 04.31
+
+- VERSAO NÃO OBRIGATORIA.
+
+ Disponibilizar a versão do SIA referente à competência 12/2023 com o seguinte ajuste, modificações no modulo de SITUAÇÃO DA PRODUÇÃO, tratando exceção de erro ao apresentar número total de APAC.
+
+
+06/10/2023 VERSAO 04.30
+
+- VERSAO OBRIGATORIA.
+
+ Disponibilizar a versão do SIA referente à competência 09/2023, com as seguintes regras:
+
+ Regra para operacionalizar a nova habilitação (código 29.02) relacionada ao 
+Programa Nacional de Redução de Filas (Eletivas).
+- Se o CNES executante possui apenas a nova habilitação (29.02) dentre as que são exigidas 
+para realização do procedimento apresentado.
+- Em caso positivo (se o estabelecimento tiver apenas a nova habilitação), o sistema 
+deve verificar se o mesmo está sendo apresentado em APAC que faça parte do PNRF (eletivas). 
+Caso não esteja, a APAC será rejeitada.
+
+  Ajuste no Calculo do Valor Bruto, funcionalidade de calcular a complementação federal.
+ 
+  Realizar encerramento automático das APAC da cpt 08/2023 (ou anteriores) dos 
+procedimentos excluídos na portaria nº 766, de 14 de setembro de 2023:
+0506010023 - ACOMPANHAMENTO DE PACIENTE PÓS-TRANSPLANTE DE RIM FÍGADO CORAÇÃO PULMÃO CÉLULAS-TRONCO HEMATOPOIÉTICAS E/OU PÂNCREAS
+0506010031 - ACOMPANHAMENTO DE DOADOR VIVO PÓS-DOAÇÃO DE FÍGADO, PULMÃO OU RIM
+0506010040 - ACOMPANHAMENTO DE PACIENTES NO PRÉ TRANSPLANTE DE ÓRGÃOS
+
+
+21/07/2023 VERSAO 04.26
+
+- VERSAO NÃO OBRIGATORIA.
+
+  - Ajuste na correção no Calculo do Valor Bruto, funcionalidade de calcular a complementação federal 
+nos procedimentos das eletivas.
+
+14/07/2023 VERSAO 04.25
+
+- VERSAO NÃO OBRIGATORIA.
+
+  - Correção no Calculo do Valor Bruto, funcionalidade de calcular a complementação federal 
+nos procedimentos das eletivas.
+
+
+10/05/2023 VERSAO 04.24
+
+- VERSAO OBRIGATORIA.
+
+  Desativar temporariamente a seguinte regra não permitir que a competência do BPA (campo DT_CMP) 
+seja diferente da competência da data de atendimento (campo DT_ATENDIMENTO).
+
+
+
+02/04/2023 VERSAO 04.23
+
+- VERSAO OBRIGATORIA.
+
+- PT GM/MS Nº 344, DE 1º DE FEVEREIRO DE 2017, Art 1o.
+  Determina a utilização da raça/cor apenas em  branca, preta, amarela, parda ou indígena.
+  Não possuindo portando a opção "99 - Sem informação"
+  Esta alteração foi pactuada no GT de Informação e Informática em 24/10/2022, na qual ficou 
+  acordado que a mudança passaria a valer a partir de abril/2023.
+  A regra é : Toda a produção INICIADA a partir da competencia abril/2023, deve possuir um 
+  codigo de raça/cor valido na Portaria citada! não permitindo mais a opção 99!
+
+- Alteração na Importação de CNES e Terceiros Brasil (DE-PARA) para os casos de categoria de CBO
+  Caso um serviço/class. exiga uma categoria de CBO, o SIA deve importar todos os CBO´s encontrados
+  no estabelecimento dessa categoria.
+
+- Acerto no relatorio de estatistica da produção, possuia uma mensagem de erro na tela e impedia a 
+  execução do sistema, caso encontrase o erro EXCEDE QTD.MAXIMA DO PROCED. POR PACIENTE/COMP na
+  produção.
+
+- Acerto no acompanhamento da remessa DTS, estava limitando a pesquisa até o ano de 2020.
+
+
+31/03/2023 VERSAO 04.22
+
+- VERSAO OBRIGATORIA.
+
+- PT GM/MS Nº 90, DE 3 DE FEVEREIRO DE 2023.
+  Institui o programa nacional de redução das filas de cirurgias eletivas, exames
+  complementares e consultas especializadas.
+
+- VALIDO A PARTIR DA COMPETENCIA MAR/2023 EM DIANTE.
+
+
+================================================================================
+Versão 04.20 12/12/2022 Obrigatória 11/2022                  
+================================================================================
+
+   Alterar regra de validação da quantidade registrada dos procedimentos apresentados 
+em BPA-I para o seguinte comportamento:
+   Fazer validação, independentemente de Folha e Linha de registro, da quantidade 
+apresentada do procedimento de acordo com o máximo estipulado no SIGTAP, por competência 
+de realização e CNS do indivíduo.
+
+================================================================================
+Versão 04.19 09/08/2022 Obrigatória 07/2022                  
+================================================================================
+
+   Alterar implementação da Regra Condicionada 0001: o serviço/classificação 114/007 
+só será exigido em estabelecimentos com habilitações 0403, 0404 ou 0405 e quando 
+paciente atendido for PCD.
+   
+   Ajuste no calculo do valor aparesentado na produção de BPA e relatorio R0202T - 
+ACOMPANHAMENTO DA PROGRAMACAO FISICO  ORCAMENTARIA. 
+
+================================================================================
+Versão 04.18 15/07/2022 Não Obrigatória 06/2022                  
+================================================================================
+
+   Desabilitar as críticas/regras da Política Nacional de Cirurgias Eletivas, bem 
+como não tem mais numeração específica a nível federal.
+   Dessa forma, o sistema não deve, por exemplo, converter o valor do procedimento 
+para FAEC caso tenha, eventualmente, numeração específica e atributo complementar 
+44 no procedimento no SIGTAP.
+
+================================================================================
+Versão 04.17 05/04/2022 Obrigatória 03/2022                  
+================================================================================
+
+    1. Foi incluído, critica nos dados complementares de quimioterapia, o campo 
+“Medicamentos Antineoplásicos Administrados” de preenchimento obrigatório e 
+que contém 10 subcampos para registro de todos os medicamentos antineoplásicos 
+administrados no paciente.
+
+        1.1 Devem ser registrados na APAC todos os medicamentos administrados 
+        no paciente.
+
+        1.2 Cada código de subcampo “Medicamentos Antineoplásicos Administrados”, 
+        vai ser validado com lista dos medicamentos disponibilizada a partir do BDSIA202203a.
+
+        1.3 Não é permitido repetir um determinado medicamento numa mesma APAC.
+
+        1.4 A lista com os medicamentos antineoplásicos pode ser consultada no 
+        seguinte link: https://url.gratis/9vG2c3
+    
+        1.5 Foi  incluído o campo “Medicamentos Antineoplásicos Administrados”, 
+        com seus 10 subcampos, no relatório de espelho de APAC;      
+
+    2. Na competência 03/2022, não poderão ser autorizadas, registradas ou 
+processadas APAC de continuidade referentes a APAC com procedimento principal de 
+quimioterapia iniciadas até 28 de fevereiro de 2022.
+
+    3. Para encerrar a APAC na competência fevereiro de 2022, sugerimos utilizar 
+o  motivo "51- Encerramento administrativo".
+
+    Essas alterações são decorrentes da PORTARIA Nº 2, DE 3 DE JANEIRO DE 2022, 
+retificada na data de 16 de fevereiro de 2022.
+
+================================================================================
+Versão 04.16 14/10/2020 Obrigatória 09/2020                 
+================================================================================
+
+Correção na critica APAC QUIMIOTERAPIA E RADIOTERAPIA 
+Inclusão de crítica para APACs de Continuidade para os procedimentos principais 
+03.01.07.017-2, 03.01.01.019-6, 03.01.01.020-0 e 03.01.01.021-8 devem ter valor 
+e quantidade zerados. 
+
+================================================================================
+Versão 04.15 20/05/2020 não Obrigatória 04/2020                 
+================================================================================
+
+Correção na critica APAC QUIMIOTERAPIA E RADIOTERAPIA 
+- Seguinte crítica data do diagnóstico deve ser igual ou anterior à data 
+de autorização, quando preenchida. Data do diagnóstico deve ser igual ou anterior 
+à data de solicitação, quando preenchida.
+
+================================================================================
+Versão 04.14 04/05/2020 Obrigatória 04/2020                 
+================================================================================
+
+- Regra implementada, o procedimento 03.05.01.022-0 deverá ter quantidade máxima 
+igual a soma dos (03.05.01.010-7 e 03.05.01.009-3), realizados na APAC. As regras 
+de quantidade máxima e  regras de (MÁXIMO 3 SESSÕES POR SEMANA) estão estabelecidas 
+no SIGTAP. O sistema deverá somar as quantidades realizadas nos procedimentos 
+(03.05.01.010-7 e 03.05.01.009-3) e estabelecer como quantidade máxima a ser 
+realizada na APAC para o procedimento 03.05.01.022-0.     
+
+- Disponibilizar versão versão capaz de importar o TXT CNES Provisório Nacional. 
+
+APAC
+- Inserir a seguinte crítica data de autorização da APAC não pode ser anterior 
+à data de solicitação da APAC.
+
+APAC QUIMIOTERAPIA E RADIOTERAPIA 
+- Inserir a seguinte crítica data do diagnóstico deve ser igual ou anterior à data 
+de autorização. Data do diagnóstico deve ser igual ou anterior à data de solicitação.
+Data do diagnóstico deve ser igual ou anterior à data de início do tratamento.
+
+
+================================================================================
+Versão 04.13 06/09/2019 Obrigatória 08/2019                 
+================================================================================
+    
+Não permitir a complementação de valores, até o limite de 100% do valor da Tabela SUS, 
+pagos pelos gestores, com recursos federais, aos seguintes procedimentos referentes 
+à cirurgia de catarata:
+ . 040505009-7 Facectomia com Implante de Lente Intra-Ocular
+ . 040505010-0 Facectomia Sem Implante de Lente Intra-Ocular
+ . 040505011-9 Facoemulsificaçao com Implante de Lente Intra-Ocular Rígida
+ . 040505037-2 Facoemulsificacao com Implante de Lente Intra-Ocular Dobrável
+ 
+O sistema SIA, passa exigir a versão Obrigatória do FPO 02.44.
+     
+================================================================================
+Versão 04.12 14/06/2019 Obrigatória 05/2019                 
+================================================================================
+    Correção na implementação da geração de remessa.    
+    
+================================================================================
+Versão 04.11 05/06/2019 Obrigatória 05/2019                 
+================================================================================
+   
+    A partir da competência 05/2019, alterar criticas para atender o novo layout 
+da APAC de dados complementares de radioterapia:
+    Excluir o seguinte campo, em APAC INICIADAS em 05/2019.  
+        1 - Campos/Inserções (No. CAMPO/INC.);
+        2 - Os campos “CID área irradiada”, “Dt. Início” e “Dt. Fim” terão apenas uma 
+        linha de preenchimento, ou seja, só serão preenchidos uma vez cada um;
+        3 - O campo “CID área irradiada” deverá ser de preenchimento obrigatório;
+        4 - Não aceitar APAC inicial para os procedimentos abaixo:                                      
+            0304010014, 0304010022, 0304010030, 0304010049, 0304010057, 0304010065,
+            0304010073, 0304010081, 0304010090, 0304010103, 0304010120, 0304010138,
+            0304010146, 0304010154, 0304010162, 0304010189, 0304010197, 0304010200,
+            0304010219, 0304010235, 0304010243, 0304010260, 0304010286, 0304010294,
+            0304010308, 0304010316, 0304010324, 0304010332.   
+        
+    Inclusão da coluna de CENS no RELATORIO DE APRESENTACAO DE ADVERTENCIA SEXO.     
+    
+    Correção na implementação de obrigatoriedade de CID no procedimento de 
+monitoramento do câncer.                       
+    Procedimento que passará a ter estes atributos, para conhecimento: 
+02.03.02.003-0 - EXAME ANATOMO-PATOLÓGICO PARA CONGELAMENTO / PARAFINA POR PEÇA 
+CIRURGICA OU POR BIOPSIA (EXCETO COLO UTERINO E MAMA).
+
+================================================================================
+Versão 04.10 08/02/2019 Obrigatória 01/2019                 
+================================================================================
+
+    A partir da competência 01/2019, validar o número da apac de CNRAC conforme 
+regras de numeração, eliminando a necessidade de cadastramento proveniente no BDSIA.
+
+    Alteração na implementação do relatório Sintético de procedimentos com regras 
+contratuais por unidade, divergências com o valor de regras contratuais de VEPE.
+
+    Alteração na importação dos procedimentos do SISCAN, informado por sistemas 
+de terceiros ou através do BPA.       
+
+================================================================================
+Versão 04.09 19/10/2018 Não Obrigatória                 
+================================================================================
+   Vigência 03/2018. 
+
+   A partir da versão 04.09, não impossibilitar o registro de procedimento “ação”, 
+para indivíduos de sexo diferente do sugerido na tabela SUS. Consequentemente 
+não impossibilita o registro de diagnostico “CID”, para indivíduos de sexo 
+diferente do sugerido na tabela SUS.  
+
+- Implementar relatório que exiba procedimentos realizados em indivíduos de sexo 
+diferente do recomendado pela Tabela SUS.
+
+========================================================================================
+
+VERSAO SIA0408 10/05/2018
+
+- VERSÃO OBRIGATÓRIA P/COMPETÊNCIA 05/2018.
+  Implementar no SIA a obrigatoriedade de CID e CNS no procedimento de 
+monitoramento do câncer.
+  O procedimento possuir o atributo complementar 009 e o CNS do paciente não 
+esteja preenchido;
+  O procedimento possuir o atributo complementar 048 e o CID não esteja preenchido.
+  Procedimento que passará a ter estes atributos, para conhecimento: 
+02.03.02.003-0 - EXAME ANATOMO-PATOLÓGICO PARA CONGELAMENTO / PARAFINA POR PEÇA 
+CIRURGICA OU POR BIOPSIA (EXCETO COLO UTERINO E MAMA)
+
+VERSAO SIA0407 02/02/2018
+- VERSAO OBRIGATORIA 01/2018
+
+- Migração do procedimento 02.04.03.018-8 - MAMOGRAFIA BILATERAL PARA RASTREAMENTO 
+de FAEC para MAC.
+  Desativar as Regras Condicionadas 0005 (Procedimentos marcados pela regra 
+condicionada 0005 e que a idade o usuário esteja entre 50 e 69 anos, devem possuir 
+o tipo de financiamento FAEC e subtipo de financiamento Mamografia para Rastreamento) 
+e 0010 (Procedimentos marcados pela regra condicionada 0010 e que a idade o 
+usuário esteja entre 25 e 64 anos E que o estabelecimento possua a habilitação 
+3202 ou 3203, devem possuir o tipo de financiamento FAEC e subtipo de financiamento 
+Controle de qualidade do exame cito patológico).
+
+
+VERSAO SIA0406 17/07/2017
+
+- VERSAO OBRIGATORIA
+
+- PORTARIA Nº 1.294, DE 25 DE MAIO DE 2017 
+  Art. 1º Fica definida para o exercício de 2017, a estratégia de ampliação do 
+acesso aos Procedimentos Cirúrgicos Eletivos no âmbito do Sistema Único de Saúde (SUS).
+  Parágrafo único. Os procedimentos da estratégia, que visa à redução no tempo 
+de espera por cirurgias, poderão ser realizados por meio do atendimento de rotina 
+e por meio de mutirões.  
+  Art. 4º Para apresentação das Autorizações de Internação Hospitalar (AIH) e 
+Autorizações de Procedimentos Ambulatoriais de Alta Complexidade (APAC) relativas 
+aos Procedimentos Cirúrgicos Eletivos realizados de acordo com esta Portaria 
+serão utilizadas, obrigatoriamente, séries numéricas específicas com caráter 
+de atendimento
+  1 - eletivo.
+  Parágrafo único. As séries numéricas de APAC e AIH específicas das cirurgias 
+eletivas devem seguir o seguinte padrão:  
+  II - APAC: O quinto dígito do número de autorização deve ser preenchido com valor "6".
+  
+VERSAO SIA0405 8/03/2017
+
+- VERSÃO NAO OBRIGATÓRIA.
+
+- NOVO LAYOUT DE IMPORTACAO DE BPA DO e-SUS AB
+  ESTA VERSAO DEVE SER UTILIZADA PARA AS NOVAS VERSOES DO e-SUS AB EM DIANTE
+
+- ALTERACAO NA REGRA DE PRODUÇÃO BPA-C E BPA-I DE UM MESMO PROCEDIMENTO/CNES E 
+  COMPETENCIA NAO PERMITIDA : 
+  - A PRODUCAO INFORMADA NO e-SUS AB DEVE PERMITIR A OCORRENCIA DE PROCEDIMENTOS
+    EM UM MESMO CNES E COMPETENCIA, TANTO EM BPA-C E BPA-I
+    ISTO OCORRE POIS O e-SUS AB TRANSFORMA TODA A PRODUÇÃO COM CNS DE USUARIO EM
+    BPA-I, E A PRODUCAO SEM IDENTIFICACAO FICA COMO BPA-C. A REGRA DO SIA IMPEDIA
+    ESTA APRESENTACAO! ESTA VERSAO CORRIGE ESTE PROBLEMA.
+
+
+
+VERSAO SIA0404 23/09/2015
+
+- VERSÃO NAO OBRIGATÓRIA.
+
+- ACERTO NA TELA OBRIGANDO A TECLAR F5 PARA CONTINUAR O PROCESSAMENTO
+
+
+
+VERSAO SIA0403 08/09/2015
+
+- VERSÃO NAO OBRIGATÓRIA.
+
+- ACERTO NA ROTINA DE PROCURA DE PROFISSIONAS DA PRODUÇÃO BPA-I, CASO O PROFISSIONAL
+  NAO SEJA ENCONTRADO NA COMPETENCITA DE PROCESSAMENTO E NA COMPETENCIA DA DATA DE
+  ATENDIMENTO, O SISTEMA APRESENTAVA UM ERRO NA EXECUCAO, CAUSANDO A SAIDA PREMATURA
+  DURANTE A CONSISTENCIA.
+
+
+VERSAO SIA0402 29/08/2015
+
+- VERSÃO NAO OBRIGATÓRIA.
+
+- Acerto na geracao da remessa DTS referente a alguns caracteres invalidos que podem 
+  ocasionar na mensagem de erro "Invalid Token" durante o calculo do valor bruto!
+
+
+VERSAO SIA0401 03/08/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- NOVA OPCAO DE GERACAO DA REMESSA DTS APÓS O CALCULO DO VALOR BRUTO A PARTIR DA 
+  COMPETENCIA JULHO/2016
+  . A PARTIR DA COMPETENCIA JULHO/2016, NAO DEVE-SE UTILIZAR O VERSIA PARA A GERACAO
+    DA REMESSA DTS PARA O TRANSMISSOR. UTILIZAR O VERSIA APENAS PARA OS CASOS DE 
+    REPROCESSAMENTO DE COMPETENCIAS ANTERIORES A JULHO/2016.
+
+  A REMESSA DTS FICA CONTIDA NA PASTA <SIA>\DTS\<AAAAMM> ONDE <SIA> = PASTA ONDE
+  ENCONTRA-SE INSTALADO O SIA, <AAAAMM> = COMPETENCIA NO FORMADO ANO E MES.
+
+- OPCAO "BASE DE DADOS DTS" NO MENU OPERADOR LIBERADA.
+
+- NOVA CONSULTA DA TABELA DE ATRIBUTOS COMPLEMENTARES EM TABELAS NACIONAIS
+
+- INCLUSAO DAS COLUNAS DE COMPETENCIA DE INICIO E FIM DE VALIDADE NA CONSULTA DE CID
+
+- INCLUSAO DA CONSULTA DE ATRIBUTOS COMPLEMENTARES NA CONSULTA DE PROCEDIMENTOS
+
+- ALTERACAO NA IMPORTACAO DE MANTENEDORAS DO TXT CNES PARA NAO PERMITIR DUPLICACAO
+  DE MANTENEDORAS CONTIDOS NO KIT TXT CNES.
+
+- ALTERACAO NA ROTINA DE NOVA COMPETENCIA : OBRIGA A GERACAO DO BACKUP APOS O CALCULO
+  DO VALOR BRUTO PARA SEGURANCA, E REORGANIZA (PACK) A TABELA DE APAC.
+
+- ACERTO NA ROTINA DE GLOSA DE APAC DUPLICADAS : PASSA A GLOSAR TODAS AS APACs EM
+  DUPLICIDADE.
+
+- PROCEDIMENTOS COM O ATRIBUTO COMPLEMENTAR DE APAC COM 12 COMPETENCIAS FIXAS, DEVEM
+  POSSUIR DATA DE FIM DE VALIDADE COM 12 COMPENTENCIAS APOS A DATA DE INICIO DE VALIDADE.
+  APENAS PARA AS APACs INICIADAS A PARTIR DA COMPETENCIA JULHO/2016 EM DIANTE
+
+- ALTERACAO NA PROCURA DE PROFISSIONAS DA PRODUÇÃO BPA-I, CASO NAO ENCONTRE O PROFISSIONAL
+  NA COMPETENCIA DE PROCESSAMENTO, PROCURAR NA COMPETENCIA DA DATA DE ATENDIMENTO DO 
+  HISTORICO, CASO AS COMPETENCIAS DE PROCESSAMENTO E DE ATENDIMENTO SEJAM DIFERENTES.
+
+
+VERSAO SIA0400 11/02/2015
+
+- VERSÃO NAO OBRIGATÓRIA.
+
+- ACERTO NA TELA DE IMPORTACAO DO KIT TXT NACIONAL E NO CALCULO DO VALOR BRUTO, 
+  OBRIGANDO O USUARIO A TECLAR F5 PARA CONTINUAR.
+
+
+
+VERSAO SIA0399 05/02/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- PREVISAO PARA AS NOVAS FUNCIONALIDADES DA REMESSA DE DADOS DTS FORAM
+  ALTERADAS PARA MARCO/2016
+
+- ACERTO NA IMPORTACAO DO KIT TXT CNES, REFERENTE A MANTENEDORA E MANTIDA,
+  E QUE GERAVA O RELATORIO DE CREDITO COMO INDIVIDUAIS.
+
+
+
+VERSAO SIA0398 08/01/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- ACERTO NA APRESENTACAO DA VERSAO DO BDSIA NA TELA PRINCIPAL, A PARTIR
+  DA COMPETENCIA DEZEMBRO/2015 EM DIANTE.
+
+- NOVA OPCAO "BASE DE DADOS DTS" NO MENU OPERADOR, COM AS SUB-OPCOES
+   -IMPORTAR REMESSA DTS. 
+   -CONSULTAR GESTORES DO DTS. 
+   -DESCOMPACTAR DTS ABRINDO GDB.
+  AS OPCOES ACIMA EXISTEM NO VERSIA
+
+   -ACOMPANHAR REMESSA.
+  NOVA OPCAO PARA ACOMPANHAMENTO DE REMESSA ONLINE.
+
+  TODAS EM DESENVOLVIMENTO, COM PREVISAO PARA JANEIRO/2016
+  
+
+- APRESENTACAO DAS VERSOES MINIMAS EXIGIDAS PELO BDSIA A PARTIR DA COMPETENCIA
+  JANEIRO/2016 EM DIANTE
+
+- NOVA VERSAO DO VALIDA_TXT_CNES.DLL
+
+
+VERSAO SIA0396 08/12/2015
+
+- VERSÃO NAO OBRIGATÓRIA.
+
+- ACERTO NA IMPORTACAO DE-PARA DO CNES, IMPORTACAO DAS 
+  MANTIDAS, MANTER O CNPJ, AG. E CC. IGUAIS AOS DA MANTENEDORA
+
+
+
+VERSAO SIA0394 11/11/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- ACERTO NO CALCULO DO VALOR FAEC PARA PROCEDIMENTOS COM INCREMENTOS
+
+
+
+VERSAO SIA0393 10/11/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- ACERTO NO CALCULO DO VALOR LOCAL DUPLO-FINANCIAMENTO CNRAC OU ELETIVA.
+  NAO INCLUIR O VALOR LOCAL NO FAEC PARA O CASO DE DUPLO FINANCIAMENTO ACIMA.
+
+- ACERTO NO CALCULO DO INCREMENTO : NAO INCLUIR A PARCELA DO VALOR LOCAL
+  FAEC NO CALCULO DO INCREMENTO.
+
+- INCLUSAO DO PROCEDIMENTO 060468002-3 NA REGRA DE DOSE DE ATAQUE HORUS A PARTIR DA
+  COMPETENCIA 08/2015 EM DIANTE.
+
+
+
+VERSAO SIA0392 6/11/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- ALTERACAO NO LAYOUT DO KIT TXT CNES A PARTIR DA COMPETENCIA NOV/2015 EM DIANTE
+
+- ALTERACAO NA REGRA DE PROGRAMACAO DE VALORES LOCAIS PARA O FAEC:
+  A PARTIR DA COMPETENCIA OUT/2015 EM DIANTE, SERA PERMITO INFORMAR VALORES LOCAIS PARA PROCEDIMENTOS
+  FAEC, Para fins de pagamento o DATASUS deverá considerar apenas o valor de tabela cadastrado no SIGTAP
+
+- EXIGE VERSAO 02.30 DO FPO OU MAIS RECENTE.
+
+
+
+VERSAO SIA0391 8/10/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- EXIGE A VERSAO 02.28 DO FPO OU MAIS RECENTE.
+
+
+VERSAO SIA0390 9/9/2015
+
+- VERSÃO NAO OBRIGATÓRIA.
+
+- CRIA NOVA COLUNA NO ARQUIVO S_PRD : PRD_INE. E ACERTA O ERRO NO VERSIA COM A FALTA
+  DESTA COLUNA.
+
+
+VERSAO SIA0389 4/9/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- EXIGE A VERSAO 02.25 DO FPO OU MAIS RECENTE.
+
+- PORTARIA GM N. 1.034, DE 22 DE JULHO DE 2015
+
+  - Partes dos artigos impactantes nesta versão :
+
+  Art. 3º ...para o faturamento dos Procedimentos Eletivos serão utilizados obrigatoriamente, 
+  séries numéricas (APAC), com caráter de atendimento 1 - eletivo
+
+  Art. 2º ...fica extinta a divisão por componentes.
+
+  Art. 3º ...O complemento federal não poderá sem maior do que 100% do valor do procedimento
+  SIGTAP
+
+- NOVO SUB-TIPO DE FINANCIAMENTO PARA OS PROCEDIMENTOS DA ELETIVA :
+  040066 -  Cirurgias Eletivas - Componente Único
+
+- NOVOS CODIGOS DE ERRO EM APA_FLER : 
+  "AX" DESCRICAO "APAC DE ENCERRAMENTO NAO DEVE POSSUIR PROCEDIMENTO" (critica efetuada no VERSIA)
+  "AZ" DESCRICAO "CARATER DE ATENDIMENTO INVALIDO PARA ELETIVA"
+
+- ACERTO NA IMPORTACAO DE-PARA DO CNES, EM QUE SOBRESCREVIA O PROFISSIONAL QUE JA EXISTIA EM 
+  UM ESTABELECIMENTO E ERA INCLUIDO EM UMA EQUIPE, PASSANDO A VALER APENAS A DATA DE INICIO
+  NA EQUIPE. AGORA PERMANESSE AS DUAS INFORMACOES.
+
+- NOVAS CRITICAS NA CONSISTENCIA DA TABELA DE VALORES A PARTIR DA COMPT.AGOSTO/2015
+  - A PARCELA DO VALOR FEDERAL NAO PODE SER SUPERIOR AO VALOR DA TABELA.
+  - PROCEDIMENTO NAO PERMITE VALOR FEDERAL, APENAS OS PROCEDIMENTOS MARCADOS COMO ELETIVAS
+    PODEM POSSUIR PARCELA ELETIVA FEDERAL.
+
+
+VERSAO SIA0388 3/8/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- Memorando interno CGSI : Não realizar critica do CNS de profissional dos sistemas :
+  SISCOLO, SISMAMA e SISCAN!
+
+- ALTERACAO NA CRITICA DOS PROCEDIMENTOS DO SISCAN : PERMITE A PRODUCAO DO SISCAN
+  INFORMADA ATRAVES DO BPA-MAG.
+
+
+
+VERSAO SIA0387 22/7/2015
+
+- VERSÃO NÃO OBRIGATÓRIA.
+
+- Memorando interno CGSI : Não realizar critica do CNS de profissional dos sistemas :
+  SISCOLO, SISMAMA e SISCAN até a competencia Agosto/2015, devendo realizar as criticas
+  do CNS do profissional para estes sistemas a partir da competencia Setembro/2015 em 
+  diante.
+
+- Acerto na importacao de profissionais do CNES. DE-PARA. Para os casos de um mesmo
+  profissional com 2 ou mais CNS cadastrados.
+  deve-se realizar a execução do DE-PARA novamente.
+
+
+
+VERSAO SIA0386 06/7/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- Memorando interno CGSI : Tendo em vista que os sistemas de captação ambulatorial ainda 
+  utilizam as informações de município+área+sequencia para identificar as equipes de saúde 
+  atualmente,e tendo em vista que atualmente o CNES já utiliza o código INE (Identificação 
+  Nacional de Equipes) para identificar as equipes de saúde.
+  SOLICITAMOS QUE:
+    1) Os instrumentos de registro do SIA (BPA, APAC, RAAS) passarão a utilizar o INE para 
+       registrar a atuação das equipes na execução de ações de saúde.
+    2) O SIA deverá passar a utilizar o código INE para consistir as informações de equipe 
+       informadas no BPA, APAC e RAAS.
+    3) As regras de consistência de equipes no SIA serão as mesmas utilizadas atualmente.
+
+  Aplicar a partir da competencia Agosto/2015
+  Para a produção inferiores a Agosto/2015 (atrasadas inclusive), deve-se utilizar o codigo 
+  da equipe atual (area e sequencia.)
+
+- Alteracao na importacao de equipes do CNES
+
+- Alteracao na consulta de equipes no SIA.
+
+- Alteracao na consulta de profissionais no SIA.
+
+- Alteracao no espelho da APAC.
+
+- Alteracao no espelho do BPA-I.
+
+- Alteracao no espelho do RAAS-AD.
+
+- Acerto na consistencia da produção RAAS-AD EMAD e EMAP. para a falta de profissionais.
+
+
+VERSAO SIA0385 05/6/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- ALTERACAO NA CRITICA DOS PROCEDIMENTOS DO SISCAN : PERMITE A PRODUCAO DO SISCAN
+  INFORMADA ATRAVES DO BPA-MAG NO MOVIMENTO DE MAIO/2015, ACEITANDO AS COMPETENCIAS
+  ATRASADAS JAN./FEV./MAR. E ABR. DE 2015
+
+  A T E N C A O : A ALTERCAO ACIMA APLICA-SE APENAS NO MOVIMENTO DE MAIO/2015, A 
+                  PARTIR DA COMPETENCIA JUNHO/15 EM DIANTE, VOLTA A CRITICA ANTERIOR.
+
+- PORTARIA GM 584 de 15 de maio de 2015 (retificação)
+  Relativa aos procedimentos de hemodiálise para portadores de HIV e Hepatite B / C 
+  SOLICITAMOS QUE: Seja implementada da APAC a regra referente ao Atributo Complementar: 
+  043-Exige registro de CID de causas associadas REGRA: Sempre que um procedimento estiver 
+  com o atributo complementar (043-Exige registro de CID de causas associada) cadastrado, 
+  Será obrigatório informar o CID Causas Associadas nos dados da APAC, que em regra é de 
+  preenchimento opcional. 
+
+  VIGENCIA: 06/2015
+
+
+
+VERSAO SIA0384 25/5/2015
+
+- VERSÃO NAO OBRIGATÓRIA.
+
+- ALTERACAO NA CRITICA DOS PROCEDIMENTOS DO SISCAN : PERMITE A PRODUCAO DO SISCAN
+  INFORMADA ATRAVES DO BPA-MAG NO MOVIMENTO DE ABRIL/2015, ACEITANDO AS COMPETENCIAS
+  ATRASADAS JAN./FEV. E MAR. DE 2015
+
+- INCLUSAO DOS PROCEDIMENTOS ABAIXO NA EXIGENCIA DE SISCOLO/SISCAN
+     020301007-8 CONTROLE  DE QUALIDADE DO EXAME CITOPATOLÓGICO CERVICO VAGINAL                             
+     020301008-6 EXAME  CITOPATOLÓGICO CERVICO VAGINAL/MICROFLORA-RASTREAMENTO                              
+     020302002-2 EXAME ANATOMO-PATOLOGICO DO COLO UTERINO - PECA CIRURGICA
+
+
+VERSAO SIA0383 15/5/2015
+
+- VERSÃO NAO OBRIGATÓRIA.
+
+- ALTERAÇÃO NA CRITICA DO CNS DO PROFISSIONAL DO BPA-I : A EQUIPE SERA OPCIONAL,
+  MESMO SE O PROFISSIONAL PERTENCER A ALGUMA EQUIPE OU NAO.
+  CASO A EQUIPE SEJA INFORMADA NA PRODUCAO, O PROFISSIONAL DEVE ESTAR CADASTRADO
+  NA EQUIPE.
+  ESTA CRITICA É UMA ADVERTENCIA ATE A COMPETENCIA MAIO/2015
+
+
+VERSAO SIA0382 08/5/2015
+
+- VERSÃO OBRIGATÓRIA.
+
+- ALTERACAO NA IMPORTACAO DE PROFISSIONAIS NO KIT TXT CNES, IMPORTA MAIS DE UMA 
+  LINHA PARA UM MESMO PROFISSIONAL COM DATAS DE ENTRADA E SAIDA DIFERENTES.
+
+- IMPLEMENTACAO DA REGRA CONTRATUAL 7114-ESTABELECIMENTO DE SAÚDE SEM GERAÇÃO DE 
+  CRÉDITO TOTAL, INCLUSIVE FAEC - PRONTO ATENDIMENTO
+  PARA A PRODUCAO A PARTIR DA COMPETENCIA ABRIL/2015 EM DIANTE.
+
+
+VERSAO SIA0381 09/4/2015
+
+- VERSÃO NÃO OBRIGATÓRIA.
+
+- ALTERAÇÃO NA CRITICA DO CNS DO PROFISSIONAL DO BPA-I : PASSA A SER ADVERTÊNCIA
+  ATÉ A  COMPETÊNCIA JUNHO/2015, A PARTIR DE JUNHO/2015 PASSA A SER GLOSA.
+
+- INCLUSÃO DO TIPO DE MENSAGEM "ADVERTÊNCIA" NO RELATÓRIO DA CONSISTÊNCIA, ESTE 
+  TIPO DE MENSAGEM NÃO APRESENTA GLOSA NA PRODUÇÃO, DEVENDO SER ANALISADA.
+
+
+VERSAO SIA0380 06/4/2015
+
+- VERSAO OBRIGATORIA
+
+- MEMORANDO INTERNO DA CGSI : INCLUSAO DA CRITICA CADASTRAL DO PROFISSIONAL
+  EXECUTANTE NO REGISTRO BPA-I A PARTIR DA COMPETENCIA MARCO/2015.
+
+
+VERSAO SIA0379 16/3/2015
+
+- VERSAO OBRIGATORIA
+
+- PORTARIA SAS Nº 103, DE 30 DE JANEIRO DE 2015
+  ENCERRAMENTO AUTOMÁTICO DAS APAC´S dos procedimentos
+  030403008, 030403014, 030403022, 030406022, 030403023, 030403024
+
+  O ENCERRAMENTO COM O MOTIVO DE SAÍDA 51 E DATA DE ENCERRAMENTO
+  28/FEV/15, SERÁ APLICADO NAS APAC´S DA COMPETÊNCIA FEV/2015
+  (201502), INDEPENDENTE DO MOVIMENTO, PODENDO PORTANTO : SER
+  ATRASADA, QUE CONTEM OS PROCEDIMENTOS INFORMADOS NA PORTARIA, E
+  QUE POSSUI DATA DE FIM DE VALIDADE MAIOR QUE 28/FEV/15, E COM
+  DATA DE ENCERRAMENTO EM BRANCO OU MAIOR QUE 28/FEV/15
+
+  O ENCERRAMENTO SERA APLICADO DURANTE A CONSISTENCIA.
+
+
+VERSAO SIA0378 4/2/2015
+
+- VERSAO OBRIGATORIA
+
+- PT/GM/MS  nº 2676 de 05/12/2014 - artigo 1o., altera a PT/GM/nº1557 de 31/07/2013.
+  Prorrogando o prazo dos valores federais eletivos para a competencia DEZEMBRO/2015.
+
+- EXIGE VERSAO 02.22 DO FPO-MAG OU MAIS RECENTE.
+
+
+VERSAO SIA0377 6/1/2015
+
+- VERSAO OBRIGATORIA
+
+- ACERTO NA CRITICA DA SITUACAO INICIO DO TRATAMENTO DO LAUDO DIALITICO DURANTE
+  A CONSISTENCIA.
+
+
+VERSAO SIA0376 4/12/2014
+
+- VERSAO OBRIGATORIA
+
+- ALTERACAO NA APLICACAO DA REGRA CONTRATUAL 7117 :
+  .INCLUI OS PROCEDIMENTOS DE MEDIA E DE ALTA COMPLEXIDADE.
+  .INCLUI OS PROCEDIMENTOS 02.11.06.003-8 E 02.11.06.013-5 NA LISTA DE PROCEDIMENTOS
+   AFETADOS PELA REGRA.
+  .ESTA ALTERACAO SERA APLICADA EM COMPETENCIAS PASSADAS.
+
+
+VERSAO SIA0375 07/11/2014
+
+- VERSAO OBRIGATORIA
+
+- PT/SAS 790, DE 1 DE SETEMBRO DE 2014.
+  Inclui regra contratual 7117 na tabela de Regras Contratuais do CNES.
+  
+
+VERSAO SIA0374 05/11/2014
+
+- VERSAO OBRIGATORIA
+
+- ACERTO NA ROTINA DE CALCULO DA IDADE DO USUARIO.
+
+- MEMORANDO INTERNO DA CGSI : UTILIZAR A NAT.JURIDICA DO ESTABELECIMENTO E NAO
+  MAIS O TIPO DE ESTABELECIMENTO, PARA DETERMINAR SE E´ PUBLICO OU PRIVADO.
+
+
+VERSAO SIA0373 24/10/2014
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NO CALCULO DO VALOR BRUTO PARA OS PROCEDIMENTOS DA REGRA CONDICIONADA 0010 EM 
+  ESTABELECIMENTOS COM A HABILITACAO 3203, Os PROCEDIMENTO DESTA REGRA FICAM COM O TIPO 
+  DE FINANCIAMENTO MAC INDEVIDO PARA ESTA HABILITACAO.
+
+
+VERSAO SIA0372 16/10/2014
+
+- VERSAO OBRIGATORIA
+
+- MEMORANDO INTERNO DA CGSI : REGRA CONDICIONADA 0010
+  Os procedimentos contantes da regra condicionada 0010 (consultar relacao de procedimentos no
+  SIGTAP), A produção com destes procedimentos, com a faixa etaria entre 25~64 anos e 
+  estabelecimento com as habilitações 32.02 ou 32.03, devem ter tipo de financiamento FAEC.
+
+- EXIGE VERSAO 02.20 DO FPO-MAG.
+
+
+VERSAO SIA0371 10/10/2014
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO DE ERRO NA IMPRESSAO DO ESPELHO DA APAC.
+
+
+VERSAO SIA0370 1/10/2014
+
+- VERSAO OBRIGATORIA
+
+- EXIGE VERSAO 02.19 DO FPO-MAG OU MAIS RECENTE.
+
+- MEMORANDO INTERNO DA CGSI : REGRA CONDICIONADA 0004 
+  Os procedimentos constantes da regra condicionada 0004 (consultar relacao de procedimentos no SIGTAP), 
+  devem possuir incremento apenas no FAEC, apenas se o estabelecimento possuir a habilitacao 02.03 e a 
+  producao deve conter o CID E66.0 ou E66.2 ou E66.8 ou E66.9
+
+  Caso o registro de producao ambulatorial nao atenda ao requisito acima, sera registrado no MAC sem o 
+  incremento.
+
+  Esta regra vale a partir da competencia Set/2014 em diante.
+
+- MEMORANDO INTERNO CGSI - Fica cancelada a critica no SIA e VERSIA sobre a existencia da producao 
+  ambulatorial do SISCAN, SISCOLO e SISMAMA em um mesmo CNES! (critica iniciada na versao 03.65)
+
+
+VERSAO SIA0369 16/9/2014
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DO TXT CNES E TERCEIROS BRASIL (DE-PARA), ERRO NA ROTINA
+  DE IMPORTACAO DE TERCEIROS BRASIL, IMPEDINDO O SISTEMA DE SUA ATUALIZACAO NO
+  BANCO DE DADOS.
+
+- ACERTO NO RELATORIO "EMISSAO DISCR. RECEBIMENTOS": APRESENTAVA OS SUB-TOTAIS
+  APENAS NO INSTRUMENTO DE REGISTRO BPA-I
+
+
+
+VERSAO SIA0368 12/9/2014
+
+- VERSAO NAO OBRIGATORIA
+
+- ALTERACAO NO CALCULO DO BDP PARA ESTABELECIMENTOS QUE NAO POSSUAM CREDITO EM 
+  RAZAO DE REGRAS CONTRATUAIS, APENAS PARA OS CASOS EM QUE TODA A PRODUCAO E´
+  CONTRATUALIZADA.
+
+- ACERTO NA CRITICA DO ERRO 67 (HA OUTRA APAC MESMO PACIENTE COM PROCED.IMPOSS.
+  DE COEXISTIREM) NA APAC, POSSIBILITANTO A EXISTENCIA DE 2 OU MAIS APAC´S PARA
+  O MESMO PACIENTE NA VERSAO PASSADA.
+  
+
+
+VERSAO SIA0367 29/8/2014
+
+- VERSAO OBRIGATORIA PARA A COMPT.AGO/2014 EM DIANTE.
+
+- EXIGE VERSAO 02.18 DO FPO OU MAIS RECENTE.
+
+- MEMORANDO INTERNO DA CGSI, DEVIDO A UM ERRO NO SIGTAP, O PROCEDIMENTO 
+  030103004-9 - SAMU 192:ATENDIMENTO PRÉ-HOSPITALAR MOVEL REALIZADO POR AEROMÉDICO
+  APRESENTA A CLASSIFICAO 12, AO INVES DA CLASSIFICACAO 012, ESTE PROBLEMA FOI
+  RESOLVIDO NA VERSAO BDSIA201408b EM DIANTE.
+  O SIA/VERSIA/BPA, DEVEM ACEITAR A PRODUCAO BPA DESTE PROCEDIMENTO, MESMO COM
+  A CLASS.12 APRESENTADA NO BPA-I. DESDE QUE O CNES ESTEJA COM A CLASS.012 INFORMADA.
+  RESUMINDO : PRODUCAO DESTE PROCEDIMENTO COM O PAR SERV/CLASS. 103/12, DEVE SER ACEITA
+  COMO 103/012.
+
+
+VERSAO SIA0366 7/8/2014
+
+- VERSAO NAO OBRIGATORIA
+
+- ALTERACAO NO MEMORANDO DA CGSI COM A REGRA DA CO-EXISTENCIA DO SISCOLO/SISMAMA E SISCAN :
+  - FICA DETERMINADO QUE A CRITICA SEJA APLICADA A PARTIR DA COMPETENCIA AGOSTO/2014 EM DIANTE.
+
+- ACERTO NA CONSULTA DA SITUACAO DA PRODUÇÃO APOS O CALCULO DO VALOR BRUTO.
+ 
+
+VERSAO SIA0365 1/8/2014
+
+- VERSAO OBRIGATORIA.
+
+- MEMORANDO INTERNO CGSI - Tendo em vista a solicitação, do Departamento de Atenção Básica (DAB) 
+  e da Agencia Nacional de Vigilância Sanitária (ANVISA), de não mais exigir o preenchimento do 
+  instrumento FPO Magnético para apresentação dos procedimentos da Atenção Básica (AB) e Vigilância
+  Sanitária (VISA): SOLICITAMOS QUE:
+     - Procedimentos com Tipo de Financiamento: 01 (Atenção Básica) e 07 (Vigilância em Saúde)
+     - Não necessitem programação física no FPO Magnético
+     - a partir da competencia Julho/2014
+
+
+- MEMORANDO INTERNO CGSI - Fica definida a regra no SIA e VERSIA:
+  Se importar SISCAN de um CNES, não pode receber SISCOLO e SISMAMA do mesmo CNES.
+  Se importar SISCOLO ou SISMAMA de um CNES, não pode receber SISCAN do mesmo CNES.
+
+- NOVOS CODIGOS DE ERRO :
+  "FET"+"3"  "SISCAN N/DEVE CO-EXISTIR COM SISCOLO/SISMAMA EXIST."
+  "FET"+"4"  "SISCOLO/SISMAMA N/DEVE CO-EXISTIR COM SISCAN EXIST."
+
+- ACERTO NA CRITICA NO TRATAMENTO DOS DADOS DA APAC ANTERIOR, DA APAC DE TIPO DE ENCERRAMENTO.
+
+- ACERTO NA CRITICA DO ERRO 67 "HA OUTRO REGISTRO MESMO PACIENTE COM PROCEDIMENTO IMPOSS.DE COEXISTIR",
+  NO ISTRUMENTO DE REGISTRO RAAS-AD COM O INSTRUMENTO DE REGISTRO RAAS-PSI.
+
+
+VERSAO SIA0364 11/7/2014
+
+- VERSAO NAO OBRIGATORIA.
+
+- ACERTO NA CRITICA DO LAUDO DE TRATAMENTO DIALITICO, PARA OS CASOS DO CAMPO
+  Característica do tratamento esteja informado com 4.
+  
+
+
+VERSAO SIA0363 10/7/2014
+
+- VERSAO NAO OBRIGATORIA.
+
+- ACERTO NA CRITICA DOS PROCEDIMENTOS DA PT 389 DE 13/3/14.
+
+
+VERSAO SIA0362 11/6/2014
+
+- VERSAO OBRIGATORIA PARA A COMPETENCIA 06/2014 EM DIANTE
+
+- PORTARIA Nº 389, DE 13 DE MARÇO DE 2014 - INSTITUI 3 NOVOS LAUDOS DE APAC.
+  ATENCAO : OS NOVOS LAUDOS SAO VALIDOS A PARTIR DA COMPETENCIA JUNHO/2014
+  AS APAC´s INICIADAS ANTES DE JUNHO/2014, PERMANECEM COM O LAUDO ANTERIOR.
+
+  . ALTERACAO NA IMPORTACAO, CONSISTENCIA E ESPELHO DA APAC, PARA A INCLUSÃO DOS
+    NOVOS LAUDOS.
+
+- ALTERACAO NA CRITICA DO LAUDO DE ACOMPANHAMENTO DE CIRURG.POS BARIATRICA
+    -DEVE POSSUIR UM PROCEDIMENTO COM 'S', OS DEMAIS DEVEM POSSUIR 'N'
+     PROCEDIMENTOS 04.07.01.012-2, 04.07.01.036-0, 04.07.01.017-3 e 04.07.01.018-1
+
+- NOVA CRITICA PARA NUMERO DE APAC : O NUMERO NÃO DEVE SER ENCONTRADO NA BASE DE
+  DADOS DO RAAS-PSI.
+
+- NOVA CONSULTA DE NUMERO DE RAAS UTILIZADOS, NO MENU TABELAS NACIONAIS.
+
+- ALTERACAO NA MENSAGEM DE ERRO EM PRD_FLER e PAP_FLER,BPI_FLER e RAPA_FLER :
+
+  CODIGO "9", MENSAGEM ANTERIOR "DUPLICIDADE DE SEQUENCIA DE APAC" 
+              MENSAGEM ATUAL "DUPLICIDADE DE SEQUENCIA DE PRODUCAO"
+
+  .ESTA MENSAGEM PASSA A SER APLICADA NO RAAS E NAO APENAS NA APAC.
+
+
+VERSAO SIA0361 5/5/2014
+
+- VERSAO OBRIGATORIA
+
+
+- REGRA CONDICIONADA 0009 : APAC COM PROCEDIMENTO PRINCIPAL CONTENDO ESTA REGRA
+                            DEVEM POSSUIR SEUS PROCEDIMENTOS SECUNDARIOS ZERADOS.
+
+- NOVO TIPO DE DOCUMENTO : BPA-I ou BPA-C ou AD ou APAC
+
+
+
+VERSAO SIA0360 24/4/2014
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA CRITICA DE CONCOMITANCIA DA APAC DE ENCERRAMENTO.
+
+
+
+VERSAO SIA0359 8/4/2014
+
+- VERSAO OBRIGATORIA
+
+- NOVO TIPO DE APAC DE ENCERRAMENTO
+
+- ACERTO NA CRITICA DO FORNECEDOR NO INSTRMENTO DE REGISTRO BPA-I
+
+- NOVAS OPCOES DE CONSULTA EM TABELAS NACIONAIS : CEP E LOGRADOURO
+
+
+
+VERSAO SIA0358 12/2/2014
+
+- VERSAO OBRIGATORIA
+
+- ALTERACAO NA ESTRUTURA DE S_PRDHST PARA ATENDER O VERSIA.
+
+- NOVO RELATORIO GERENCIAL : SINTETICO DE PROCED.COM CESSAO CREDITO
+
+- NOVO RELATORIO GERENCIAL : ANALITICO DE PROCED.COM CESSAO CREDITO
+
+- NOVO RELATORIO GERENCIAL : SINTETICO DE VALORES FEDERAIS
+
+- NOVO RELATORIO GERENCIAL : ANALITICO DE VALORES FEDERAIS
+
+
+
+VERSAO SIA0357 5/2/2014
+
+- VERSAO OBRIGATORIA PARA A COMPT.JAN/2014
+
+- PR/SAS No.1362 de 4 de Dezembro de 2013, estabelece que o gestor pode individualizar a produção BPA-C em BPA-I, 
+  cabendo aos sistemas SIA,VERSIA a verificação da informação única.
+  Caso o gestor opte pelo instrumento de registro BPA-I, o procedimento não pode ser informado em BPA-C, e caso 
+  o gestor opte pelo instrumento de registro BPA-C, o procedimento não pode ser informado em BPA-I.
+
+- NOVA TABELA CRIADA : S_PRDHST.DBF
+
+- NOVO CODIGO DE ERRO "c" - PROCED.JA INFORMADO EM BPA-I, PARA S_PRD.DBF, PRD_FLPA
+- NOVO CODIGO DE ERRO "d" - PROCED.JA INFORMADO EM BPA-C, PARA S_PRD.DBF, PRD_FLPA E S_BPI, BPI_FLPA
+
+
+- ALTERACAO NA IMPORTACAO DO KIT TXT CNES (DE-PARA) : INCORPORAR PROFISSIONAIS DE ESTAB.SEM VINCULO SUS PARA
+  OS SERVICOS TERCEIRIZADOS.
+
+
+VERSAO SIA0356 23/1/2014
+
+- VERSAO NAO OBRIGATORIA
+
+- INCLUSAO DO TIPO DE DOCUMENTO NO BDSIA : BPA-C ou BPA-I ou APAC
+
+
+
+VERSAO SIA0355 2/1/2014
+
+- VERSAO OBRIGATORIA
+
+- PORTARIA Nº 1.253, DE 12 DE NOVEMBRO DE 2013
+    Art. 1º Alteracao do procedimento 02.04.03.018-8 para tipo de financiamento MAC
+    Art. 2º Fica incluída na Tabela de Procedimentos do SUS a REGRA CONDICIONADA (código 005) que condiciona 
+    excepcionalmente o tipo de financiamento do procedimento 02.04.03.018-8 pelo FAEC
+    Parágrafo único. Esta regra será aplicada quando o procedimento de que trata o caput deste artigo for 
+    realizado em pessoa com a idade recomendada pelo Ministério da Saúde compreendida entre 50 a 69 anos. 
+
+
+- VERSAO MINIMA DO FPO-MAG, 02.17
+
+
+VERSAO SIA0354 9/12/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- MEMORANDO INTERNO CGSI - APROVAR A PRODUCAO DE PROFISSIONAIS RAAS-AD DE EQUIPES DE OUTROS 
+  ESTABELECIMENTOS CADASTRADOS SEM ERROS.
+
+- ACERTO DA EXIGENCIA DO ORÇAMENTO EM FAEC PARA OS PROCEDIMENTOS DA REGRA CONDICIONADA 002
+
+ 
+
+VERSAO SIA0353 7/11/2013
+
+- VERSAO OBRIGATORIA
+
+- MEMORANDO INTERNO CGSI - NAO REALIZAR CRITICA DE CEP NA PRODUCAO DO SISTEMA SISCAN
+
+- DOCUMENTACAO INTERNA DA SAS/CGSI : PRORROGAR POR TEMPO INDETERMINADO AS CRITICAS DA 
+  PT/SAS No 257, NA PRODUCAO DOS SISTEMAS SISCOLO E SISMAMA.
+
+
+
+VERSAO SIA0352 18/10/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- INCLUSAO DO ARQUIVO profterc.txt NO KIT DE TERCEIROS BRASIL, CONTENDO OS PROFISSIONAIS
+  DE OUTROS MUNICIPIOS.
+
+- ACERTO NA IMPORTACAO DE PROFISSIONAIS DE UM SERVICO COM MAIS DE UM TERCEIRO.
+
+- ACERTO NO CALCULO DO INCREMENTO PARA OS PROCEDIMENTOS DA REGRA CONDICIONADA 002:
+  NAO APLICAR O INCREMENTO PARA A PRODUCAO COM O SERV/CLASS NAO INFORMADA.
+
+
+
+
+VERSAO SIA0351 07/10/2013
+
+- VERSAO OBRIGATORIA
+
+- MEMORANDO INTERNO DA CGSI : ALTERACAO NA CRITICA DA VERSAO SIA 03.09 DE
+  10/09/2012 : INCLUSAO DE EQUIPES EMAD (COD.TIPO 46 E 47), NA CRITICA DA
+  PRODUCAO RAAS-AD, CONFORME PT/GM 963 DE 27 DE MAIO DE 2013
+
+
+
+VERSAO SIA0350 26/09/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NO CALCULO DO CAMPO DE CONTROLE NA IMPORTACAO DO ARQUIVO SISCAN
+
+- DOCUMENTACAO INTERNA DA SAS/CGSI : NAO REALIZAR AS CRITICAS DA PT/SAS No 257, NA
+  PRODUCAO DOS SISTEMAS SISCOLO,SISMAMA E SISCAN ATE A COMPETENCIA SET/2013.
+
+- IMPORTACAO DE NOVO ARQUIVO DE TERCEIROS BRASIL.
+
+
+
+VERSAO SIA0349 4/09/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DA PRODUCAO BPA-APAC-RAAS
+
+
+
+VERSAO SIA0348 27/08/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- MEMORANDO INTERNO CGSI - INCLUIR O CBO 422220 JUNTO AOS CBOs 232120, 422205, 422210 E
+  422215 DO MEMORANDO ANTERIOR, PARA IMPORTAR DO KIT DE TXT NACIONAL DO CNES, INDEPENDENTE 
+  DA CARGA HORARIA AMBULATORIAL.
+
+- IMPORTACAO DE APAC - NAO IMPORTAR APAC COM LAYOUT ANTIGO.
+
+- IMPORTACAO DE BPA - NAO IMPORTAR BPA COM LAYOUT ANTIGO.
+
+  CASO SEJA NECESSARIO IMPORTAR UM ARQUIVO COM O LAYOUT ANTIGO, IMPORTAR NO BPA OU APAC, EFETUAR
+ AS CORRECOES DE ENDEREÇO DO USUARIO (NAO EXISTENTES NO LAYOUT ANTIGO) E DEPOIS EXPORTAR PARA O
+ SIA.
+
+ USUARIOS DOS SISTEMAS SISCOLO E SISMAMA, DEVEM ATUALIZAR A VERSAO.
+
+
+
+VERSAO SIA0347 9/08/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- MEMORANDO INTERNO CGSI - IMPORTAR OS CBOs 232120, 422205, 422210, 422215 DO KIT
+  DE TXT NACIONAL DO CNES, INDEPENDENTE DA CARGA HORARIA AMBULATORIAL.
+
+- MEMORANDO INTERNO CGSI - ALTERAR O CBO 223410 PARA 223415 A PARTIR DA COMPETENCIA
+  JULHO/2013 PARA A PRODUCAO DO SISCOLO.
+  PARA OS GESTORES QUE IMPORTARAM A PRODUCAO DO SISCOLO E ESTAO COM ERRO DO CBO
+  223410, DEVE EXCLUIR A PRODUCAO E IMPORTAR-LA NOVAMENTE COM ESTA VERSAO PARA
+  EFETUAR O ACERTO.
+
+
+
+VERSAO SIA0346 6/08/2013
+
+- VERSAO OBRIGATORIA
+
+- ALTERACAO NA CRITICA DE CNS EXECUTANTE NAS APAC's, PERMITE CNS EM BRANCO PARA
+  O PROCEDIMENTO PRINCIPAL COM A QUANTIDADE ZERADA.
+
+- ALTERACAO NO CALCULO DO CAMPO DE CONTROLE DA IMPORTACAO DE APAC DO SISTEMA
+  HORUS, UTILIZAR A VERSAO MAIS ATUAL DO HORUS, MESMO PARA COMPETENCIAS PASSADAS.
+
+- ALTERACAO NA CONSULTA DE PROFISSIONAIS NO SIA (TECLA F9), PERMITE ORDENAR POR
+  CBO OU CNS DO PROFISSIONAL, TECLANDO F2
+
+- ACERTO NA IMPORTACAO DE CBO DE PROFISSIONIAS DE TERCEIROS QUE TENHAM O
+  MESMO CBO DO PROFISSIONAL NO ESTABELECIMENTO CONTRATANTE.
+
+
+
+VERSAO SIA0345 24/07/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ALTERACAO NA CRITICA DE CBO x CADASTRO NAS APAC's DE MEDICAMENTOS (0604)
+  PERMITE INFORMACAO DE CBO INDEPENDENTE DO CADASTRO (CNES) NAS COMPETENCIAS
+  JUN E JUL DE 2013.
+
+- ALTERACAO NA CRITICA DE CNS EXECUTANTE NAS APAC's DE MEDICAMENTOS (0604)
+  PERMITE INFORMACAO DE CNS INDEPENDENTE DE CBO E CADASTRO (CNES) NAS
+  COMPETENCIAS JUN E JUL DE 2013.
+
+
+
+VERSAO SIA0344 23/07/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NO CALCULO DO CAMPO DE CONTROLE DA IMPORTACAO DE APAC.
+
+
+VERSAO SIA0343 19/07/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- EXCLUSAO DA CRITICA DOS PROCEDIMENTOS x CBO NA MEDIA COMPLEXIDADE.
+
+- ALTERACAO NA CRITICA DE PROCEDIMENTO x CBO NAS APAC's DE MEDICAMENTOS (0604)
+  PERMITE INFORMACAO DE CBO INDEPENDENTE DO SIGTAP NAS COMPETENCIAS JUN E JUL
+  DE 2013.
+
+
+VERSAO SIA0342 19/07/2013
+
+- VERSAO nao OBRIGATORIA
+
+- ACERTO NA CRITICA DOS PROCEDIMENTOS x CBO, PERMITE INFORMACAO DE CBOs
+  DO MESMO GRUPO DE ALGUM CBO INFORMADO NO SIGTAP, OU SEJA, O SISTEMA ACEITA QUE
+  OS 4 PRIMEIROS DIGITOS DO CBO (GRUPO) SEJA IGUAL A UM DOS GRUPOS DE CBO INFORMADOS
+  NO SIGTAP PARA O PROCEDIMENTO DE MEDIA COMPLEXIDADE.
+  ATENCAO : APENAS PARA OS PROCEDIMENTOS DA COMPLEXIDADE MEDIA.
+
+
+
+VERSAO SIA0341 18/07/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ALTERACAO NA CRITICA DOS PROCEDIMENTOS MAC x CBO, PERMITE INFORMACAO DE CBOs
+  DO MESMO GRUPO DE ALGUM CBO INFORMADO NO SIGTAP, OU SEJA, O SISTEMA ACEITA QUE
+  OS 4 PRIMEIROS DIGITOS DO CBO (GRUPO) SEJA IGUAL A UM DOS GRUPOS DE CBO INFORMADOS
+  NO SIGTAP PARA O PROCEDIMENTO MAC.
+  ATENCAO : APENAS PARA OS PROCEDIMENTOS DO TIPO DE FINANCIAMENTO MAC.
+
+- NOVOS CAMPOS PARA ADEQUACAO DO S_PRD.DBF
+  S_RAPA.DBF
+   RAPAVL_FED
+   RAPAVL_LOC
+   RAPAVL_INC
+   RAPAINCOUT
+   RAPAINCURG
+   RAPA_RUB
+   RAPA_TPFIN
+   RAPA_CPX
+   RAPA_RC
+  S_PAP.DBF
+   PAP_VL_FED
+   PAP_VL_LOC
+   PAP_VL_INC
+   PAP_INCOUT
+   PAP_INCURG
+   PAP_RUB
+   PAP_TPFIN
+   PAP_CPX
+   PAP_RC
+  S_BPI.DBF E S_BPIHST.DBF
+   BPI_VL_FED
+   BPI_VL_LOC
+   BPI_VL_INC
+   BPI_INCOUT
+   BPI_INCURG
+   BPI_RUB
+   BPI_CPX
+   BPI_RC
+  
+
+VERSAO SIA0340 10/07/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- IMPORTACAO DE APAC GERADO PELO SISTEMA HORUS
+  . INCLUSAO DA DOSE ATAQUE PARA OS PROCEDIMENTOS : 060432012-4 E 060438007-0
+    ADMINSTRADOS PELO HORUS, A PARTIR DA COMPETENCIA JUNHO/2013 EM DIANTE.
+
+
+VERSAO SIA0339 4/07/2013
+
+- VERSAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DO RAAS.
+  CASO TENHA REALIZADO A IMPORTACAO DA PRODUCAO JUNHO/13 COM A VERSAO ANTERIOR,
+  RE-IMPORTAR COM ESTA VERSAO.
+
+- ACERTO NA CRITICA DA DUPLICIDADE DE FPO.
+
+
+
+VERSAO SIA0338 28/06/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ALTERACAO NA REGRA CONDICIONADA 0002 CRIADA NA VERSAO 03.17 DO SIA
+  HAVERA INCREMENTO NOS PROCEDIMENTOS DA REGRA, APENAS SE SE A PRODUCAO
+  POSSUIR OS REQUISITOS NECESSARIOS PARA A REGRA 0002, OU SEJA, O INCREMENTO
+  NAO SERA APLICADO AO TIPO DE FINANCIAMENTO MAC, APENAS NO FAEC ALTERADO
+  PELA REGRA CONDICIONADA, ENTAO O PROCEDIMENTO DEVE TER A HABILITACAO CADASTRADA
+  E SER ACEITO PELA REGRA PARA POSSUIR O INCREMENTO.
+
+- ALTERACAO NA REGRA CONDICIONADA 0001: CRITICA DE SERV/CLASS. DE CEO RETIRADA
+  TEMPORARIAMENTE.
+
+
+VERSAO SIA0337 19/06/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA CRITICA DE SERVICO/CLASSIF. NA APAC
+
+- em consequência de informações divergentes entre CNES e SIGTAP, referentes à
+  implantação da PT SAS nº 971 de 13/09/2012, que exclui os SERVIÇOS 107 E 123
+  E SUAS CLASSIFICAÇÕES, O SIA nao deve glosar a producao com os servicos 107 e
+  123 informados.
+
+
+
+VERSAO SIA0336 14/06/2013
+
+- VERSAO OBRIGATORIA
+
+- ALTERACAO NO RELATORIO DE CONSISTENCIA DA PRODUCAO : APRESENTACAO NA PRIMEIRA
+  PAGINA DE UM TOTAL DE ERROS APRESENTADOS PARA CADA CODIGO E MENSAGEM DE ERRO.
+
+- ALTERACAO NA REGRA CONDICIONADA 0002 CRIADA NA VERSAO 03.17 DO SIA, INCLUINDO A 
+  REGRA PARA QUE A PRODUCAO DEVE SER INFORMADA COM O SERV/CLASS. 131/006 OU 131/007 
+  PARA SER CONSIDERADA TIPO DE FINANCIAMENTO FAEC.
+
+- PT/SAS No 257, DE 12 DE MARÇO DE 2013. DEFINE A OBRIGATORIEDADE DA INFORMACAO DOS
+  CAMPOS DE ENDERECO/BAIRRO/LOGRADOURO DO USUARIO(PACIENTE) E CNS DO PROFISSIONAL
+  EXECUTANTE (APAC), A PARTIR DA COMPETENCIA JUNHO/2013.
+
+- DOCUMENTACAO INTERNA DA SAS/CGSI : NAO REALIZAR AS CRITICAS DA PT/SAS No 257, NA
+  PRODUCAO DOS SISTEMAS SISCOLO E SISMAMA.
+
+- APRESENTACAO NA TELA DO SISTEMA SE O TXT CNES IMPORTADO E' LOCAL OU NACIONAL, MAIS
+  A DATA DA ULTIMA IMPORTACAO DO TXT CNES.
+
+
+VERSAO SIA0335 24/05/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO DA IMPORTACAO DE CBO DE TERCEIRO COM TERCERIOS CADASTRADOS NO TXT
+  NACIONAL DO CNES. (FUNCAO DE-PARA DO SIA)
+
+
+
+VERSAO SIA0334 22/05/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DE CBO DE PROFISSIONIAS DE TERCEIROS QUE NAO TENHAM O
+  CNES IMPORTADO (PRIVADOS).
+  EXECUTAR A FUNCAO DE-PARA NOVAMENTE.
+
+- ALTERACAO DA TECLA F9 DA CONSULTA CNES, APRESENTAR O CNES DO TERCEIRO E O
+  CODIGO DO SERVICO TERCEIRIZADO.
+
+
+
+VERSAO SIA0333 17/05/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DE CBO DE SERVICOS TERCEIRIZADOS NAO ENCONTRADOS NO
+  ARQUIVO TERCEIRO BRASIL, DISPONIVEL NO TXT LOCAL/NACIONAL.
+
+- ALTERACAO NO ESPELHO RAAS - INCLUSAO DOS CAMPOS DE BAIRRO, CODIGO DO LOGRADOURO
+
+- ALTERACAO NO ESPELHO BPA-I, INCLUSAO DOS CAMPOS DE ENDERECO DO USUARIO.
+
+
+
+VERSAO SIA0332 14/05/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- INCLUSAO DE ZEROS A ESQUERDA DA AGENCIA E CONTA CORRENTE DOS ESTABELECIMENTOS
+
+- ALTERACAO NA CRITICA DO CID DE CIRURGIA BARIATRICA, LAUDO ANTERIOR A CMPT
+  ABRIL/2013, APOS O CREDITO.
+
+
+VERSAO SIA0331 09/05/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- PERMITE EXECUCAO DO CALCULO DO VALOR BRUTO COM O TXT CNES LOCAL, POSSIBILITANDO
+  A CRITICA NO VERSIA.
+
+- PERMITE INCLUSAO/EXCLUSAO E MANUTENCAO NA TABELA DISTRITO SANITARIO E TABELA
+  REGIAO DE SAUDE.
+
+- ACERTO NA CRITICA DE FORNECEDORES DE CESSAO DE CREDITO NA TABELA DE MANTENEDORAS.
+
+
+VERSAO SIA0330 08/05/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- PERMITE EXECUCAO DO CALCULO DO VALOR BRUTO COM O TXT CNES LOCAL, MAS DEIXANDO
+  O BANCO DE DADOS DO SIA NO ESTADO DE INCONSISTENTE. IMPEDINDO A EXECUCAO DO
+  VERSIA.
+
+  PARA EXECUTAR O VERSIA, SERA NECESSARIO CALCULAR O VALOR BRUTO COM O TXT CNES
+  NACIONAL. QUE PODE SER OBITIDO NO SITE DO CNES
+  http://cnes.datasus.gov.br , ENCONTRA-SE NA AREA DE ACESSO RESTRITO DE CADA
+  GESTOR DE SAUDE
+
+
+
+VERSAO SIA0329 07/05/2013
+
+- VERSAO OBRIGATORIA
+
+- CASO TENHA UTILIZADO A VERSAO 03.28 NA COMPETENCIA MAIO/2013
+  RESTAURE O BACKUP DE ANTES DO CREDITO DE MARCO/2013 COM A VERSAO 03.29, E
+  EFETUE O CALCULO O VLR.BRUTO E VIRE A COMPETENCIA, ESTE PROCEDIMENTO
+  ACERTA A BASE DE DADOS CORROMPIDA PELA VERSAO 03.28.
+
+
+
+VERSAO SIA0328 03/05/2013
+
+
+- PT/SAS No. 143, DE 20 DE FEVEREIRO DE 2013. Para adequar o CNES com o SISRCA,
+  define que os sistemas CIHA,SIA e AIH, deverão utilizar o banco de dados TXT 
+  gerado a partir da base nacional do CNES. (Artigo 2)
+
+  Possibilitando ao gestor, que utilizem a previa do faturamento com a base de 
+  dados local (Artigo 5).
+
+  maiores informacoes no forum : http://forum.datasus.gov.br/viewtopic.php?f=218&t=404407
+
+- PT/GM 425, DE 9 DE MARCO DE 2013 (*) REPUBLICADA.
+  ALTERA O LAUDO DO ACOMPANHAMENTO POS-CIRUR.BARIATRICA E CRIA O LAUDO DE
+  ACOMP.PRE-CIRURG.BARIATRICA
+  
+  ATENCAO : CASO TENHA PRODUCAO IMPORTADA NA VERSAO ANTERIOR DE ACOMP.CIRUR.BAR.
+  DEVE-SE IMPORTAR A PRODUCAO NOVAMENTE NESTA VERSAO. POIS A ANTERIOR NAO ESTAVA
+  DE ACORDO COM A PORTARIA.
+
+- NOVO CODIGO DE ERRO "AS" - REGISTRO RAAS DUPLICADO, PARA S_RAS.DBF, RAS_FLER
+
+- NOVA OPCAO NO MENU OPERADOR : CONFIGURA GESTOR.
+  PERMITE A ALTERACAO NAS INFORMACOES DEFINIDAS NA INSTALACO DO SIA.
+
+- ACERTO NA OPCAO DE DE-PARA CNES, IMPORTAR APENAS OS ESTABELECIMENTOS COM
+  ATENDIMENTO PRESTADO SUS/AMBULATORIAS.
+
+- ALTERACAO NA OPCAO DE DE-PARA CNES, PERMITE MULTIPLA ESCOLHA PARA O FILTRO
+  DA GESTAO.
+
+
+VERSAO SIA0327 26/03/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- NOVA OPCAO DE VALIDACAO DE VERSAO MINIMA EXIGIDA NO BDVERSIA ANTES DO CALCULO
+  DO VALOR BRUTO, ESTA OPCAO NAO E´ OBRIGATORIA. DEVE SER UTILIZADA APENAS SE 
+  HOUVER VERSAO DE BDVERSIA DISPONIVEL.
+
+- NOVA CRITICA NA CONSISTENCIA, RETIRAR DUPLICIDADE DE PROFISSIONAIS E ESTAB.
+  IMPORTADOS PELO DE-PARA.
+
+
+VERSAO SIA0326 12/03/2013
+
+- VERSAO OBRIGATORIA PARA A PRODUCAO RAAS-PSI
+
+- ACERTO NA ATUALIZACAO DO ESPELHO DE RAAS-PSI APOS O CALCULO DO VALOR BRUTO
+
+- ALTERACAO NA LISTAGEM DA CONSISTENCIA : PULA A PAGINA POR ESTABELECIMENTO
+  E INSTRUMENTO DE REGISTRO.
+
+
+
+VERSAO SIA0325 06/03/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA CONSULTA/EXCLUSAO DE BPA-I
+
+- ACERTO NA EMISSAO DO "RELATORIO DE SERV/CLASS.NAO ENCONTRADO", DURANTE
+  O CALCULO DO CREDITO. (ARQUIVO RERROSRV.TXT)
+
+
+VERSAO SIA0324 06/03/2013
+
+- VERSAO OBRIGATORIA
+
+- PORTARIA No. 73, DE 30 DE JANEIRO DE 2013, Art. 4o., INCLUSAO DE RELATORIO DE
+  ADVERTENCIA NA CONSISTENCIA DA PRODUCAO, DA TRASTUZUMABE.
+
+- . NOVA OPCAO DE DE-PARA NO SIA : OPCIONAL, O SISTEMA DE-PARA CONTINUA A SER
+    O MINIMO OBRIGATORIO, MAS PODE-SE UTILIZAR ESTA OPCAO NO SISTEMA.
+  . PARA UTILIZACAO DESTA NOVA OPCAO, O TXT DO CNES DEVE ESTAR NO SUBDIRETORIO
+    TXTCNES\AAAAMM, ONDE AAAA = ANO E MM = MES DA COMPETENCIA A SER PROCESSADA.
+  . PODE-SE IMPORTAR O ARQUIVO DE TERCEIROS BRASIL AUTOMATICAMENTE DO SITE DO
+    CNES. UTILIZAR ESTA OPCAO APENAS SE POSSUIR ACESSO A INTERNET.
+
+- NOVO ARQUIVO DE CEP NACIONAL : S_CEP.DBF
+
+- LIMITE DA FAIXA DE APAC, ALTERA DE 12 MESES PARA 18 MESES NO MAXIMO.
+
+- NOVO LAYOUT DE APAC E BPA-I, INCLUSÃO DOS CAMPOS CODIGO DE LOGRADOURO, BAIRRO
+  TELEFONE, E-MAIL, E CNS DO PROFISSIONAL EXECUTANTE. A PARTIR DA COMPETENCIA
+  MARCO/2013
+
+- ALTERACAO NO ESPELHO DE APAC, INCLUSAO DOS CAMPOS CODIGO DE LOGRADOURO, BAIRRO
+  TELEFONE, E-MAIL, E CNS DO PROFISSIONAL EXECUTANTE. A PARTIR DA COMPETENCIA
+  MARCO/2013
+
+- INCLUSAO DO TOTAL DE REGISTROS PSI NA CONSULTA DA SITUACAO DA PRODUCAO, MENU 
+  PRODUCAO.
+
+- ACERTO NO VALOR TOTAL PRODUZIDO PARA OS PROCEDIMENTOS DA REGRA CONDICIONADA 0002.
+
+- NOVAS MENSAGENS DE ERROS:
+
+  "ERR"+"C" , "CNS DO PROFISSIONAL NAO ENCONTRADO NO ESTAB/EQUIPE"
+  "ERR"+"Y" , "PROFISSIONAL NAO CADASTRADO NA DATA DE ATENDIMENTO" 
+  "ERR"+"Z" , "CEP DO USUARIO INVALIDO"   
+  "ERR"+"K" , "LOGRADOURO DO USUARIO INVALIDO"  
+
+
+VERSAO SIA0323 15/01/2013
+
+- VERSAO NAO OBRIGATORIA
+
+- PT/SAS No. 854, DE 22 DE AGOSTO DE 2012, Altera o instrumento de registro do
+  procedimento de APAC. prorrogado pela PT/SAS 1.218,de 26/10/12, p/Janeiro/13,
+  Os gestores que possuirem APACs em aberto na CMPT Dez/12 destes procedimentos, 
+  teram as APACs ENCERRAMENDAS ADMINSTRATIVAMENTE de forma AUTOMATICA durante a 
+  consistencia.
+
+
+VERSAO SIA0322 09/01/2013
+
+- VERSAO OBRIGATORIA
+
+- ALTERACAO NA IMPORTACAO DE VALORES/FPO. PARA A COMPETENCIA DEZ/2012
+  IMPORTA VALORES FEDERAIS RETROATIVOS .
+
+- NOVA COLUNA NA TABELA DE VALORES (S_VPA) COM A COMPETENCIA DE MOVIMENTO
+
+- NOVA TABELA COM AS APACs ELETIVAS COM O VALOR DA PARCELA FEDERAL RECALCULADA.
+  S_PRDREP.DBF
+
+- ALTERACAO NO CALCULO DO CREDITO, PROCESSA O VALOR DA PARCELA FEDERAS DAS APACs 
+  ELETIVAS COM OS PROCEDIMENTOS DO GRUPO 2 E 3, QUE TIVERAM O VALOR FEDERAL INCLUIDO 
+  DE FORMA RETROATIVA PELO FPO-MAG NA COMPETENCIA DEZEMBRO/2012. 
+
+- NOVO RELATORIO "EMISSAO VLRS FEDERAIS REPROCESS." COM OS VALORES DA PARCELA FEDERAL
+  SAS APACs ELETIVAS DE COMPETENCIAS PASSADAS QUE NAO TIVERAM A PARCELA FEDERAL INFORMADA.
+  ESTE RELATORIO SERA APRESENTADO APENAS NA COMPETENCIA DEZEMBRO/2012
+
+  maiores informações no forum : http://forum.datasus.gov.br/viewtopic.php?f=218&t=403670
+
+
+VERSAO SIA0321 17/12/2012
+
+- VERSA NAO OBRIGATORIA
+
+- ACERTO NO CADASTRO DE BDP
+
+
+
+VERSAO SIA0320 11/12/2012
+
+- VERSA NAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DE BPA E APAC.
+
+
+
+VERSAO SIA0319 10/12/2012
+
+- VERSAO OBRIGATORIA
+
+- ALTERACAO NA REGRA CONDICIONADA 0001, ACEITA A PRODUÇÃO EM BPA-C INDEPENDENTE DE 
+  HABILITACAO E SERV/CLASS.
+
+  . PARA A PRODUCAO EM BPA-I, O ESTABELECIMENTO POSSUIR A HABILITACAO 0403 OU
+    0404 OU 0405, E O PROCEDIMENTO DEVE SER APRESENTADO COM SERV/CLASS.114/007 INFORMADO 
+    NA PRODUÇÃO.
+
+- MENSAGEM DE ERRO :
+  "PAM"+"a" , "PROCED.NAO ACEITO PELA REGRA CONDICIONADA 0001"  
+
+  . MENSAGEM SERA APLICADA NA PRODUCAO BPA-I COM PROCEDIMENTOS DA REGRA
+    CONDICIONADA 0001. EXIGINDO BPA-I PARA HABILITACAO 0403,0404,0405 E SERV/CLASS
+    114/007.
+
+
+
+
+VERSAO SIA0318 05/12/2012
+
+- VERSA OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DE BPA E APAC.
+
+- ACERTO NA CRITICA DE PROCEDIMENTO RAAS-PSI.
+
+
+
+VERSAO SIA0317 05/12/2012
+
+
+- ACERTO NOS RELATORIOS GERENCIAIS : APAC COM OBITO POR UNIDADE
+                                     APAC UNICAS POR UNIDADE
+
+- ALTERACAO NO LAYOUT DO RAAS-PSI
+  - ATENCAO : VEJA A NECESSIDADE DE RE-IMPORTAR A PRODUCAO RAAS-PSI, QUE FOI
+              IMPORTADA NA VERSAO ANTERIOR DO SIA.
+
+- NOVA TABELA DE REGRAS CONDICIONADAS :
+   S_PAREGR.DBF, ESTRUTURA :
+   REG_CMP, C, 6 : COMPETENCIA
+   REG_PA, C, 9  : PROCEDIMENTO SEM O DIGITO
+   REG_REGRA,C,4 : CODIGO DA REGRA CONDICIONADA
+
+
+- REGRA CONDICIONADA 0001 : SE O ESTABELECIMENTO POSSUIR A HABILITACAO 0403 OU
+  0404 OU 0405, ENTAO O PROCEDIMENTO DEVE SER APRESENTADO EM BPA-I COM SERV/CLASS.,
+  114/007 INFORMADO NA PRODUÇÃO.
+  CASO O ESTABELECIMENTO NAO POSSUA UMA DAS HABILITACOES ACIMA, E O SERV/CLASS 114/007,
+  ENTAO O PROCEDIMENTO DEVE SER APRESENTADO EM BPA-C.
+
+- NOVA MENSAGEM DE ERRO :
+  "PAM"+"a" , "PROCED.NAO ACEITO PELA REGRA CONDICIONADA 0001"  
+
+  . MENSAGEM SERA APLICADA NA PRODUCAO BPA-C/BPA-I COM PROCEDIMENTOS DA REGRA
+    CONDICIONADA 0001. EXIGINDO BPA-I PARA HABILITACAO 0403,0404,0405 E SERV/CLASS
+    114/007.
+    EXIGE BPA-C PARA CNES SEM A HABILITACAO 0403,0404,0405 E SERV/CLASS 114/007 
+
+- REGRA CONDICIONADA 0002 : SE O ESTABELECIMENTO POSSUIR A HABILITACAO 0505 E
+  O PAR SERV/CLASS. 131/006 OU 131/007, O TIPO DE FINANCIAMENTO DO PROCEDIMENTO
+  DA REGRA DEVE SER "FAEC" E SUBTIPO DE FINANCIAMENTO "PROJETO OLHAR BRASIL"
+  CASO O ESTABELECIMENTO NAO POSSUIR A HABILITACAO ACIMA COM UM DOS DOIS
+  SERV/CLASS INFORMADOS, ENTAO O PROCEDIMENTO DEVE POSSSUIR O TIPO DE FINANCIAMENTO
+  E SUB-TIPO INFORMADOS NO SIGTAP.
+
+
+- ALTERACAO NA CONSULTA RAAS-AD, PARA CONSULTA RAAS, ENVOLVENDO A ATENCAO DOMIC.
+  E/OU ATENCAO PSICOSSOCIAL.
+
+
+- ALTERACAO NO FORMATO DE NOME DE RELATORIOS EM ARQUIVO, PERMITINDO NOMES ATE'
+  20 POSICOES
+
+- IMPORTACAO DA PRODUCAO (BPA-C, BPA-I, RAAS E APAC), PASSA A APRESENTAR O NUMERO
+  DE CONTROLE DO ARQUIVO AUTOMATICAMENTE NA TELA.
+
+- EXIGE VERSAO 02.08 OU MAIS RECENTE DO FPO-MAG.
+
+
+- NOVA MENSAGEM DE ERRO :
+  "PAM"+"b" , "SERV/CLASS INFORMADO NO ATENDIMENTO,INVAL.OU OBRIG."
+
+  . SERA APLICADA NA PRODUCAO BPA-I,APAC,RAAS. QUE TIVER SERV/CLASS INFORMADO NA
+    LINHA DE ATENDIMENTO, SENDO QUE ESTE SERV/CLASS NAO FOI ENCONTRADO (NAO
+    IMPORTADO PELO DE-PARA OU INEXISTENTE NO CNES)
+
+  . SERA APLICADA NA PRODUCAO QUE TIVER SERV/CLASS AUSENTE, SENDO OBRIGATORIO (RAAS)
+
+  . SERA APLICADA NA PRODUCAO COM SERV/CLASS INFORMADO EM COMPETENCIA JUL/2012 OU
+    ANTERIOR. (O SERV/CLASS SO´ PODE SER INFORMADO A PARTIR DA COMPETENCIA AGO/2012)
+
+  OBS : Esta critica estava sendo apresentada em versoes anteriores na mensagem
+       ("PAM"+"F" ,"PROCED.C/SERV.CLASS.NAO ENCONTRADO NO CNES OU INVAL."), mas estava
+       generica pois poderia tratar de Serv/Class não encontrado.
+
+  OSB 2: O DE-PARA exige o cadastro do Serv/Class. informado como AMBULATORIAL SUS, e
+        quando houver exigencia de CBO, o mesmo deve possuir carga horaria ambulatorial
+        preenchida.
+
+
+VERSAO SIA0316 01/11/2012
+
+- VERSAO OBRIGATORIA
+
+- PT/SAS No. 857, DE 22 DE AGOSTO DE 2012, Altera o instrumento de registro do
+  procedimento 030108004-6, de APAC para RAAS-PSI. prorrogado pela PT/SAS 1.221, 
+  de 26/10/2012, para novembro/2012, Os gestores que possuirem APACs em aberto na
+  CMPT Out/12 deste procedimento, teram as APACs ENCERRAMENDAS ADMINSTRATIVAMENTE 
+  de forma AUTOMATICA durante a consistencia.
+
+- NOVO LAYOUT DO RAAS-PSI.
+
+- ACERTO NO ERRO DA IMPORTACAO DE BPA-I COM EQUIPE INFORMADA.
+
+- MINUTA DE PORTARIA : ALTERACAO NA REGRA CONTRATUAL 71.16 A PARTIR DA COMPETENCIA
+  NOVEMBRO/2012 : APLICAR A REGRA APENAS PARA OS PROCEDIMENTOS : 07.01.07.009-9,
+  07.01.07.010-2, 07.01.07.012-9, 07.01.07.013-7 E 07.01.07.014-5. PARA OS
+  ESTABELECIMENTOS QUE POSSUEM A REGRA CONTRATUAL 7116 LRPD.
+
+
+VERSAO SIA0315 19/10/2012
+
+- VERSAO NAO OBRIGATORIA PARA A COMPETENCIA SETEMBRO/2012 OU ANTERIOR.
+
+- ACERTO NA GERACAO DO ARQUIVO EMU DBF PARA O VERSIA
+
+
+VERSAO SIA0314 19/10/2012
+
+
+- ACERTO NA CRITICA DE "HA OUTRO REGISTRO PARA O MESMO PACIENTE COM PROCED.
+  IMPOSSIVEIS DE COEXISTIR" NO RAAS-AD
+
+- NOVA OPCAO DE FILTRO NOS RELATORIOS GERENCIAIS : APENAS PROCED. BPA-C OU BPA-I
+  OU APAC OU A.D. OU TODOS
+
+- NOVO RELATORIO GERENCIAL : VLR.APROV.POR FINANC/SUB.TP. REGIONAL
+
+- NOVO ATRIBUTO DO SIGTAP : "Exige CNPJ do Fornecedor"
+
+- ALTERACAO DAS MENSAGENS DE ERRO :
+
+  "PROCEDIMENTO NAO PERMITE CESSAO DE CREDITO" PARA "PROCEDIMENTO NAO PERMITE
+  FORNECEDOR INFORMADO"
+
+  "PROCED.OBRIGA CESSAO DE CREDITO" PARA "PROCED.OBRIGA INFORMACAO DE FORNECEDOR"
+
+  "CNPJ CESSAO DE CREDITO COM DIGITO INVALIDO" PARA "CNPJ DO FORNECEDOR COM DIGITO
+  INVALIDO"
+
+- ALTERACAO NA ESTRUTURA DO ARQUIVO BPA-I, INCLUSAO DO CAMPO DE CNPJ DO FORNECEDOR
+
+- INCLUSAO DE COMPETENCIAS ANTERIORES A 6 MESES NO ARQUIVO SRV E EMU DBF APOS O CALCULO
+  DO VALOR BRUTO
+
+
+VERSAO SIA0313 10/10/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO DA MENSAGEM DE ERRO "DATA FIM:EXCEDE LIMITE DE 3 MESES"
+  NA CRITICA DA DATA DE FIM DE VALIDADE DO RAAS-AD
+
+
+
+VERSAO SIA0312 02/10/2012
+
+- VERSAO OBRIGATORIA
+
+- MUDANCA NA APROVACAO DO RAAS-AD : APROVA TOTALMENTE SOMENTE SE TODOS OS
+  PROCEDIMENTOS DO DOCUMENTO AD ESTIVEREM SEM ERROS.
+
+- IMPORTACAO DA PRODUCAO RAAS-AD : APENAS IMPORTACAO DO TIPO NORMAL, NAO SERA
+  MAIS PERMITIDO A IMPORTACAO POR CORRECAO E/OU SUBSTITUICAO
+
+- EXIGE VERSAO 02.03 OU MAIS ATUAL DO FPO-MAG.
+
+- NOVO NIVEL DE APURACAO DA FPO : PROCEDIMENTO COM SOBRA EM COMPETENCIAS PASSADAS
+  (PRODUCAO ATRASADA)
+  - ESTE NIVEL DE APURACAO DETERMINA AO SIA PARA NAO FORNECER A SOBRA DO
+    PROCEDIMENTO PARA OS DEMAIS PROCEDIMENTOS. APENAS PARA O MESMO PROCEDIMENTO,
+    INCLUINDO A PRODUCAO ATRASADA, INDEPENDENTE SE POSSUIR OU NAO VALOR
+    FINANCEIRO.
+
+- ALTERACAO NA CONSULTA DE FPO, INCLUSAO DO NOVO NIVEL DE APURACAO
+
+- ALTERACAO NA LISTAGEM DA PROGRAMACAO FISICO/ORCAMENTARIA, INCLUSAO DO NOVO
+  NIVEL DE APURACAO
+
+- MUDANCA NA UTILIZACAO DA SOBRA NO CALCULO DO VALOR BRUTO, INCLUSAO DO NOVO
+  NIVEL DE APURACAO, PERMITINDO A SOBRA PARA COMPETENCIAS PASSADAS (PRODUCAO
+  ATRASADA) PARA O MESMO PROCEDIMENTO.
+
+- ALTERCAO NO ESPELHO DE APAC, SEMPRE APRESENTAR O CNPJ DA CESSAO DE CREDITO,
+  SE O MESMO ESTIVER INFORMADO, MESMO COM ERROS.
+
+- ALTERACAO DA MENSAGEM : ERRO NO CORPO DA APAC, PARA : ERRO NO CORPO DA PRODUCAO
+
+
+
+VERSAO SIA0311 25/09/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DE ARQUIVO DE VALORES (VTP) DO FPO-MAG
+
+- ACERTO NA EXCLUSAO DE RAAS-AD
+
+
+
+VERSAO SIA0310 21/09/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- RETIRADA A OPCAO "GESTOR HABILITADO EM PROJETOS"
+
+- ALTERACAO NA TELA DE IMPORTACAO DE APAC/RAAS : ALTERACAO DE INFORMACAO NA TELA
+  PARA ORIENTACAO DO USUARIO.
+
+- ACERTO NA CRITICA DA MENSAGEM "DIGITO DO CNS INVALIDO" E/OU "MUNICIPIO INVALIDO"
+  QUE ERA APRESENTADO JUNTO COM A MENSAGEM "PROCED.C/SERV.CLASS.NAO ENCONTRADO NO
+  CNES OU INVAL."
+
+- NOVO CAMPO EM S_UPS.DBF : UNIDADE_ID
+
+- ACERTO NA IMPORTACAO DO ORCAMENTO : VERIFICA A EXISTENCIA DO ARQUIVO DE VALORES
+  "VALORES_AAAAMM.VTP" NA PASTA INFORMADA PARA IMPORTACAO, E NAO MAIS NA PASTA DO
+  SIA.
+
+
+VERSAO SIA0309 10/09/2012
+
+- VERSAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DE PRODUCAO APAC DE ONCOLOGIA, OS GESTORES QUE ESTIVEREM
+  COM A MENSAGEM DE ERRO DE CID EM APAC DE ONCO. DEVEM RE-IMPORTAR AS APAC'S
+
+- ACERTO NO RELATORIO DE PRODUCAO APOS O CALCULO DO VALOR BRUTO.
+
+- NOVA CRITICA DE EQUIPES RAAS-AD, UM ESTABELECIMENTO PODE POSSUIR PRODUCAO DE
+  EQUIPES EMAD (COD.TIPO 22) OU EMAP (COD.TIPO 23) DO MUNICIPIO.
+
+
+VERSAO SIA0308 05/09/2012
+
+
+- EXCLUSAO DA CRITICA DO ERRO 67 (HA OUTRA APAC MESMO PACIENTE COM PROCED.IMPOSS.
+  DE COEXISTIREM) NA APAC DE MEDICAMENTOS, GRUPO/SUB-GRUPO 0604, INCLUIDO NA
+  VERSAO 02.61
+
+- ACERTO NA IMPORTACAO DE PRODUCAO APAC
+
+- ALTERACAO NA REGRA DA VERSAO 03.06 - SERV/CLASS. NA PRODUCAO BPA-I E/OU
+  APAC, NAO SERA OBRIGATORIO. PODENDO FICAR EM BRANCO.
+
+- IMPLEMENTACAO DA REGRA CONTRATUAL 7116 - SEM GERACAO DE CREDITO NA MEDIA
+  COMPLEXADIDADE - LRPD (EXCETO FAEC), NA PRODUCAO AGOSTO/2012 EM DIANTE
+
+- NOVA OPCAO NA CONSULTA/EXCLUSAO DE BPA-C, INCLUSAO NO FILTRO DA CONSULTA
+  DO NUMERO DA REMESSA DE PRODUCAO, SENDO 0 = TODAS
+
+- NOVA OPCAO NA CONSULTA/EXCLUSAO DE BPA-I, INCLUSAO NO FILTRO DA CONSULTA
+  DO NUMERO DA REMESSA DE PRODUCAO, SENDO 0 = TODAS
+
+- NOVA OPCAO DE IMPRESSAO DOS RELATORIOS EM IMPRESSORA LOCAL, USB E OU
+  REDE WINDOWS., PODENDO UTILIZAR O TIPO "PRN" PARA A IMPRESSORA LPT1
+  COMO FORMA DE COMPATIBILIDADE COM A VERSAO ANTERIOR.
+
+- NOVA IMPORTACAO DA PRODUCAO SISPRENATAL-WEB
+  REGRA : UM ESTABELECIMENTO DEVE INFORMAR A PRODUCAO SISPRENATAL EM
+          APENAS UM SISTEMA, NAO UTILIZAR O SISPRENATAL VERSAO ANTERIOR 
+          JUNTAMENTE COM O SISPRENATAL-WEB
+
+- NOVA OPCAO DE IMPORTACAO DE FORNECEDORES ANVISA - MANTENDO A IMPORTACAO 
+  MANUALMENTE, INFORMANDO O NOME DO ARQUIVO PARA IMPORTACAO, OU DIRETA NO SITE,
+  ONDE O SISTEMA ACESSA A PAGINA DO CNES E REALIZA A IMPORTACAO AUTOMATICAMENTE,
+  SENDO NECESSARIO ACESSO A INTERNET A ESTA ULTIMA OPCAO.
+
+- PORTARIA No. 1.340, DE 29 DE JUNHO DE 2012 - DEFINE O VALOR FEDERAL PARA
+  OS PROCEDIMENTOS DA APAC/AIH ELETIVAS
+
+- EXIGE VERSAO 02.00 DO FPO-MAG OU MAIS RECENTE
+
+- EXIGE NOVO ARQUIVO DE VALORES GERADO PELO FPO-MAG
+
+- NOVA TELA DE CONSULTA DE VALORES DE PROCEDIMENTOS. INFORMANDO OS VALORES
+  LOCAIS E FEDERAL
+
+- ALTERACAO NA CONSISTENCIA DA TABELA DE VALORES - INCLUSAO DOS NOVOS CAMPOS
+  PARA VALORES LOCAIS E FEDERAIS, MULTI-GESTOR.
+
+- ALTERACAO NAS TABELAS :
+
+    S_PRD.DBF - PRD_VL_FED - PARCELA VALOR FEDERAL
+                PRD_VL_LOC - PARCELA VALOR LOCAL
+                PRD_VL_INC - PARCELA VALOR INCREMENTO FINANCEIRO 
+                PRD_RUBFED - TP.Financ. + SUB-Tipo Financ. (RUBRICA) - VALOR FEDERAL
+
+    S_CRD.DBF - CRD_VL_FED - PARCELA VALOR FEDERAL
+                CRD_VL_LOC - PARCELA VALOR LOCAL
+                CRD_VL_INC - PARCELA VALOR INCREMENTO FINANCEIRO
+    
+    S_TPCRD.DBF - TPCRD_VFED - PARCELA VALOR FEDERAL
+                  TPCRD_VLOC - PARCELA VALOR LOCAL
+                  TPCRD_VINC - PARCELA VALOR INCREMENTO FINANCEIRO
+
+    S_VPA.DBF - VPA_SH   - valor do proc. p/Serv.Hosp.
+              - VPA_MUN  - GESTOR
+              - VPA_TIPO - TIPO DA PARCELA, 1 - FEDERAL OU 2 - LOCAL
+              - VPA_CTF  - TIPO DE FINANCIAMENTO
+              - VPA_RUB  - SUB-TIPO FINANCIAMENTO
+
+- NOVA FASE NO CREDITO PARA SEPARACAO DA PARCELA DE VALORES LOCAIS E FEDERAIS.
+
+  
+
+
+VERSAO SIA0307 8/08/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DE PRODUCAO BPA-I
+
+
+
+VERSAO SIA0306 7/08/2012
+
+- VERSAO OBRIGATORIA
+
+- INCLUSAO DE PARAMETROS PELA LINHA DE COMANDO COM A SINTASE : SIA32 <usuario> <senha>
+  SENDO <usuario> O USUARIO CADASTRADO NO SISTEMA, EXEMPLO : MESTRE
+  SENDO <senha> A SENHA CADASTRADA DO USUARIO, EXEMPLO : A
+  EXISTE DIFERENCA ENTRE MAIUSCULA E MINUSCULA
+  SE O <usuario> E <senha> INFORMADOS PELA LINHA DE COMANDO EXISTIREM NO CADASTRO
+  O SIA NAO SOLICITA A INFORMACAO NA TELA, E ASSUME ESTE USUARIO COMO ACESSO AO
+  MENU DE FORMA AUTOMATICA.
+
+- PORTARIA No 643, DE 11 DE JULHO DE 2012 - A PARTIR DA COMPETENCIA AGOSTO/2012
+  - INCLUSAO DA INFORMACAO DO SERVICO/CLASSIFICACAO NO PROCEDIMENTO PRINCIPAL
+    DE APAC E BPA-I
+  - INCLUSAO DA EQUIPE NOS PROCEDIMENTOS APAC E BPA-I
+
+- NOVO LAYOUT DE ARQUVOS BPA E APAC A PARTIR DA COMPETENCIA AGOSTO/2012
+  O SIA ACEITA O LAYOUT ANTIGO ATE A COMPETENCIA JULHO/2012
+
+- ALTERACAO NAS TABELAS : 
+  S_APA.DBF - COLUNAS APA_SRV E APA_CSF, SERV. E CLASS. DO PROCEDIMENTO PRINCIPAL
+  S_PAP.DBF - COLUNA PAP_EQUIPE, EQUIPE DO PROCEDIMENTO
+  S_BPI.DBF - COLUNAS BPI_SRV, BPI_CSF E BPI_EQUIPE, SERV.,CLASS. E EQUIPE DO
+              PROCEDIMENTO
+
+- ALTERACAO NA PESQUISA/EXCLUSAO DE APAC : INCLUSAO DA COLUNA COM SERV/CLASS
+  DO PROCEDIMENTO PRINCIPAL
+
+- ALTERACAO NA CONSULTA/EXCLUSAO DE BPA-I : INCLUSAO DAS COLUNAS DE SERV/CLASS
+  E EQUIPE 
+
+- ALTERACAO NA EMISSAO DO ESPELHO DA APAC : INCLUSAO DO SERV/CLASS DO PROCED.
+  PRINCIPAL E EQUIPE DOS PROCEDIMENTOS
+
+- ALTERACAO NA EMISSAO DE FOLHA BPA-I : INCLUSAO DO SERV/CLASS E EQUIPE
+
+- NOVAS REGRAS DA PRODUCAO :
+  - INFORMACAO DE SERV/CLASS E EQUIPES EM APAC E BPA-I SERA VALIDA APENAS PARA A 
+    COMPETENCIA AGOSTO/2012 EM DIANTE, NAO DEVENDO SER APRESENTADA EM COMPETENCIA 
+    INFERIORES
+  - EQUIPE E´ OPCIONAL E SE INFORMADA, SERA VALIDADA COM A EQUIPE IMPORTADA PELO
+    DE-PARA PELO CNES. (PODE-SE CONSULTAR AS EQUIPES IMPORTADAS NA CONSULTA CNES
+    PELO SIA)
+  - SERV/CLASS SERA OBRIGATORIO PARA OS PROCEDIMENTOS QUE POSSUIREM ALGUMA RELACAO
+    NO SIGTAP, SE NAO POSSUIR SERV/CLASS NO SIGTAP, DEVE-SE PERMANECER EM BRANCO
+    NA PRODUCAO, APENAS O PROCEDIMENTO PRINCIPAL DO APAC PODE INFORMAR SERV/CLASS.
+  - O SERV/CLASS INFORMADO, DEVE ESTAR CADASTRADO NO ESTABELECIMENTO COMO AMBULATORIAL,
+    E SE EXIGIR ALGUM CBO, O MESMO DEVE POSSUIR CARGA HORARIA AMBULATORIAL.
+
+- NOVO CODIGO DE ERRO EM APA_FLER : "AJ" DESCRICAO "SERV/CLASS INVALIDO OU NAO PERMITIDO"
+
+- EXIGE VERSAO 01.24 DO DE-PARA OU MAIS RECENTE
+
+- ALTERACAO NA CONSULTA DE CNES IMPORTADOS PELO DE-PARA : INCLUSAO DO CAMPO
+  NATUREZA JURIDICA
+
+
+VERSAO SIA0305 19/07/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- NOVO CAMPO NO ARQUIVO S_UPS.DBF PARA A NATUREZA JURIDICA
+
+- ACERTO NA CRITICA 'HA OUTRO REGISTRO,MESMO CNS, COM PROCED.IMPOSSIVEIS DE COEXISTIREM'
+  PARA A PRODUCAO RAAS-AD DE COMPETENCIA ATRASADA.
+
+
+VERSAO SIA0304 05/07/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA ROTINA DE RESTAURACAO DE BACKUP DA VERSAO ANTERIOR
+
+- ACERTO NA CRITICA "CNS PACIENTE OU PROFISSIONAL,INVALIDO/OBRIGATORIO" PARA
+  A PRODUCAO ATRASADA DA ATENCAO DOMICILIAR (RAAS-AD)
+
+
+VERSAO SIA0303 03/07/2012
+
+- VERSAO OBRIGATORIA
+
+- ACERTO NA ROTINA DE NOVA COMPETENCIA : MANTER 6 COMPETENCIAS NO ORCAMENTO,
+  HISTORICO DE CBO E HISTORICO DE SERV/CLASS.
+
+- ACERTO NA ROTINA DE VERIFICACAO DE NOVA VERSAO NO SITE DO SIA.
+
+
+
+VERSAO SIA0302 19/06/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- ESTA VERSAO POSSUI AS CORRECOES DA VERSAO 02.67 EM 16 Bits.
+
+- CORRECAO DO RELATORIO DE DISCRIMINATIVO DE PAGAMENTO DE SERVICOS.
+
+
+VERSAO SIA0301 06/06/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DE BPA, ACEITAR NOME DE ARQUIVO COM MENOS DE 8 POSICOES.
+
+- TROCA DA TECLA DE EXCLUSAO DE LINHAS NA CONSULTA DE BPA-C E BPA-I.
+   DE CTRL+DEL PARA F10.
+
+
+
+VERSAO SIA0300 01/06/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- VERSAO 32 BITs
+
+- VERSAO INCOMPATIVEL COM OS SISTEMAS OPERACIONAIS WINDOWS 95 E 98, DE 16 BITs.
+
+- NOVA ROTINA DE BACKUP/RESTORE. (ESTA ROTINA E' INCOMPATIVEL COM OS
+  ARQUIVOS GERADOS NA VERSAO ANTERIOR.)
+
+- ROTINA DE RESTORE DE ARQUIVOS GERADOS NA VERSAO ANTERIOR. - ESTA OPCAO E'
+  INCOMPATIVEL COM SISTEMA OPERACIONAL DE 64 BITs.
+
+- VERSAO COMPATIVEL COM WINDOWS 64 BITS - APRESENTA INCOMPATIBILIDADE
+  COM RESTAURACAO DE BACKUP DE VERSAO ANTERIOR
+
+- NAO HA MAIS A NECESSIDADE DE ALTERACAO NO ARQUIVO CONFIG.NT DO WINDOWS
+
+- NOVA OPCAO NO MENU OPERADOR - OPCOES DO SISTEMA
+  SUB-OPCOES :
+  - Sistema Windows : Parametros do SIA para utilizacao no sistema operacional
+     - Executa o SIA em tela cheia : define o comando ctrl+enter de forma
+       automatica quando entra no sistema, nao funciona nos sistemas Windows 7
+       e Windows Vista
+     - Verifica nova versao automatico : define uma verificacao automatica, quando
+       no entra no sistema, no site do SIA por nova versao do SIA e do BDSIA.
+       nao deve ser habilita se nao possuir coneccao com a Internet
+     - Cria atalho do SIA na area de trabalho : cria um atalho do sistema SIA
+       na area de trabalho de forma automatica.
+
+  - Verifica nova versao : realiza uma verificacao manual no site do SIA por
+    nova versao do SIA e BDSIA, se existir, pergunta se deseja baixar a nova
+    versao.
+    .Nao deve ser executada se nao possuir coneccao com a Internet.
+    .Nao Executa a atualizacao de forma automatica, devendo o usuario sair do
+     sistema para proceder com a atualizacao, recomendamos a utilizacao de um
+     backup de seguranca antes da atualizacao
+
+  - Versao do Sistema : Informa a versao do sistema operacional e a quantidade
+    de memoria livre disponivel no momento.
+
+
+- ALTERACAO NA ROTINA DE VISUALIZACAO DE RELATORIOS SALVOS (TECLA F12)
+  - Implementacao da tecla F2, F3 e F4 para pesquisa de um texto especifico
+    no relatorio
+
+
+
+VERSAO SIA0266 01/06/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- VERSAO 16 BITs
+
+- ACERTO NA IMPORTACAO DE CORRECAO DA PRODUCAO RAAS-AD.
+
+- ACERTO NA CRITICA 'HA OUTRO REGISTRO,MESMO CNS, COM PROCED.IMPOSSIVEIS DE COEXISTIREM'
+  PARA A PRODUCAO RAAS-AD DE CONTINUIDADE DE TRATAMENTO.
+
+- ATENCAO : AVISO IMPORTANTE : EM VIRTUDE DE APRIMORAMENTO DO SISTEMA, A PROXIMA
+  VERSAO NAO SERA COMPATIVEL COM OS SISTEMAS OPERACIONAIS WINDOWS 95 E WINDOWS 98
+
+
+VERSAO SIA0266 01/06/2012
+
+- VERSAO OBRIGATORIA
+
+- RETIRADA DAS FUNCOES "ACERTO TIPO DE APAC - MVM ANT" E
+  "ENCERRAMENTO APAC PT SAS 346" DO MENU OPERADOR
+
+- ACERTO NO CALCULO DO VALOR BRUTO : CARREGAR PRODUCAO RAAS-AD MESMO SEM
+  POSSUIR PRODUCAO DE APAC.
+
+- ACERTO NA IMPORTACAO DE PRODUCAO APAC/RAAS-AD : PROCURA PELO NOME DO ARQUIVO
+  APAC INICIADO COM "AP" PRIMEIRO, SE NAO ENCONTRAR, PROCURAR PELO NOME DO
+  ARQUIVO RAAS INICIADO COM "AA" DEPOIS.
+
+- ACERTO NA VERIFICACAO DO CNS - NUMEROS INICIADOS COM 0,3,4,5 E 6 SERAO REJEITADOS.
+
+
+VERSAO SIA0265 18/05/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- CORRECAO DO ERRO DO ARQUIVO CNSQTD DURANTE A CONSISTENCIA.
+
+- E-MAIL SAS/MS : NAO REALIZAR A CRITICA DE SERV/CLASS. NO SIGTAP PARA
+                  A PRODUCAO DA ATENCAO DOMICILIAR (AD) EM ABR/2012
+
+- ACERTO NO CALCULO DO DIGITO DO CNS INICIANDO COM '7'
+
+
+
+VERSAO SIA0264 10/05/2012
+
+- VERSAO OBRIGATORIA
+
+- ACERTO DE ERRO NA ROTINA DE NOVA COMPETENCIA.
+
+AVISO : DESCONSIDERE A MENSAGEM DE FALTA DO ARQUIVO RAS.DBF NO BACKUP ANTES
+        DO CALCULO DO VALOR BRUTO. ESTE ARQUIVO SERA GERADO SOMENTE APOS O
+        CALCULO E ESTARA PRESENTE NO SISTEMA NAS FUTURAS COMPETENCIAS.
+
+
+VERSAO SIA0263 04/05/2012
+
+- PT/SAS No. 276 DE 30/03/2012
+  INSTITUI O SISTEMA DE REGISTRO DAS ACOES AMBULATORIAIS DE SAUDE (RAAS)
+
+
+- ALTERACAO DA IMPORTACAO DE APAC : IMPORTAR APAC E/OU RAAS-AD
+  OBS : O APAC PERMANECE SEM ALTERACOES.
+
+- EXIGE VERSAO 01.22 DO DE-PARA OU MAIS RECENTE
+
+- NOVA SUB-OPCAO DE CONSULTA DE CNES-ESTABELECIMENTOS :
+  TECLA F9  = PROFISSIONAIS DO ESTABELECIMENTO, COM OU SEM EQUIPE
+  TECLA F10 = EQUIPES DO ESTABELECIMENTO
+
+- NOVA OPCAO DE PESQUISA/EXCLUSAO DA PRODUCAO DE ATENCAO DOMICILICAR (AD)
+
+- ALTERACAO NA SITUACAO DA PRODUCAO : INCLUSAO DE COLUNA COM TOTAL DE FOLHAS
+  DE PRODUCAO DE AD
+
+- CONSISTENCIA : CRITICA SOBRE PRODUCAO DE AD
+  EXIGE EQUIPE CADASTRADA.
+  EXIGE PROFISSIONAL CADASTRADO COM CBO E CARGA HORARIA AMBULATORIAL NA EQUIPE
+  EXIGE SERV/CLASS. NO ESTABELECILENTO
+  EXIGE CNS DO PACIENTE
+  EXIGE PROCEDIMENTO COM QUANTIDADE INFORMADOS
+  EXIGE PROCEDIMENTO DO TIPO AD
+  NAO EXIGE FPO DO PROCEDIMENTO INFORMADO
+  EXIGE CRITICAS DO SIGTAP ENTRE USUARIO E PROCEDIMENTO (IDADE, SEXO ETC)
+
+- CALCULO DO VALOR BRUTO : APROVAR A PRODUCAO SEM ERROS DE AD COM VALORES
+  ZERADOS
+
+- NOVOS ARQUIVOS CRIADOS :
+  S_RAS.DBF, S_RAPA.DBF, S_EQUIPE.DBF, S_UPSPRF.DBF E RAS.DBF
+
+- NOVAS COLUNAS CRIADAS EM S_PRD.DBF
+
+- ACERTO NA CONSULTA/EXCLUSAO DE APAC.
+  EXCLUIR APAC DO MOVIMENTO ATUAL.
+
+
+
+VERSAO SIA0262 07/03/2012
+
+- VERSAO NAO OBRIGATORIA
+
+- ALTERACAO NA IMPORTACAO DE APAC : MOSTRAR OS ARQUIVOS DE IMPORTACAO PARA
+  ESCOLHA NA TELA APENAS SE O USUARIO INCLUIR UM * NO NOME DO ARQUIVO
+
+- ALTERACAO NA CRITICA DO NIVEL DE APURACAO ORCAMENTARIO DA LMC, PERMITIR
+  ORCAR PROCEDIMENTOS DA LMC NO GRUPO/SUB-GRUPO E NIVEL.
+
+
+
+VERSAO SIA0261 06/03/2012
+
+- VERSAO OBRIGATORIA
+
+- ACERTO NA CRITICA DE MUDANCA DE CNS DO USUARIO EM BRANCO NA APAC INICIAL
+  PARA PREENCHIDA NA APAC DE CONTINUIDADE.
+
+- MEMO SAS, PERMITIR CNS DO USUARIO EM BRANCO PARA OS PROCEDIMENTOS DE
+  SISCOLO E SISMAMA NA COMPETENCIA FEV/12
+
+- ACERTO NA CRITICA DO ERRO 67 (HA OUTRA APAC MESMO PACIENTE COM PROCED.IMPOSS.
+  DE COEXISTIREM) NA APAC DE MEDICAMENTOS, GRUPO/SUB-GRUPO 0604, PERMITIR OUTRA
+  APAC COM CID DIFERENTE.
+
+- MEMO SAS, PERMITIR CNS DO USUARIO EM BRANCO OS PROCEDIMENTOS QUE NÃO O EXIGEM 
+  EM BPA-I.
+
+- IMPORTACAO DE APAC : MOSTRAR OS ARQUIVOS DE IMPORTACAO PARA ESCOLHA NA TELA
+
+- OS ARQUIVOS ABAIXO NAO SERAO UTILIZADOS A PARTIR DESTA VERSAO
+  S_SCE.DBF
+  S_CIDM.DBF
+  S_TUEMA.DBF
+  S_CDX.DBF
+  S_FCO.DBF
+  S_FCD.DBF
+
+
+
+VERSAO SIA0260 17/2/2012
+
+- VERSAO NAO OBRIGATORIA PARA JAN/2012
+
+- INCLUSAO DO PROCEDIMENTO :
+  05.06.01.005-8 AVALIACAO DE POSSIVEL DOADOR FALECIDO DE ORGAO OU TECIDOS
+                 PARA TRANSPLANTES
+  NA EXCESSAO DA OBRIGATORIEDADE DO CNS DO USUARIO EM APAC DE OBITO E CARATER
+  DE ATENDIMENTO DIFERENTE DE 02,03,04,05 E 06 DA PT/SAS 763 DE 20/JUL/11
+
+- ACERTO NA CRITICA DO LAUDO DE PROTESE DE MAMA
+
+
+VERSAO SIA0259 14/2/2012
+
+- ACERTO NA FUNCIONALIDADE DA NOVA COMPETENCIA.
+
+
+VERSAO SIA0258 8/2/2012
+
+- VERSAO OBRIGATORIA PARA COMPETENCIA JANEIRO/2012 EM DIANTE.
+
+- ACERTO NO CADASTRO DE FAIXA DE APAC ELETIVA
+
+- PT/SAS 763 DE 20/JUL/11
+  DEFINE A OBRIGATORIEDADE DO CNS DO USUARIO EM TODAS AS APA's INICIADAS
+  EM JANEIRO/2012 EM DIANTE
+  COM EXCESSAO PARA AS APAC's COM OBITO E CARATER DE ATENDIMENTO IGUAL A
+  '02','03','04','05' E '06' E O PROCEDIMENTO PRINCIPAL SEJA :
+    05.03.01.001-4 ACOES RELACIONADAS A DOACAO DE ORGAOS TECIDOS E CELULAS
+    05.03.01.002-2 ACOES RELACIONADAS A DOACAO DE ORGAOS TECIDOS E CELULAS REALIZADAS POR EQUIPE DE OUTRO ESTABELECIMENTO DE SAUDE
+    05.04.01.002-6 PROCESSAMENTO DE CORNEA / ESCLERA
+    05.04.04.001   PROCESSAMENTO DE CORNEA ESSAMENTO DE PELE EM GLICEROL (ATE 1000 CM) PARA ADULTO
+    05.04.04.002-2 PROCESSAMENTO DE PELE EM GLICEROL (ATE 500 CM) INFANTIL
+
+- PT/GM 196, DE 6 DE FEVEREIRO DE 2012
+  DEFINE REGRAS PARA O LAUDO DE PROTESE DE MAMA
+
+
+
+VERSAO SIA0257 6/2/2012
+
+- PT/SAS No. 942 DE 22/12/11
+  ART 1o. A NUMERACAO DA FAIXA DE APAC ELETIVA, SERA DE RESPONSABILIDADE
+  DO GESTOR ESTADUAL.
+
+- MUDANCA NA CRITICA DA LMC, VOLTA A SER ADVERTENCIA E NAO MAIS UM ERRO,
+  INCLUSIVE PARA A PRODUCAO DE COMPETENCIA PASSADAS.
+
+- MUDANCA NA CRITICA DA QUANTIDADE MAXIMA POR PACIENTE, PASSA A SER APENAS
+  ADVERTENCIA NOS RELATORIOS GERENCIAIS.
+
+- PT/SAS 920 DE 16/12/11
+  DEFINE AS REGRAS PARA OS PROCEDIMENTOS DE GLAUCOMA.
+
+- PT/SAS 763 DE 20/7/11
+  O CNS DO PROFISSIONAL SOLICITANTE E DO AUTORIZADOR, PASSAM A SER OBRIGATORIOS
+  PARA AS APAC'S INICIADAS EM 2012 EM DIANTE
+  O CNS DO USUARIO EM BPA-I, SERA OBRIGATORIO A PARTIR DA COMPETENCIA
+  FEVEREIRO/2012 EM DIANTE
+
+- MINUTA DE PORTARIA. PROTESE DE MAMA, PARA COMPETENCIA FEV/2012
+  CRIACAO DE NOVO LAUDO E PARTE VARIAVEL PARA OS NOVOS PROCEDIMENTOS A PARTIR
+  DA COMPETENCIA FEV/2012
+
+
+VERSAO SIA0256 3/11/2011
+
+- VERSAO OBRIGATORIA
+
+- INCLUSAO DE PROCEDIMENTOS EXCLUDENTES EM BPA-I NO SIGTAP
+
+- ALTERACAO NA CONSULTA DE PROCEDIMENTOS, INCLUSAO DOS PROCEDIMENTOS DE BPA-I
+  EXCLUDENTES
+
+- ALTERACAO NA MENSAGEM DE ERRO "PROCED.EXCLUDENTE ENCONTRADO EM APAC" PARA
+  "PROCED.EXCLUDENTE ENCONTRADO" CODIGO DE ERRO : "L" PARA PAP_FLPA, PRD_FLPA E
+  BPI_FLPA
+
+- ALTERACAO NO RELATORIO DE CONSISTENCIA : APRESENTAR A LINHA DE PRODUCAO
+  BPA-I CONTENDO O PROCEDIMENTO EXCLUDENTE.
+
+- ALTERACAO NA REGRA DE QUANTIDADE MAXIMA DE PROCEDIMENTO PARA QUANDO HOUVER
+  INFORMACAO DE CNS DE USUARIO, SOMAR TODA A PRODUCAO POR PACIENTE/COMPETENCIA.
+
+- NOVA MENSAGEM DE ERRO EM BPI_FLQT, PRD_FLQT E PAP_FLQT
+  CODIGO "4" MENSAGEM "EXCEDE QTD.MAXIMA DO PROCED. POR PACIENTE/COMP."
+
+- NOVO RELATORIO GERENCIAL : PRODUCAO COM QTD.MAX.EXCEDENTE PACIENTE
+  . RELACIONA TODA PRODUCAO APAC E BPA-I, COM A GLOSA "EXCEDE QTD.MAXIMA DO
+    PROCED. POR PACIENTE/COMP."
+    FORNECENDO SUB-TOTAL E MENSAGEM DE GLOSA.
+
+- PT No. 2318 DE 30 DE SETEMBRO DE 2011.
+  ALTERACAO NO SIGTAP DO SUB-TIPO FINANCIAMENTO DOS PROCEDIMENTOS DA APAC
+  ELETIVA.
+
+- CRIACAO DE NOVAS TABELAS :
+  S_CNSQTD.DBF - CONTENDO A PRODUCAO COM GLOSA DE QTD.MAXIMA EXCEDENTE POR
+                 PACIENTE, UTILIZADO NO NOVO RELATORIO GERENCIAL
+  S_BPIHST.DBF - CONTENDO O HISTORICO DE BPA-I SEM ERROS APRESENTADOS DE
+                 MOVIMENTOS PASSADOS.
+
+
+VERSAO SIA0255 5/10/2011
+
+- VERSAO OBRIGATORIA
+
+
+- ACERTO NO DE-PARA DE CBO PARA A PRODUCAO DOS SISTEMAS SISCOLO, SISMAMA E
+  SISPRENATAL, DA COMPETENCIA SETEMBRO DE 2011.
+
+
+VERSAO SIA0254 21/09/2011
+
+- VERSAO NAO OBRIGATORIA PARA A COMPETENCIA AGOSTO/2011
+
+- ACERTO NA CONSISTENCIA DAS APAC's DE CONTINUIDADE COM A APAC INICIAL
+  APRESENTANDO GLOSA NA CRITICA DO LMC
+  - O PROBLEMA FOI ENCONTRADO PELO SISTEMA DE CARGA DE BANCO DE DADOS NO
+    DATASUS. GERANDO ERRO NA IMPORTACAO DA REMESSA DO GESTOR NO SITE.
+
+  - ESTA VERSAO DEVE SER UTILIZADA APENAS PELOS GESTORES QUE APRESENTAM
+    O PROBLEMA DAS APAC's DE CONTINUIDADE DE LMC NA PAGINA DO SIA
+
+- UTILIZACAO DE DE-PARA DE CBO PARA A PRODUCAO DOS SISTEMAS SISCOLO, SISMAMA E
+  SISPRENATAL, AUTOMATICA NA IMPORTACAO DA PRODUCAO DA COMPETENCIA AGOSTO E
+  SETEMBRO DE 2011, OS DEMAIS SISTEMAS DEVEM UTILIZAR A FERRAMENTA DE CONVERSAO
+  NO BPA-MAG. E/OU APAC-MAG. OU MANUALMENTE NESTES SISTEMAS.
+
+
+VERSAO SIA0253 02/09/2011
+
+- VERSAO OBRIGATORIA
+
+- UTILIZACAO DE DE-PARA DE CBO PARA A PRODUCAO DOS SISTEMAS SISCOLO, SISMAMA E
+  SISPRENATAL, AUTOMATICA NA IMPORTACAO DA PRODUCAO DA COMPETENCIA AGOSTO/2011,
+  OS DEMAIS SISTEMAS DEVEM UTILIZAR A FERRAMENTA DE CONVERSAO NO BPA-MAG. E/OU
+  APAC-MAG.
+
+
+- ACERTO NA COMPATIBILIZACAO COM O VERSIA : MANTER OS ACENTOS E CARACTERES
+  ESPECIAIS NOS CAMPOS APAC (NOME, ENDERECO) E BPA-I (NOME). EXCETO OS CARACTERES
+  ' E "
+
+
+VERSAO SIA0252 18/08/2011
+
+- VERSAO NAO OBRIGATORIA
+
+- RETIFICACAO DO LERNOTAS.TXT DA VERSAO 02.51
+  - ACERTO NA CRITICA DE FPO NA CONSISTENCIA :
+    . NAO PERMITE PROGRAMACAO DO PROCEDIMENTO 030101007
+      COM SOBRA NO GRUPO, SUB-GRUPO OU FORMA ORG.
+
+- ACERTO NO CALCULO DO VALOR BRUTO PARA APROVAR O PROCEDIMENTO 030101007
+  DE ACORDO COM O NIVEL DE APURACAO NA FPO ATE A COMPETENCIA 6/2011 PARA TRAS.
+  PASSA A NAO APROVAR FINANCEIRAMENTE A PARTIR DA COMPETENCIA 7/2011 EM DIANTE
+
+- ALTERACAO DO CALCULO DE CONTROLE PARA O ARQUIVO DE REMESSA DE APAC GERADO
+  PELO SISTEMA HORUS.
+
+
+VERSAO SIA0251 08/08/2011
+
+- VERSAO OBRIGATORIA
+
+- EXIGE VERSAO 01.20 DO DE-PARA OU MAIS RECENTE
+
+- PERMITE A APRESENTACAO DE ATE 5 COMPETENCIAS ANTERIORES PARA A PRODUCAO DE
+  PROCEDIMENTOS VISA COM O ATRIBUTO 029 NO SIGTAP.
+
+- ACERTO NA IMPORTACAO DE ORCAMENTO (FPO) INCLUINDO A LINHA DE TOTAL NO GRUPO
+  PARA PROGRAMACAO REALIZADA EM APENAS UM PROCEDIMENTO DO GRUPO
+
+- ACERTO NA IMPRESSAO DO TOTAL DO ORCAMENTO E SEPARACAO DOS PROCEDIMENTOS POR
+  TIPO DE FINANCIAMENTO.
+
+
+
+VERSAO SIA0250 06/07/2011
+
+- VERSAO NAO OBRIGATORIA
+
+- UTILIZA CONDICAO DE GESTAO "EP" PARA A INSTALACAO DO TIPO ESTADUAL,
+  INDEPENDENTE DA CONDICAO DE GESTAO INFORMADO NO CADMUN.DBF OU CADGESMN.DBF
+
+
+
+VERSAO SIA0249 01/07/2011
+
+- VERSAO OBRIGATORIA
+
+- EXIGE VERSAO 01.18 OU MAIS RECENTE DO DE-PARA
+
+- NOVA CRITICA DE FPO NA CONSISTENCIA :
+  . NAO PERMITE PROGRAMACAO DO PROCEDIMENTO 030101004 (CONSULTA ESPECIALIZADA)
+    COM SOBRA NO GRUPO, SUB-GRUPO OU FORMA ORG.
+
+  . NAO PERMITE PROGRAMACAO DE PROCEDIMENTOS DA CRITICA REFERENTE A LMC
+    COM SOBRA NO GRUPO, SUB-GRUPO OU FORMA ORG. A PARTIR DA COMPETENCIA JULHO/11
+
+- ACERTO NO CALCULO DO CREDITO PARA O PROCEDIMENTO 030101004 ORCADO COM NIVEL
+  DE APURACAO DIFERENTE DE PROCEDIMENTO
+
+- IMPORTACAO DE APAC GERADO PELO SISTEMA HORUS
+  . ADIMITE DOSE DE ATAQUE PARA OS PROCEDIMENTOS : 060438004, 060438005 E
+    060438006, ADMINSTRADOS PELO HORUS.
+
+
+
+VERSAO SIA0248 10/05/2011
+
+- VERSAO OBRIGATORIA PARA OS GESTORES QUE AINDA NAO ENVIARAM A REMESSA
+
+- ACERTO NA IMPORTACAO DE PRODUCAO BPA-I
+
+- EXIGE VERSAO 01.17 OU MAIS RECENTE DO DE-PARA
+
+
+
+VERSAO SIA0247 10/05/2011
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA IMPORTACAO DE ORCAMENTO AMBULATORIAL (FPO)
+
+- ACERTO NA IMPORTACAO DE PRODUCAO BPA
+
+- ALTERACAO NO RELATORIO GERENCIAL "BPA-I COM PROFISSIONAL IRREGULAR PT 134"
+  . INCLUSAO DE COLUNA COM A DESCRICAO DA IRREGULARIEDADE ENCONTRADA NO SCNES
+    REFERENTE AO PROFISSIONAL.
+
+- ACERTO NA CONSULTA/EXCLUSAO DE BPA-C
+  . ACERTO NA EXCLUSAO DE TODAS AS LINHAS DA TELA COM CTRL+DEL
+
+
+VERSAO SIA0246 8/05/2011
+
+- VERSAO OBRIGATORIA
+
+- EXIGE VERSAO 01.16 OU MAIS RECENTE DO DE-PARA
+
+- REPUBLICACAO DA PT/SAS No.134 DE 31/05/11
+  REALIZAR CRITICA DE PROFISSIONAIS IRREGULARES NA PRODUCAO BPA-I
+
+- NOVA TABELA DE PROFISSIONAIS IRREGULARES (S_PRFIRR.DBF)
+
+- ALTERACAO NA CONSULTA DE ESTABELCIMENTOS (CNES)
+  . INCLUSAO DA TECLA F8 PARA RELACAO DE PROFISSIONAIS IRREGULARES.
+  . ACERTO NA TELA DE AJUDA.
+
+- NOVA MENSAGEM DE ERRO EM BPI_FLER E PRD_FLER
+  CODIGO "T" MENSAGEM "PROFISSIONAL EM DESACORDO COM PT-SAS 134/11"
+
+- NOVO RELATORIO GERENCIAL : BPA-I COM PROFISSIONAL IRREGULAR PT 134
+  . RELACIONA TODA PRODUCAO BPA-I COM A CRITICA DA PT/SAS 134/2011
+
+- ALTERACAO NA TELA DE CONSULTA/EXCLUSAO DE BPA-C.
+  . PERMITE INFORMACAO DE ESTABELECIMENTO NAO ENCONTRADO OU EM BRANCO PARA TODOS
+  . PERMITE INFORMACAO DE COMPETENCIA EM BRANCO PARA TODOS
+  . PERMITE INFORMACAO DE FOLHA EM BRANCO PARA TODAS.
+
+- ALTERACAO NO RELATORIO DE CONSISTENCIA
+  . APRESENTA TODOS OS ERROS ENCONTRADOS NA APAC DURANTE A CONSISTENCIA, NAO
+    MAIS LIMITANDO-SE AOS 5 PRIMEIROS ERROS MARCADOS EM APA_FLER
+
+- ACERTO NO CALCULO DO VALOR BRUTO DE PRODUCAO ATRASADA
+
+- ACERTO NA ROTINA DE REVOGACAO DE OBITO EM APAC
+  . PERMITE ALTERAR OBITOS ANTERIORES A COMPTENCIA JAN/2008
+
+- ALTERACAO NO RELATORIO DE APRESENTACAO DE APAC DE LCM.
+  . INCLUSAO DA COLUNA COM SUB-TOTAL DA LINHA
+
+
+
+VERSAO SIA0245 31/03/2011
+
+- VERSAO OBRIGATORIA
+
+- PT/SAS No.90 DE 15/03/11  - LMC
+  . ENCERRAMENTO AUTOMATICO DURANTE A CONSISTENCIA COM O MOTIVO DE SAIDA 51
+    E DATA DE ENCERRAMENTO 31/MAR/11, SERA APLICADO NAS APACs DA COMPETENCIA
+    MARCO/2011 (201103), INDEPENDENTE DO MOVIMENTO (PODENDO SER ATRASADA),
+    QUE CONTEM OS PROCEDIMENTOS INFORMADOS NA PORTARIA, E QUE POSSUAM
+    DATA DE FIM DE VALIDADE MAIOR QUE 31/MARCO/11, E COM DATA DE
+    ENCERRAMENTO EM BRANCO OU MAIOR QUE 31/MARCO/11
+  . RELATORIO DE APRESENTACAO DE APAC DE LCM
+    .CONTENDO TODAS AS APACs COM OS PROCEDIMENTOS CONSTANTES NA PORTARIA
+     INFORMANDO OS TOTAIS E OS PERCENTUAIS DA FASE E LINHA.
+    .O RELATORIO INFORMA A OCORRENCIA CASO OS SUB-TOTAIS ULTRAPASSEM OS LIMITES
+     PERCENTUAIS IMPOSTOS NA PORTARIA.
+    .PARA SIMPLES CONFERENCIA ATE A COMPETENCIA JUN/2011. DEPOIS DESTA
+     COMPETENCIA, AS APACs QUE APRESENTAREM OCORRENCIA, SERAO GLOSADAS.
+
+- ACERTO NO RELATORIO DE VALORES APROVADOS POR COMPLEX.E FINANCIAMENTO
+
+- EXIGE NOVA VERSAO DO SISMAMA/SISCOLO PARA A COMPETENCIA 03/2011 EM DIANTE.
+
+
+
+VERSAO SIA0244 16/02/2011
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA CRITICA DE PROCEDIMENTOS SECUNDARIOS EM APAC.
+
+- ACERTO NA CRITICA DE PROCEDIMENTOS EXCLUDENTES EM APAC.
+
+- ACERTO NO RELATORIO DE IMPORTACAO DE BPA-C/BPA-I.
+
+
+
+VERSAO SIA0243 15/02/2011
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA CRITICA DE PROCEDIMENTOS SECUNDARIOS EM APAC.
+
+
+VERSAO SIA0242 11/02/2011
+
+- VERSAO NAO OBRIGATORIA
+
+- ACERTO NA CRITICA DA ETNIA DE BPA-I DOS SISTEMAS SISCOLO, SISMAMA E
+  SISPRENATAL.
+
+- ACERTO NA CRITICA DE CID PRINCIPAL DE APAC DE RADIOTERAPIA.
+
+
+
+VERSAO SIA0241 04/02/2011
+
+- VERSAO OBRIGATORIA
+
+- INCLUSAO DA CRITICA DA NACIONALIDADE NO BPA-I
+
+- NOVO CAMPO NO ARQUIVO S_BPI, BPI_NACIO CONTENDO O CODIGO DA NACIONALIDADE
+  DO USUARIO.
+
+- ACERTO NO CALCULO DO NUMERO DE CONTROLE DO SISMAMA.
+
+- COMPATIBILIZACAO COM O VERSIA : RETIRADA DE ACENTOS E CARACTERES ESPECIAIS
+  NOS CAMPOS APAC (NOME, ENDERECO) E BPA-I (NOME).
+
+
+
+VERSAO SIA0240 03/01/2011
+
+- VERSAO OBRIGATORIA
+
+- EXIGE VERSAO 01.28 OU MAIS RECENTE DO FPO-MAG
+
+- EXIGE VERSAO 01.14 OU MAIS RECENTE DO DE-PARA
+
+
+VERSAO SIA0239 29/10/2010
+
+- VERSAO OBRIGATORIA
+
+- NOVO PARAMETRO DE PESQUISA NA APAC : TIPO DE APAC:1-INICIAL/2-CONTINUIDADE/3-UNICA.
+
+- ACERTO NO ESPELHO DA APAC DE MEDICAMENTOS SUB-GRUPO "04", INCLUSAO DO CID PRINC.
+  E SECUNDARIO NO RELATORIO.
+
+- ACERTO NA CRITICA DE APAC DE COMPETENCIA ANTERIOR COM PROCEDIMENTO PRINCIPAL
+  DIFERENTE, INCLUSAO DO SUB-GRUPO "04" DOS MEDICAMENTOS PARA PERMITIR A MUDANCA
+  NO PROCEDIMENTO PRINCIPAL, MANTENDO O CID PRINCIPAL INALTERADO NAS APAC´s INICIAL E 
+  CONTINUIDADES.
+
+
+VERSAO SIA0238 03/10/2010
+
+- VERSAO OBRIGATORIA
+
+- SOLICITACAO DE MUDANCA NA REGRA DO CAMPO ETNIA, DEFINIDO NA PT/SAS 508 SET/10
+  : PERMITIR A AUSENCIA DA INFORMACAO DA ETNIA PARA AS COMPETENCIAS OUT/10 A
+    DEZ/10
+
+
+
+VERSAO SIA0237 08/10/2010
+
+- VERSAO NAO OBRIGATORIA
+
+- INCLUSAO DE COMPETENCIA INICIAL E FINAL NA TABELA DE CID.
+  . ACERTO NA CRITICA DAS ALTERACOES DA APAC DE COMPETENCIAS ANTERIORES DE
+    ONCOLOGIA, REFERENTE A CRITICA DO CAMPO ESTADIO.
+
+- ALTERACAO NA CRITICA DA CONCOMITANCIA DE PROCEDIMENTOS PRINCIPAIS EM APAC.
+  . CASO A COMPETENCIA DA APAC DE CONTINUIDADE NAO TENHA OS PROCEDIMENTOS
+    PRINCIPAIS CONCOMITANTES, VERIFICAR SE HA CONCOMITANCIA NA COMPETENCIA
+    DA APAC INICIAL.
+
+
+- PT/SAS No.508 DE 28 DE SETEMBRO DE 2010
+  .INCLUSAO DO CAMPO ETNIA EM APAC E BPA-I PARA OS USUARIOS DE RACA/COR = INDIGENA
+   PARA A COMPETENCIA OUTUBRO/2010 EM DIANTE.
+
+
+VERSAO SIA0236 04/10/2010
+
+- VERSAO OBRIGATORIA
+
+- CORRECAO NA CRITICA DA DATA DE ATENDIMENTO DE BPA-I
+
+- CORRECAO NO KIT DA VERSAO - INCLUINDO O CARACTER "_" NO FIM DA VERSAO.
+
+
+VERSAO SIA0235 01/10/2010
+
+- VERSAO OBRIGATORIA
+
+- MEMO SAS NO 134 DE 20/JUL/2010
+  ALTERACAO NA REGRA CONTRATUAL 7101 - CEO
+    - APENAS PARA OS PROCEDIMENTOS COM ATRIBUTO COMPLEMENTAR 020 NO SIGTAP
+      E APENAS PARA OS CBO's DO GRUPO 2232 (CIRURGIOES DENTISTAS)
+    ESTA REGRA SERA APLICADA PARA A PRODUCAO DA COMPETENCIA 11/2010 EM DIANTE.
+
+- ACERTO NO RELATORIO DE PROGRAMACAO FISICO ORCAMENTARIA
+
+- RETIRADA DOS INDICES S_APA02.NTX, S_APA04.NTX E S_PAP03.NTX
+  REVISAO INTERNA NA CRITICA DE CNS DE PACIENTES COM OBITOS E RELATORIO
+  DE APAC, TECLA F8 NA PESQUISA DE APAC.
+
+- NOVA OPCAO DE INDEXACAO DE TODOS OS ARQUIVOS, INFORMANDO A DATA E HORA
+  DE INICIO E TERMINO DA OPERACAO.
+
+
+VERSAO SIA0234 03/09/2010
+
+- VERSAO OBRIGATORIA
+
+- ENCERRAMENTO AUTOMATICO DAS APAC'S DOS procedimentos excluidos
+  na PT/SAS 420, DE 25 DE agosto DE 2010.  
+
+- MEMO SAS 139 DE AGOSTO DE 2010
+  PERMITE PRODUCAO DE PROCEDIMENTOS EM BPA-C COM CBO EM BRANCO PARA OS PROCEDIMENTOS
+  COM ATRIBUTO COMPLEMENTAR 021 NO SIGTAP, Valido para competencia 08/2010 em diante.
+
+- MEMO SAS 135 DE JULHO DE 2010
+  RETIRADA DOS CAMPOS CID-10 TOPOGRAFIA E CID CAUSAS ASSOCIADAS PARA AS
+  APAC's INICIADAS A PARTIR DA COMPETENCIA 08/2010
+
+- MEMO SAS 82 DE JULHO DE 2010
+  .ALTERACAO NA NOMENCLATURA "UNIDADE" PARA "ESTABELECIMENTO"
+
+  .ALTERACAO NA NOMENCLATURA "CREDITO" PARA "VALOR BRUTO"
+
+  .ALTERACAO NA NOMENCLATURA "BPA" PARA "BPA-C"
+
+  .ALTERACAO NA NOMENCLATURA "BPI" PARA "BPA-I"
+
+  .ALTERACAO NO LAYOUT DA TELA "SITUACAO DA PRODUCAO"
+
+  .ALTERACAO NO RELATORIO DE PROGRAMACAO FISICO ORCAMENTARIA
+   - SEPARACAO DOS PROCEDIMENTOS POR COMPLEXIDADE PARA OS TIPOS DE FINANCIAMENTO
+     MAC E FAEC.
+
+  .ALTERACAO NA LISTAGEM DE ORCAMENTO, TECLA F8 DA CONSULTA DE ORCAMENTO.
+   - INCLUSAO DO TIPO DE FINANCIAMENTO E NIVEL DE APURACAO.
+
+
+- MEMO SAS 147 DE AGOSTO DE 2010
+  ACERTO NA CRITICA DO NUMERO DO CNS, POSSUIR APENAS CARACTERES NUMERICOS.
+
+VERSAO SIA0233 05/06/2010
+
+- ACERTO DA SAIDA DO RESULTADO DA CONSISTENCIA EM DISCO PARA O ARQUIVO R.PRN,
+  DURANTE O CALCULO DO CREDITO SEM ACOMPANHAMENTO DO USUARIO.
+
+- ACERTO DA VERIFICACAO DO APAC COM PROCEDIMENTO PRINCIPAL "0604" E SECUNDARIO
+  "0601"
+
+- ACERTO DA CRITICA DO CID PRINCIPAL NAS APAC'S DE MEDICAMENTOS.
+
+- ACERTO DO RELATORIO LISTAGEM DE REVOGACAO DE OBITOS EM APAC COM MAIS DE 1
+  PAGINA
+
+- ACERTO NA VERIFICACAO DE APAC EM OBITO.
+  . NAO REALIZAR CRITICA DE APAC ANTERIOR EM OBITO PARA AS APACs COM PROCEDIMENTOS
+    PRINCIPAIS ABAIXO:
+    05.03.01.001-4 ACOES RELACIONADAS A DOACAO DE ORGAOS TECIDOS E CELULAS
+    05.03.01.002-2 ACOES RELACIONADAS A DOACAO DE ORGAOS TECIDOS E CELULAS REALIZADAS POR EQUIPE DE OUTRO ESTABELECIMENTO DE SAUDE
+    05.04.01.002-6 PROCESSAMENTO DE CORNEA / ESCLERA
+    05.04.04.001-4 PROCESSAMENTO DE PELE EM GLICEROL (ATE 1000 CM) PARA ADULTO
+    05.04.04.002-2 PROCESSAMENTO DE PELE EM GLICEROL (ATE 500 CM) INFANTIL
+
+
+VERSAO SIA0232 02/05/2010
+
+- acerto na rotina de critica do erro 67, "HA OUTRA APAC COM PROCEDIMENTOS
+  IMPOSSIVEIS DE COEXISTIREM".
+  apresentando problemas em APAC's com a data de encerramento/alta/obito
+  diferente da data de vencimento.
+
+- versao obrigatoria para os gestores que possuem o problema relacionado acima
+
+
+VERSAO SIA0231 01/05/2010
+
+- versao obrigatoria para a competencia MAI/2010.
+
+- acerto na rotina de critica do erro 67, "HA OUTRA APAC COM PROCEDIMENTOS
+  IMPOSSIVEIS DE COEXISTIREM".
+
+- acerto da mensagem "ERRO NO CORPO DA APAC" para as APAC's com erro de
+  CNPJ de cessao de credito.
+
+- nova opcao no menu OPERADOR : REVOGAR OBITO EM APAC
+  deve ser utilizada para alterar o motivo de saida por obito digitado
+  incorretamente na APAC. permitindo que o CNS do paciente possa ser
+  utilizado.
+
+- acerto na critica do sexo do usuario do BPA-I na consistencia.
+
+
+
+VERSAO SIA0230 01/04/2010
+
+- versao obrigatoria para a competencia MAR/2010
+
+- exige versao 01.12 do DE-PARA ou mais recente.
+
+- PT/GM No.2981 de Novembro 2009 e PT/GM No.343 de Fevereiro 2010
+  altera grupo 06 - Medicamentos
+  altera a regra de CID´s para os procedimentos do grupo/sub-grupo 0604
+
+- MEMORANDO DA SAS NO 43 DE 8/03/2010
+  NAO PERMITIR APAC INICIAL OU UNICA PARA OS PROCEDIMENTOS 0601 NAS COMPETENCIAS
+  MAR/2010 E ABR/2010.
+
+- novo codigo de erro para o APAC em APA_FLER :
+  codigo descricao
+  "W1"   "PROCED.NAO PODE SER COBRADO EM APAC INICIAL"
+
+- Novo codigo de erro para APAC (PAP_FLER)
+  codigo "Q" descricao "CID PRINC.DIFERE CID PRINC. DO PRIMEIRO PROCED."
+
+
+
+VERSAO SIA0229 08/02/2010
+
+- exige versao 01.11 do DE-PARA ou mais recente.
+
+
+
+VERSAO SIA0228 10/12/2009
+
+- versao obrigatoria para a competencia Nov/2009
+
+- exige versao 01.10 do DE-PARA ou mais recente.
+
+
+
+VERSAO SIA0227 29/10/2009
+
+- versao obrigatoria para a competencia Out/2009
+
+- PT/GM 1183 - inclui 020403018 como exclusivo do SISMAMA
+  o procedimento 020403018 passa a ser exclusivo via sistema SISMAMA a partir
+  da competencia Out/2009 em diante.
+
+- alteracao no desconto de BDP de medicamentos e procedimentos afetados
+  por regras contratuais.
+
+  . procedimentos da assistencia farmaceutica e os afetados por regras contratuais
+    nao integram o total do VEPE. portanto o seu BDP nao afetara o VEPE e relatorios,
+    estando no sistema apenas para registro.
+
+- alteracao no VEPE
+  total de "BOLETIM DE DIFERENCA DE PAGAMENTO EXCLUIDOS DO TOTAL DO VEPE"
+  referentes ao procedimentos da assistencia farmaceutica e/ou afetados por regra
+  contratual
+
+- alteracao no "EMISSAO SINTESE DIFERENCA DE PAGAMENTO"
+  inclusao da mensagem "PROCED.NAO PERMITE CREDITO(*)" para os procedimentos da 
+  ASSISTENCIA FARMACEUTICA E REGRAS CONTRATUAIS
+
+- alteracao no "EMISSAO RELACAO DE CREDITO" sub-opcao "Sub-Tipo de Financiamento por nome"
+  .inclusao do total de BDP Sem Credito.
+  
+- alteracao no "EMISSAO DISCR. RECEBIMENTOS"
+  .nao apresentar os BDP de medicamentos e procedimentos afetados por regras contratuais.
+
+
+
+VERSAO SIA0226 02/10/2009
+
+- versao obrigatoria para a competencia Set/2009
+
+- acerto na consistencia do CNS do profissional de BPA-I
+
+- acerto na critica de procedimentos exclusivos do SISMAMA
+
+
+
+VERSAO SIA0225 14/09/2009
+
+- versao nao obrigatoria
+
+- Considera a APAC Unica como encerrada na competencia em que o procedimento
+  foi executado, permitindo a cobranca de outra APAC para o mesmo CNS, em
+  competencias posteriores.
+
+
+VERSAO SIA0224 4/09/2009
+
+- versao obrigatoria para a competencia Agosto/2009
+
+- PT/SAS Nº. 257, DE 28 DE JULHO DE 2009
+  inclui atributo de procedimentos de APAC de Inicial/Continuidade.
+
+- MUDANCA DA NOMENCLATURA "APAC UNICA" PARA "APAC SEM CONTINUIDADE"
+
+- PROCEDIMENTOS PRINCIPAIS QUE NAO PERMITEM CONTINUIDADE, PASSAM A EXIGIR
+  MOTIVO DE SAIDA E DATA DE ENCERRAMENTO A PARTIR DA COMPETENCIA 200908.
+
+- novos codigos de erro em APA_FLER :
+  codigo descricao
+  "9S"  "PROCED.NAO PODE SER COBRADO EM APAC SEM CONTINUIDADE"
+  "NS"  "PROCED. NAO PODE SER COBRADO EM APAC INIC./CONT."
+  "NT"  "APAC SEM CONTINUIDADE REQUER MOTIVO DE SAIDA/ALTA/OBITO"
+
+
+
+VERSAO SIA0223 26/06/2009
+
+- versao obrigatoria para a competencia junho/2009
+
+- Alteracao na rotina de Backup.
+  - Utilizacao de subpastas para cada competencia.
+    - no formato "BACKUP\AAAAMM" onde AAAA = ano e MM = mes
+  - A opcao do Drive "A" foi descontinuada.
+
+- Alteracao na rotina de Restauracao de arquivos
+  - Utilizacao de subpastas para cada competencia.
+    - no formato "BACKUP\AAAAMM" onde AAAA = ano e MM = mes
+  - A opcao do Drive "A" foi descontinuada.
+
+- PT/SAS No 215, 25 DE JUNHO DE 2009
+  -Permitir que os procedimentos do SISMAMA sejam processados pelo BPA-MAG/SIA ou 
+   SISMAMA ate a compt.Agosto/2009
+
+- Alteracao no layout da previa do VEPE para ficar igual ao do VERSIA
+
+- Acerto na critica da informacao do BDP, 
+  - Limite da competencia atual ou 3 competencias anteriores.
+  - Inclusao da soma da producao BPI para BDP de competencia atual.
+
+- Alteracao na critica da versao do DE-PARA.
+  a versao minima sera criticada com a informacao no site do SIA.
+  http://sia.datasus.gov.br -> versoes de aplicativos -> versao minima de sistemas
+
+
+VERSAO SIA0222 22/05/2009
+
+- VERSAO NAO OBRIGATORIA
+
+- IMPLEMENTACAO DO MEM/SAS NO.119 E 120 DE 20/MAI/2009
+  EXCLUSAO NA REGRA DO MEM/SAS NO.088 DOS PRESTADORES ABAIXO :
+  CNES : 2020645, 0005333, 3502651, 2380382, 2410265
+
+
+
+VERSAO SIA0221 7/05/2009
+
+- versao obrigatoria para a competencia Abril/2009
+
+- Implantacao do MEM/SAS NO.088 DE 20/ABR/09 
+  permitir apenas APAC´s do tipo continuidade para os CNES : 2020645, 0005533, 2437732, 2341409, 
+  3502651, 2410265, 2380382, 2380390, 2305674 e 0009687 a partir da competencia Mar/2009
+
+- RETIFICACAO DA PT/SAS 779 DE 31/DEZ/2008, Portaria do SISMAMA
+  possui sua implantação na competencia de Junho/2009
+
+- VERIFICACAO DO CHKSUM DA FAIXA DE APAC E ARQUIVOS DE PROCEDIMENTOS ANTES DO CREDITO.
+
+- VERIFICACAO DO BDSIA E DA COMPETENCIA - DEVEM ESTAR IGUAIS
+
+- Alteracao na rotina de calculo do credito, para que a partir da competencia Abril/2009 
+  a produção afetada por regra contratual passe a respeitar o limite do FPO.
+
+- Alteracao na rotina de relatorios gerencias : permitir que se possa emitir alguns relatorios
+  antes do credito
+
+- inclusão de novos relatorios gerenciais :
+
+  - VALORES APROV.POR GRUPO DE PROCEDIMENTOS (somente apos o credito)
+  - APAC COM OBITO POR UNIDADE (antes ou depois do credito)
+  - APAC UNICAS POR UNIDADE (antes ou depois do credito)
+
+- EXIGE VERSAO 01.09 OU MAIS RECENTE DO DE-PARA
+
+
+VERSAO SIA0220 6/04/2009
+
+- ACERTO DA CRITICA DE MUNICIPIOS NO BPA-I
+
+- MUDANCA DA ORDEM DA OPCAO DE DRIVE PARA O BACKUP E RESTORE, DE A: C: PARA
+  C: A:, DEVIDO A MAIOR UTILIZACAO NO DRIVE C: PARA ESTA OPCAO.
+
+- NOVA OPCAO PARA ACOMPANHAMENTO DO CALCULO DO CREDITO NO SISTEMA:
+  PODE-SE ACOMPANHAR O CALCULO DO CREDITO, INFORMANDO AS OPCOES DE IMPRESSAO
+  DIRETO PARA IMPRESSORA OU ARQUIVO, DRIVE DE BACKUP EM A: OU C: E VISUALIZACAO
+  DAS MENSAGENS NA TELA.
+  OU PODE-SE ESCOLHER QUE O SISTEMA SALVE TODAS AS IMPRESSOES EM ARQUIVO, BACKUP
+  APENAS EM C:, APRESENTANDO UM RESUMO DAS MENSAGENS APENAS NO FINAL DO CREDITO.
+  AUTOMATIZANDO O CALCULO DO CREDITO SEM O ACOMPANHAMENTO, PODE SER UTILIZADO
+  POR GESTORES COM TAMANHO MUITO GRANDE DE PRODUCAO OU POR GESTORES COM
+  MAQUINAS DE MENOR PODER DE PROCESSAMENTO.
+
+- ALTERACAO NO RELATORIO DE OBITO.
+  INCLUSAO DO CAMPO DE NUMERO DO PRONTUARIO DA APAC.
+
+
+
+VERSAO SIA0219 13/03/2009
+
+- CORRECAO NA CRITICA DE CBO NO BPA-I
+  ELIMINA A MENSAGEM DE ERRO NO VERSIA SOBRE CBO INEXISTENTE PARA BPA-I
+  PARA EFETUAR ESTA CORRECAO, DEVE-SE RETORNAR O BACKUP DE ANTES DO CREDITO
+  E REALIZAR NOVO CREDITO.
+
+- NOVO ARQUIVO COM OS OBITOS ENCONTRADOS DURANTE O CREDITO.
+  O ARQUVIO OBITOS.TXT SERA GERADO CASO O MOVIMENTO POSSUA APAC COM OBITOS,
+  O GESTOR DEVE CONFERIR A VERACIDADE DA INFORMACAO DOS OBITOS RELACIONADOS,
+  LEMBRANDO QUE APAC FUTURAS A ESTES PACIENTES SERAO GLOSADAS, EM CASO DE ERROS
+  DE DIGITACAO, A CORRECAO DE UM MOVIMENTO JA TRANSMITIDO AO DATASUS, SERA
+  ATRAVES DE REPROCESSAMENTO DESTE MOVIMENTO.
+
+
+VERSAO SIA0218 13/02/2009
+
+- Mem. 036/CGSI/DRAC/SAS/MS de 11 de fevereiro de 2009
+  Os sistemas SIA e SIH deixarão de verificar se o gestor tem projeto cadastrado 
+  para cirurgias eletivas, ou seja, não mais verificarão o arquivo disponibilizado 
+  pelo SISGERF.
+
+  Sendo assim, os sistemas (SIA e SIH) só verificarão se os procedimentos pertencem 
+  ao elenco de procedimento contemplado pela Política Nacional de Cirurgias Eletivas, 
+  devidamente identificados na tabela, e se a série numérica da AIH/APAC é especifica 
+  de cirurgias eletivas. 
+
+
+
+VERSAO SIA0217 9/02/2009
+
+- ALTERACAO DO RELATORIO DE CREDITO POR RUBRICA.
+  ALTERACAO DO TITULO DO RELATORIO PARA CREDITO POR SUB-TIPO DE FINANCIAMENTO
+
+- NOVA CRITICA DA DATA DE NASCIMENTO DO PACIENTE NO BPI COM CARACTERES INVALIDOS
+
+- ACERTO DA SOMA NO ARQUIVO DE CREDITO PARA PROCEDIMENTOS DE DUPLO FINANCIAMENTO
+
+- INCLUSAO DA CRITICA DE ITENS DE APAC DUPLICADOS EM MOVIMENTOS DIFERENTES
+
+- ALTERACAO DO MOMENTO DA CRITICA DE FORNECEDORES DE CESSAO DE CREDITO DO CALCULO
+  DO CREDITO PARA A CONSISTENCIA.
+
+
+
+VERSAO SIA0216 7/01/2009
+
+- PT/SAS No 735, DE 17 DE DEZEMBRO DE 2008
+  DEFINICAO DE SERIE NUMERICA DE APAC PARA PROCEDIMENTOS DE CNRAC E CIRUR.
+  ELETIVAS PARA A REFERENCIA DE 2009
+
+- ACERTO DA CRITICA DE VALIDACAO DA NUMERACAO DE APAC : NAO SERA ACEITA
+  APAC COM NUMERACAO DE REFERENCIA PARA O PROXIMO ANO, EM COMPETENCIA DE 
+  ANO ANTERIOR.
+  EXEMPLO : NUMERACAO XX09XXXXXXXX-X NA COMPETENCIA XX/2008 SERA INVALIDA.
+
+  PERMANECE VALIDO A NUMERACAO DE REFERENCIA DE ANO ANTERIOR
+  EXEMPLO : NUMERACAO XX08XXXXXXXX-X NA COMPETENCIA XX/2009 SERA VALIDA.
+
+  LEMBRANDO QUE PARA SER UMA SEQUENCIA DE APAC VALIDA, A MESMA DEVE SER 
+  CADASTRADA EM "CADASTRO->NUMERACAO DE APAC" E DEVE ESTAR ENTRE O INICIO
+  E FIM DE VALIDADE.
+
+  OBS : AS REGRAS DA NUMERACAO DA APAC SAO DEFINIDAS NA PT/SAS N.567 DE 
+        13 DE OUTUBRO DE 2005
+        ARTIGO 2 : "Terceiro e quarto dígitos correspondem aos dois últimos 
+                    algarismos do ano de referência"
+
+
+VERSAO SIA0215 17/12/2008
+
+- CONSULTA DE CBO E SERV/CLASS
+  PERMITE ALTERACAO DA COMPETENCIA COM A TECLA "TAB", NO MAXIMO 4 COMPETENCIAS
+  A ATUAL MAIS 3 ANTERIORES.
+
+- ACERTO DO VALOR UNITARIO DE PROCEDIMENTOS DE DUPLO FINANCIAMENTO PARA OS
+  CASOS DE VALOR UNITARIO MAC ALTERADO NO FPO COM APAC FAEC (CNRAC OU ELETIVA)
+
+
+
+VERSAO SIA0214 15/12/2008
+
+- ACERTO DA GERACAO DOS ARQUIVOS DE CBO E SERV/CLASS PARA O VERSIA
+  . APENAS PARA OS GESTORES QUE OBTEM MENSAGEM DE ERRO NO VERSIA SOBRE SERV/CLASS.
+    NAO ENCONTRADO, ONDE O PAR SERV/CLASS ENCONTRA-SE NO SIA.
+
+
+VERSAO SIA0213 12/12/2008
+
+- E-MAIL DA SAS :
+  - PERMITIR PRODUCAO DE BPA-I PARA O PROCEDIMENTO 020101056 NA COMPETENCIA 10/2008
+  - PERMITIR O PROCEDIMENTO 020101056 COMO PRINCIPAL EM APAC DE CIRURGIAS ELETIVAS NA
+    COMPETENCIA 10/2008
+  INDEPENDENTE DO SIGTAP
+
+- ACERTO NO CALCULO DO CREDITO : NAO PERMITE APROVAR POR SOBRA NO ORCAMENTO DE
+  GRUPO/SUB-GRUPO/NIVEL PARA O PROCEDIMENTO 030101004 (CONSULTA)
+
+
+VERSAO SIA0212 8/12/2008
+
+- Acerto da mensagem "CNS PACIENTE:COBRANCA PARA PACIENTE FALECIDO"
+  com relacao a APAC's anteriores a 2008
+
+
+
+VERSAO SIA0211 4/12/2008
+
+- Novo codigo de erro para APAC (APA_FLER)
+  codigo "06" descricao "NUMERO:APAC DUPLICADA"
+
+- Novo codigo de erro para APAC (PAP_FLER)
+  codigo "9" descricao "DUPLICIDADE DE SEQUENCIA DE APAC"
+
+- Novo codigo de erro para APAC (APA_FLER)
+  codigo "9P" descricao "PROCED.PRINC.NAO ENCONTRADO NA SEQUENCIA 01"
+
+- Acerto da mensagem "CNS PACIENTE:COBRANCA PARA PACIENTE FALECIDO"
+
+- Acerto da mensagem "CODIGO DO ORGAO EMISSOR INVALIDO"
+
+- Acerto da mensagem "NUMERO:APAC JA FOI PROCESSADA" para APAC de continuidade
+  onde a inicial foi apresentada como unica.
+
+- Acerto da mensagem "APAC COMPETENCIA ANTERIOR NAO ENCONTRADA" realiza a procura
+  da APAC INICIAL caso a anterior seja de continuidade
+
+
+VERSAO SIA0210 18/11/2008
+
+- corrige a atualização do arquivo de fornecedores
+
+
+
+VERSAO SIA0209 06/11/2008
+
+- Pesquisa/Exclusão de APAC
+
+  Inclusão da opção : APENAS APAC COM ERRO?
+
+
+- novas mensagens de erros: 
+
+  APAC COMPETENCIA ANTERIOR COM ERROS ENCONTRADOS
+  APAC COMPETENCIA ANTERIOR COM CNS USUARIO DIFERENTE
+  APAC COMPETENCIA ANTERIOR COM SEXO USUARIO DIFERENTE
+  APAC COMPETENCIA ANTERIOR COM DATA NASC. DIFERENTE
+
+- novo relatorio "EMISSAO PRODUCAO BPA-I POR NOME"
+  EMISSAO DA PRODUCAO DE BPA-I POR NOME DO USUARIO
+
+- alteracao da critica da relacao procedimento com CID para as APAC´s de
+  continuidade de MEDICAMENTOS : permitir CID sem relacao com procedimento 
+  na competencia atual, mas que existia na competencia da APAC inicial.
+ 
+
+
+VERSAO SIA0208 06/10/2008
+
+- NOVA CRITICA DE NUMERCAO DE APAC
+  - CONTROLE DE APAC PAGAS
+    MENSAGEM DE ERRO : APAC JA UTILIZADA EM OUTRA COMPETENCIA
+
+
+- NOVAS MENSAGENS DE ERROS :
+
+  - PARA PRD_FLPA E PAP_FLPA CODIGO "R" 
+    DESCRICAO:"PROCED.C/MOVIMENTO DIF.DA COMPETENCIA ATUAL"
+
+  - PARA APA_FLER CODIGO "NR" 
+    DESCRICAO:"APAC JA UTILIZADA EM OUTRA COMPETENCIA"
+
+
+- ALTERACAO DOS RELATORIOS GERENCIAIS :
+
+  SINTETICO DE PROCEDIMENTOS COM REGRAS CONTRATUAIS 
+  - INCLUSAO DA COMPETENCIA
+
+  ANALITICO DE PROCEDIMENTOS COM REGRAS CONTRATUAIS 
+  - INCLUSAO DO CBO
+
+- ALTERACAO DO RELATORIO DE CONSISTENCIA :
+  EMITIR PAGINA POR CNES.
+
+- ACERTO DA IMPORTACAO DE BPA-C/BPA-I
+  ACERTO DA MENSAGEM DE ERRO DE LINHA DUPLICADA
+
+- PORTARIA SAS No-492, DE 10 DE SETEMBRO DE 2008 E 
+  PORTARIA SAS No-553, DE 3 DE OUTUBRO DE 2008
+  - inclusão de numeração APAC exclusiva para procedimentos da CIRURGIA ELETIVA
+    - criacao de novo arquivo com informação se município aderiu a algum projeto do MS
+    - Apenas os municípios que aderiram ao projeto da CIRURGIA ELETIVA, codigo financ.: 0043
+      podem possuir APAC de faixa eletiva.
+    - importacao do arquivo SISGERF.txt contendo os gestores habilitados, este arquivo encontra-se
+      no site do CNES e deve ser descompactado na pasta do SIA.
+    - nova consulta no menu cadastro com os gestores habilitados em projetos. 
+    - Controle de faixa de inicio e fim de APAC ELETIVA cadastrado em portaria.
+      NOVA CONSULTA DA FAIXA INICIAL E FINAL NA "TABELAS NACIONAIS"
+  - ALTERACAO NA Consulta de procedimentos – informar se é ELETIVA SIM ou NÃO
+
+- PORTARIA N° 476, DE 01 DE SETEMBRO DE 2008.
+  - Alteração da regra contratual 7106 para não gerar credito “EXCETO FAEC”, ou seja, 
+    o FAEC passa a não ser aplicado a esta regra.
+  - Inclusão das regras contratuais 7112 e 7113 com a regra a antiga 7106, 
+    ou seja, não gerar credito para TODA produção, INCLUSIVE FAEC.
+  - PARA PRODUCAO ATRASADA (ANTERIOR A SET/08) SERA APLICADA A REGRA SEM A MUDANCA DESTA
+    PORTARIA (OU SEJA, NAO GERA CREDITO TOTAL, INCLUSIVE FAEC)
+
+- ALTERACAO DA REGRA CONTRATUAL – 
+  7111 - “Estabelecimento de Saúde sem geração de crédito - NASF, exceto FAEC”
+  Aplicar a regra apenas para os CBO´s : 
+   251605, 223405, 223605, 223810, 223101, 223132, 223135, 223149, 223153, 223710, 223620, 
+   224105, 224110, 224115, 224120, 224125, 224130, 224135, 251510, 251530, 251605, 223405, 
+   223605, 223810, 223710, 223620, 224105, 224110, 224115, 224120, 224125, 224130, 224135, 
+   251510, 251530
+  ESTA ALTERACAO SERA APLICADA NA PRODUCAO DA COMPETENCIA 09/2008 EM DIANTE.
+  PARA PRODUCAO ATRASADA (ANTERIOR A SET/08) SERA APLICADA A REGRA SEM DIFERENCA PARA CBO
+
+- RELATORIO VEPE DEVERA SER FEITO NO versia "02.11". 
+  O SIA, APÓS O CREDITO, EMITE UMA PREVIA DO VEPE.
+  O VEPE ENCONTRA-SE INCORPORADO AO VERSIA VERSAO 02.11 OU MAIS RECENTE.
+
+
+VERSAO SIA0207 08/09/2008
+
+- ACERTO NA IMPORTACAO DE APAC COM MAIS DE 10 PROCEDIMENTOS.
+
+- ACERTO NA CRITICA DE LAUDO DE APAC DE ACOMP.DE CIRURG.BARIATRICA.
+  ACERTO NA CRITICA DE NUMERO DE AIH/PROCECED.HOSPITALAR E DATA DE CIRURGIA.
+
+
+VERSAO SIA0206 05/09/2008
+
+- MEMORANDO INTERNO DA SAS/MS
+  NAO REALIZAR CRITICA NAS HABILITACOES 0503 E 0504 NAS COMPETENCIAS
+  JULHO/2008 A DEZEMBRO/2008
+  ASSIM, O SIA RETIRA DA TABELA UNIFICADA (PAHA) A EXIGENCIA DAS HABILITACOES
+  ACIMA DURANTE AS COMPETENCIAS MENCIONADAS.
+
+- CALCULA AUTOMATICAMENTE A IDADE DO USUARIO DO BPA-I NA CONSISTENCIA.
+
+
+VERSAO SIA0205 01/09/2008
+
+- EXIGE VERSAO 01.10 OU MAIS RECENTE DO FPO-MAG
+
+- EXIGE VERSAO 01.05 OU MAIS RECENTE DO DE-PARA
+
+
+- LER ARQUIVO CADGESMN.DBF COM ATUALIZACAO PELO DE-PARA DA GESTAO
+  DOS MUNCIPIOS. O SIA PASSA A ATULIZAR O CADMUN DO BANCO DE DADOS
+  NACIONAL, COM AS INFORMACOES PASSADAS PELO CNES VIA DE-PARA.
+
+- ACERTO NA CONSISTENCIA DA IDADE E SEXO DO USUARIO COM PROCEDIMENTO EM APAC
+  CODIGOS DE ERRO :
+  "PAM"+"6" , "PROCED.NAO ADMITIDO PARA IDADE DO USUARIO"          ,"P99" 
+  "PAM"+"Q" , "PROCED.NAO ADMITIDO PARA O SEXO DO USUARIO"         ,"P99" 
+
+
+- PT/SAS No.472 DE 22 DE AGOSTO DE 2008
+  REDEFINE O PRAZO PARA CONSISTENCIA DE CBO, SERV/CLASS E CID COM PROCED.
+  CBO E SERV/CLASS PARA COMPETENCIA SETEMBRO/2008
+  CID PARA COMPETENCIA OUTUBRO/2008
+
+- INCLUSAO DA DATA DE NASCIMENTO E SEXO DO USUARIO NA LISTAGEM DE APAC.
+
+- REALIZA EXCLUSAO DE ITENS DA APAC ANTES DA IMPORTACAO, CASO EXISTA.
+  EMBORA O SISTEMA POSSUA OPCAO PARA EXCLUSAO DE APAC, ALGUNS USUARIOS
+  EFETUAM EXCLUSAO POR FORA DO SISTEMA APENAS NO CORPO DA APAC, DUPLICANDO
+  OS ITENS DA APAC NO MOMENTO DA IMPORTACAO.
+
+- INCLUI 999 NO CAMPO PRD_IDADE PARA PRODUCAO BPA-C COM PROCEDIMENTO
+  QUE NAO EXIGE IDADE
+
+- CALCULA O CAMPO IDADE AUTOMATICAMENTE NO CALCULO DO CREDITO PARA
+  PRODUCAO APAC
+
+- O SCNES VERSAO 2.2.40 PASSA A EXPORTAR APENAS AS UNIDADES VALIDAS,
+  DESTA FORMA TERMINA A NECESSIDADE DE IMPORTACAO DE CNES VALIDOS DO
+  SITE DO CNES, POIS TODAS AS UNIDADES QUE SE ENCONTRAM NO SIA SAO
+  VALIDAS PELO CNES.
+
+- ALTERACAO NO VEPE
+  INCLUIR SEGUNDA FOLHA CASO EXISTA CONTRATUALIZACAO DA PRODUCAO DE
+  CNES, DEVEM CONSTAR O TOTAL DA CONTRATUALIZACAO E SUB-TOTAIS COM
+  TIPO DE FINANCIAMENTO, SUB-TIPO FINANCIAMENTO E COMPLEXIDADE.
+  NA PRIMEIRA FOLHA DEVE CONSTAR A REFERENCIA A SEGUNDA FOLHA
+
+
+VERSAO SIA0204 08/08/2008
+
+- ACERTO NO CID-10 TOPOGRAFICO DE PROCEDIMENTOS DE QUIMIOTERAPIA
+
+
+VERSAO SIA0203 07/08/2008
+
+- ACERTO NO CID-10 TOPOGRAFICO DE PROCEDIMENTOS DE QUIMIOTERAPIA
+
+- INCLUSAO DO NOME DA UNIDADE NO RELATORIO 
+  VALORES APROVADOS POR COMPLEX.E FINANCIAMENTO.
+
+- PT/SAS 346, DE 23 DE JUNHO DE 2008.
+
+  NOVA OPCAO NO MENU OPERADOR : "ENCERRAMENTO APAC PT SAS 346"
+  
+  A Portaria  extinguiu procedimentos principais de oncologia, criando novos 
+  procedimentos. 
+  Nasce a necessidade de encerrar APAC com o código de procedimento antigo e 
+  abri-las com novo número de autorização e os novos códigos para os 
+  procedimentos principais. 
+  Com a finalidade de facilitar o processo, o SIASUS possui a funcionalidade 
+  que verificará a necessidade de fechar APAC da competência de junho – que 
+  ainda não tenham sido fechadas ou por alguma ocorrência ou por data de termino 
+  normal. Em verificando a existência de APAC que teria imprópria continuidade em 
+  julho – usando o procedimento extinto pela portaria – ou impedindo a continuidade 
+  do tratamento em outra APAC - o SIASUS colocará motivo de saída “51 – Administrativo” 
+  e a data arbitrada de "30 de junho de 2008" na data de ocorrência. O procedimento 
+  automático apenas ocorrerá para APAC que ainda não tiver sido fechada e que tenham 
+  procedimento pertencente ao conjunto de extinguidos. Mesmo as já aprovadas para pagamento 
+  (competencia anterior), aguardando a continuidade serão, objeto da análise e fechamento 
+  automático.
+  Recordamos aos operadores que as APAC que terão fechamento automático em junho devem ser 
+  importadas – como é a regra geral da APAC – de importar as novas APAC com o novo código de 
+  procedimento. Se isto não ocorrer, haverá mensagem “EXISTE OUTRA APAC PARA O MESMO PACIENTE...”.
+
+  procedimentos excluidos na PORTARIA:
+
+  Art. 2º 
+  030405015-6 Tratamento de carcinoma de nasofaringe s/ metástase à 
+              distância (estádios III e IV)
+  030405019-9 Tratamento de neoplasia de células germinativas de ovário
+ 
+
+  Art. 6º  
+  030401025-1 Radioterapia p/ profilaxia de quelóide (por campo)
+  030401023-5 Radioterapia de doença ou condição benigna (por campo)
+  030405005-9 Tratamento de câncer de mama c/ comprometimento de 4 
+  030405008-3 Tratamento de câncer de mama receptor positivo c/ 
+              comprometimento de
+  030405009-1 Tratamento de câncer de mama receptor positivo c/ 
+              comprometimento de
+  030405010-5 Tratamento de câncer de mama receptor positivo por 
+              hormonioterapia 
+  030405023-7 Tratamento de sarcoma ósseo
+  030405024-5 Tratamento do mama receptor positivo s/ comprometimento de 
+              linfonodos axilares por quimioterapia (estádio II)
+  030406002-0 Tratamento de Doenca de Hodgkin (estádios III e IV -1a linha)
+  030406014-3 Tratamento de linfopatia
+
+
+VERSAO SIA0202 28/07/2008
+
+- PRORROGACAO DA PT/SAS 247 DE 25/5/2008
+  CONTINUA COMO ADVERTENCIA OS CAMPOS DE CBO E SERV/CLASS.
+
+- IMPLANTACAO DAS REGRAS CONTRATUAIS :
+  71.08 Estab.de saúde sem geração de crédito (Incentivo Saúde do Trabalhador), exceto FAEC. 
+  71.09 Estab.de saúde sem geração de crédito total - HU/MEC 
+  71.10 Estab.de Saúde da estrutura do Ministério da Saúde - sem geração de crédito total 
+  71.11 Estab.De Saúde sem geração de crédito - NASF, exceto FAEC.
+
+- CID 10 TOPGRAFICO RELACIONADOS A APAC´S DE ONCOLOGIA-QUIMIOTERAPIA (CAMPO 54) E 
+  RADIOTERAPIA (CAMPO 76), DEVEM POSSUIR INFORMAÇÃO DE CAMPOS/INCERÇÕES NA TABELA
+  S_CID.DBF
+
+- O N.CAMPOS/INCERÇÕES (CAMPO 78) DA APAC DE ONCOLOGIA-RADIOTERAPIA, NAO DEVE
+  ULTRAPASSAR O INFORMADO NA TABELA S_CID.DBF
+
+- NOVO CODIGO DE ERRO "3" EM FLQT PARA QUANTIDADE NEGATIVA
+
+
+
+VERSAO SIA0201 14/07/2008
+
+- ACERTO DO ERRO 67 - "HA OUTRA APAC MESMO PACIENTE COM PROCED."
+  PARA APAC'S DE COMPETENCIA ATRASADA EM RELACAO A APAC'S DE
+  COMPETENCIA FUTURA.
+
+- ACERTO NA CONSULTA DE APAC : APRESENTAVA APAC DO TIPO UNICA COMO CONTINUIDADE.
+
+- ACERTO NO EMISSAO VALORES APROV.CPX E FINANC, EMISSAO DO SUB-TIPO DE FINANC.
+
+
+VERSAO SIA0200 07/07/2008
+
+***************** AVISO IMPORTANTE : VERSAO OBRIGATORIA *********************
+
+- ATENCAO : ESTA VERSAO TORNA-SE A MINIMA OBRIGATORIA PARA TODO E QUALQUER
+            RE-PROCESSAMENTO DO SIA.
+
+*****************************************************************************
+
+- MODIFICACAO DA TABELA S_PRD.DBF - INCLUSAO DOS CAMPOS :
+  PRD_VL_P, NUMERICO, 15, 2 = VALOR PRODUZIDO (APRESENTADO)
+  PRD_CPX, CARACTER, 1      = CODIGO DA COMPLEXIDADE DO PROCEDIMENTO PRINC.
+
+  MODIFICACAO DO CAMPO PRD_RUB, CARACTER, 6 - AUMENTO PARA 6 POSICOES, CONTENDO
+  AS 2 PRIMEIRAS POSICOES COM O CODIGO DO TIPO DE FINANCIAMENTO E AS 4 ULTIMAS
+  COM O CODIGO DO SUB-TIPO DE FINANCIAMENTO.
+
+- ACERTO DO RELATORIO F8 DA CONSULTA DE ORCAMENTO
+
+- CONSULTA DE BPI PASSA A SER PERMITITA APOS O CREDITO, NAO E' PERMITIDA A
+  EXCLUSAO DE BPI APOS O CREDITO.
+
+- INCLUSAO DA CRITICA "DUPLICIDADE DE CNES, COMPET., FOLHA E SEQ." PARA O BPA-C
+  E BPA-I
+
+- RETIRADA A OPCAO PRODUCAO -> RELAT.APAC EM COEXISTENCIA, FICA APENAS NA
+  CONSISTENCIA.
+
+
+VERSAO SIA0118 25/06/2008
+
+- ACERTO DO RELATORIO DE ADVERTENCIA DE CID ANTES DO CREDITO
+
+- ACERTO DA MENSAGEM DE ERRO "NUMERO:APAC JA FOI PROCESSADA" PARA AS APAC'S
+  INICIAIS E DE CONTINUIDADE, NA CONSISTENCIA
+
+- ACERTO DA REGRA CONTRATUAL 7107 - CEO, PARA OS PROCEDIMENTOS :
+  0701070013,0701070021,0701070030,0701070048,0701070056,0701070064,0701070072
+  0701070080,0701070110,0701070145,0702020010,0702020028,0702020036,0702020044
+  0702020052,0702020060,0307010058,0307020037,0307020045,0307020053,0307020061
+  0307020088,0307020096,0307020100,0307020118,0307030032,0307040011,0307040046
+  0307040062,0307040089,0414010019,0414010086,0414010175,0414010213,0414010221
+  0414010299,0414010302,0414010310,0414010337,0414020014,0414020022,0414020030
+  0414020049,0414020057,0414020065,0414020073,0414020081,0414020090,0414020103
+  0414020111,0414020146,0414020154,0414020162,0414020200,0414020219,0414020227
+  0414020235,0414020243,0414020251,0414020260,0414020278,0414020286,0414020294
+  0414020308,0414020316,0414020324,0414020340,0414020367,0414020375,0414020391
+
+- ACERTO DAS LINHAS DESCRITIVAS REPETIDAS COM SEPARACAO DO TOTAL DE COMPETENCIA
+  ATUAL E COMPETENCIAS ATRASADAS NO RELATORIO VEPE, VOLTA A APRESENTAR APENAS
+  UMA LINHA DESCRITIVA TOTAL.
+
+
+VERSAO SIA0117 11/06/2008
+
+- ACERTO NO RELATORIO DE "Discriminativo de Pagamento", IMPRIMIR AS UNIDADES
+  INDIVIDUAIS COM RADICAL DE CNPJ IGUAIS A MANTENEDORAS.
+
+- FIM DO RELATORIO DE FALTA DE HABILICAO DURANTE O CREDITO.
+  A FALTA DE HABILITACAO SERA VERIFICADA APENAS NA CONSISTENCIA.
+
+- A CONSISTENCIA SERA OBRIGATORIA ANTES DO CREDITO
+
+
+VERSAO SIA0116 02/06/2008
+
+
+- ALTERACAO NA PT/SAS 247 DE 25/5/2008
+  CONSISTENCIA DE CBO E SERV/CLASS. PARA COMPETENCIA JULHO/2008
+
+- MUDANCA DO TERMO "RUBRICA" PARA "SUB-TIPO FINANCIAMENTO"
+
+- MUDANCA NO MENU TABELAS NACIONAIS - PROCEDIMENTOS
+  ALTERADO "ATUALIZACAO TABELA DESCRITIVA"
+  PARA "CONSULTA PROCEDIMENTOS"
+
+- ACERTO DO ERRO "ERROR BASE/1066 ARGUMENT ERROR: CONDITIONAL" NA IMPORTACAO
+  DE BPA-I
+
+- INCLUSAO DOS CID´S L910 - CICATRIZ QUELÓIDE, E H110 - PTERÍGIO, NA REGRA DO
+  CID 10 TOPOGRAFICO
+
+
+
+VERSAO SIA0115 27/05/2008
+
+- PORTARIA No. 247, DE 25 DE ABRIL DE 2008
+  Estabelecer que o atributo CBO será consistido a partir da competência Junho/08
+  Estabelecer que o atributo serv/class será consistido a partir da competência Junho/08
+  Estabelecer consistência do atributo CID10 a partir da competência Outubro/08
+
+- EXECUCAO AUTOMATICA DA CONSISTENCIA DA TABELA DE VALORES ANTES DO CREDITO.
+
+- RELATORIO DE ADVERTENCIA DE SERV/CLASS. CBO E CID.
+  DESMEMBRADOS NOS ARQUIVOS RERROSRV.TXT, RERROCBO.TXT E RERROCID.TXT
+
+
+VERSAO SIA0114 2/05/2008
+
+- ACERTO NA VERIFICACAO DA CESSAO DE CREDITO, OCASIONANDO A MENSAGEM DE ERRO
+  "ERRO NO CORPO DA APAC" PARA A MENSAGEM CORRETA DE ERRO NA CESSAO DE CREDITO.
+
+- INCLUSAO DO MUNICIPIO DO USUARIO NA IMPRESSAO DA APAC.
+
+- INCLUSAO DO CNS DO PROFISSIONAL NO RELATORIO DE REJEICAO DE BPA/BPI
+
+
+VERSAO SIA0113 17/04/2008
+
+- ACERTO NA MENSAGEM DE ERRO CODIGO 67 - HA OUTRA APAC MESMO PACIENTE COM PROCED.
+  IMPOSSIVEIS DE COEXISTIREM, ACERTO NA PROCURA DA CONCOMITANCIA.
+
+
+- ALTERACAO DA ROTINA DE IMPORTACAO DE APAC - NAO REALIZA ALGUMAS CRITICAS NA
+  APAC ANTERIOR - ESTAS CRITICAS PERMANECEM APENAS NA CONSISTENCIA.
+
+
+- ALTERACAO DO RELATORIO DE CONSISTENCIA :
+  APRESENTA OS DADOS DAS APAC'S COM O CODIGO DE ERRO 67 - HA OUTRA APAC MESMO
+                                         PACIENTE COM PROCED. IMPOSS. DE COEX.
+
+  APRESENTA O NUMERO DA REMESSA DA APAC
+
+
+- NOVA CRITICA NO SISTEMA REFERENTE AS APAC'S COM PROCEDIMENTOS DE LAUDO DE
+  MEDICAMENTOS (GRUPO 06) - CODIGO DE ERRO "NP" :
+  E' PERMITIDA A MUDANCA DE PROCEDIMENTO NA APAC DE CONTINUIDADE APENAS SE O
+  PRIMEIRO PROCEDIMENTOS PERMANECER COM O CID PRINCIPAL IGUAL.
+  ESTA MUDANCA SERA VALIDA A PARTIR DA COMPETENCIA ABRIL/2008
+
+
+- NOVA OPCAO DE ACERTO DO TIPO DE APAC DE MOVIMENTOS ANTERIORES NO MENU OPERADOR
+  PODE SER UTILIZADO PELOS GESTORES QUE POSSUEM APAC COM O ERRO DE "TIPO DE APAC
+  DIFERE DA APAC INICIAL", INFORMAR O MOVIMENTO DA APAC INICIAL.
+  APOS A SUA EXECUCAO, DEVE-SE EXECUTAR A CONSISTENCIA NOVAMENTE.
+
+
+
+VERSAO SIA0112 10/04/2008
+
+- INCLUSAO DA TECLA F8 PARA IMPRESSAO DE BPA-C NA CONSULTA DE BPA-C
+
+- INCLUSAO DA TECLA F8 PARA IMPRESSAO DE BPA-I NA CONSULTA DE BPA-I
+
+- ALTERACAO DA TECLA F8 NA ESTATISTICA DA PRODUCAO PARA IMPRESSAO DE
+  BPA-C OU BPA-I OU APAC
+
+- ALTERACAO NO ARQUIVO PARA O SGIF : AGRUPAR PRODUCAO NO MOVIMENTO ATUAL
+
+- ALTERACAO NO RELATORIO VEPE : SUBTRAIR O BDP DAS RUBRICAS
+
+
+VERSAO SIA0111 31/03/2008
+
+- ACERTO DO TOTAL DISCRIMINATIVO DO CNRAC PARA O FAEC NO VEPE E RELATORIO
+  "EMISSAO VALORES APROV.CPX E FINANC"
+
+
+OBSERVACAO : VERSAO SEM A MUDANCA DO RELATORIO DE ESTATISTICA DA PRODUCAO.
+
+VERSAO SIA0110 25/03/2008
+
+- ACERTO DA MUDANCA DE PROCEDIMENTO PRINCIPAL PARA APAC'S DE MEDICAMENTOS
+
+- ACERTO NO CALCULO DO INCREMENTO PARA HABILITADOS ANTERIORES A JAN/2008
+
+- ALTERACAO NA CRITICA DAS APAC'S DE CONTINUIDADE COM ERRO 67 :
+  A CRITICA PASSA A SER APLICADA NAS APAC'S INICIADAS EM FEV/2008 EM DIANTE
+
+- ACERTO NA CRITICA DAS APAC'S DE MEDICAMENTOS INICIADAS EM FEV/2008 :
+  PROCEDIMENTOS DA MESMA FORMA DE ORGANIZACAO NAO PODEM TER MAIS DE UMA
+  APAC PARA O MESMO PACIENTE.
+
+OBSERVACAO : NAO HOUVE TEMPO HABIL PARA A MUDANCA DE RELATORIO DE ESTATISTICA
+             DA PRODUCAO, HAVERA NOVA VERSAO (01.12) APENAS PARA ESTE AJUSTE.
+             DURANTE ESTA FASE, UTILIZAR O RELATORIO : EMISSAO SINTESE DA
+             PRODUCAO - BPA. APOS O CREDITO.
+
+
+VERSAO SIA0109 18/03/2008
+
+- ACERTO DO RELATORIO : Situacao de Producao de APAC
+  ACERTO DA PARTE VARIAVEL DE NEFROLOGIA
+  ACERTO DA PARTE VARIAVEL DE CIRURGIA BARIATRICA
+
+- ACERTO DO ERRO "PRDL" NA IMPORTACAO DE APAC ATRASADA COM PROCEDIMENTOS
+  SEM ORCAMENTOS NA COMPETENCIA PASSADA.
+
+- INCLUSAO DA TECLA F6 NA "PESQUISA/EXCLUSAO DE APAC" : FORNECE OS ERROS
+  ENCONTRADOS NOS PROCEDIMENTOS DE UMA APAC SELECIONADA.
+
+
+VERSAO SIA0108 14/03/2008
+
+- O KIT do SIA passa a ser distribuido em 2 arquivos, um com o sistema e outro com as tabelas em DBF.
+  Desta forma poderemos utilizar uma mesma versao de sistema com kit de tabelas diferentes ou vice-versa.
+  O SIA apresenta as 2 versões. Na parte inferior, a versão da tabela tem formato <AAAAMML> 
+  onde AAAA = ANO,  MM = MES e L = Letra e o formato da versão do sistema é <NN.NN>, o qual já foi 
+  apresentado no Lernotas da versão 01.00 do sistema.
+ 
+  Nome do arquivo compactado com a versão do sistema: SIANNNN.EXE, onde NNNN é a versão do sistema NN.NN .
+ 
+  Nome do arquivo compactado com a versão da tabela: BDSIAAAAAMML.EXE, onde AAAA = ano, MM = Mês e L = letra
+ 
+  Para atualizar qualquer uma das versões acima, basta executar o aplicativo (BDSIAAAAAMML.EXE e SIANNNN.EXE) 
+  na pasta do SIA e teclar Y para sobrepor todos os arquivos.
+ 
+
+
+- ACERTO NA EMISSAO DO DISCRIMINATIVO DE RECEBIMENTOS
+
+- NOVO RELATORIO : RELATORIOS GERENCIAIS -> SINTETICO DE INCREMENTO POR UNIDADE
+                                            ANALITICO DE INCREMENTO POR UNIDADE
+
+- INCLUSAO NO VEPE DAS LINHAS "VIGILANCIA EM SAUDE" E "ACOES ADMINISTRATIVAS"
+  QUE POSSUEM A COMPLEXIDADE "NAO SE APLICA".
+
+- EXIGE VERSAO 01.01 DO DE-PARA OU MAIS RECENTE
+
+- EXIGE VERSAO 01.05 DO FPOMAG OU MAIS RECENTE.
+
+- IMPORTACAO DO ORCAMENTO PASSA A EXIGIR O ARQUIVO .VPA GERADO JUNTO COM O
+  .IMP , ATENCAO : O FPOMAG GERA OS DOIS ARQUIVOS, E O SIA PASSA A EXIGIR OS
+  DOIS ARQUIVOS JUNTOS PARA IMPORTAR O ORCAMENTO.
+
+- NAO EXIGE DATA DE ATENDIMENTO NO BPA-I PARA OS PROCEDIMENTOS '080301'
+  GRUPO 08, SUB-GRUPO 03, NIVEL 01.
+
+
+VERSAO SIA0107 27/02/2008
+
+- BASE TXT GERADA DIA 27/FEV/08
+
+- ACERTO NO RELATORIO DE EMISSAO ACOMPANHAMENTO FISICO ORCAMENTARIO
+
+- INCLUSAO DE RELATORIO NA OPCAO "PESQUISA/INCLUSAO DE APAC"
+  - F7 - IMPRIME TODAS AS APACs DA PESQUISA
+  - F8 - IMPRIME APENAS UMA APAC SELECIONADA NA TELA
+
+- IMPRESSAO DAS APAC's NA IMPORTACAO.
+  - NAO IMPRIME AS APACs COM FALTA DE CONSISTENCIA
+
+- SEPARACAO DA MEDIA E ALTA COMPLEXIDADE NO VEPE
+
+- ACERTO NO RELATORIO DE VALORES APROVADOS POR COMPLEXIDADE E FINANCIAMENTO
+
+- ACERTO NA CONSISTENCIA DAS APAC's DE ONCOLOGIA - RADIOTERAPIA
+  - ACERTO DO ERRO DE CID NAO ESTADIAVEL.
+
+- ALTERACAO NA CONSISTENCIA.
+  - NOVA OPCAO DE CONSISTENCIA DE UMA REMESSA DE APAC POR UNIDADE
+    EM BRANCO = TODAS AS REMESSAS.
+
+
+VERSAO SIA0106 22/02/2008
+
+- ACERTO NA RUBRICA DOS PROCEDIMENTOS DE CNRAC
+
+- BASE TXT GERADA DIA 22/FEV/08
+
+
+
+VERSAO SIA0105 21/02/2008
+
+- BASE TXT GERADA DIA 21/FEV/08
+
+- ACERTO NA ROTINA DE IMPORTACAO DE BPA DE 8 DIGITOS
+
+- ACERTO NA ROTINA DE CONSISTENCIA E IMPORTACAO DE BPA-I E APAC:
+    -- DATA DE ATENDIMENTO EM BRANCO PARA FISIOTERAPIA
+    -- CAMPO DE ESTADIO EM APAC DE ONCOLOGIA
+
+
+VERSAO SIA0104 19/02/2008
+
+- BASE TXT GERADA DIA 18/FEV/08
+
+- ACERTO NA ROTINA DE IMPORTACAO DE BPA
+
+- ACERTO NA ROTINA DE CONSISTENCIA
+
+- ROTINA DE CONSISTENCIA PASSA A EXCLUIR ORCAMENTO INVALIDO
+
+- ROTINA DE CONSISTENCIA PASSA A EXCLUIR CBO NAO RELACIONADO NA
+  TABELA UNIFICADA.
+
+- AO FINAL DO CREDITO, SAO ELIMINADOS OS REGISTROS DELETADOS DOS ARQUIVOS DE
+  PRODUCAO (PACK)
+
+
+VERSAO SIA0103 15/02/2008
+
+- ACERTO NA ROTINA DE CONSISTENCIA
+
+- CONSULTA DE BPA-I POR PARAMETROS, PARA FORNECER TODOS, DEIXE O CAMPO EM BRANCO
+
+- CONSISTENCIA EXCLUI PRODUCAO ANTERIOR JAN/2008 NO ARQUIVO DE BPA-C, BPA-I E
+  DPG
+
+- NAO REALIZA A IMPORTACAO DE BPA E APAC DE COMPETENCIA INFERIORES A JAN/2008
+
+
+VERSAO SIA0102 8/02/2008
+
+- ACERTO NA CRITICA DA IDADE DOS PROCEDIMENTOS QUE NAO EXIGEM NO BPA-C.
+
+- ACERTO NA CONSULTA DO BPA-C, TECLA "ENTER" DESATIVADA.
+
+- BASE TXT GERADA DIA 7/FEV/08.
+
+
+VERSAO SIA0101 1/02/2008
+
+- ACERTO NA IMPORTACAO DA FPO
+
+- BASE TXT GERADA DIA 31/JAN/08
+
+
+VERSAO SIA0100 30/01/2008
+
+Para as Secretarias de Saude e suas sucursais:  
+Bem-vindos ao SIASUS implementando a nova tabela de procedimentos. 
+
+ 
+
+Nossa equipe deseja um Feliz 2008 a todos usuarios, e que o esforco 
+na implantacao das nova tabela de procedimentos reflita na qualidade e
+quantidade dos atendimentos a Saude Publica.
+
+ 
+
+--------------------------------------------------------------------------
+
+
+- PORTARIA N. 719, DE 28 DE DEZEMBRO DE 2007
+  Incluir os campos Raca/Cor , Carater de atendimento e Motivo de Sauda
+  e atualiza os laudos de AIH e APAC
+
+ 
+
+- Portaria GM/MS nº. 2.848 DE 06 de Novembro de 2007 - TABELA UNIFICADA - 
+  Publica a Tabela de Procedimentos, Medicamentos,Órteses, Proteses e Materiais
+  Especiais - OPM do Sistema Único de Saúde.
+
+ 
+
+- DUVIDAS SOBRE O PREENCHIMENTO DO CAMPO ORGAO EMISSOR PODEM SER RESPONDIDAS
+  NA  PT N.637  DE 11 DE NOVEMBRO DE 2005
+
+ 
+-----------------------------------------------------------------------------
+
+ 
+
+
+-- O que mudou no SIASUS de janeiro de 2008 ? 
+
+ 
+
+.. nomenclatura da versao do aplicativo: a versao e' constituida por quatro
+numeros.  A Dezena e' incrementada a cada versão de competencia. A unidade vai
+fazer o papel que a "letra" fazia no padrao anterior (indica correcoes e 
+pequenas melhorias). A centena e o milhar serão incrementados a medida que 
+forem produzidas novas versoes.
+Exemplo: a versao "b" de janeiro se chamara' SIA0101.exe
+
+ 
+
+
+.. nova nomenclatura para nome da remessa de banco de dados nacional: 
+   padrao "A1222222334555555.DTS" onde:
+ 
+    A - Fixo "A";
+    1 - "E" para Estado e "M" para Município;
+    2 - IBGE do Município ou UF0000 para Estado (UF: código IBGE do estado);
+    3 - Fixo "01" 
+    4 - Letra "N" para primeira remessa do mês e C, D, ...
+        para as demais complementares estaduais 
+    5 - Competência no formato "AAAAMM";
+ 
+    (obs.: nesta versao ocorre uma compatibilizacao de nomenclatura - 
+           a gestao estadual fica sendo "0000" e nao mais "9999")
+ 
+.. Apos a rotina de credito, nao mais se solicita "Gerar Banco de Dados
+   Nacional", pois esta funcionalidade foi colocada no VERSIA. 
+   Desta forma, apos o CREDITO e a GERACAO dos arquivos para o sistema 
+   financeiro, deve-se executar o VERSIA, que na sua primeira tela 
+   solicita que se indique a PASTA onde o SIASUS fechou o Credito. 
+ 
+ 
+-- O que o SIASUS DEIXA DE FAZER ? 
+.. gerar o Banco de Dados Nacional: o aplicativo que vai fazer esta geração 
+   eh o VERSIA em DELPHI com FIREBIRD. 
+
+ 
+
+.. cadastrar documentos BPA e APAC - será possivel apenas a importação e 
+   exclusão de produção (pode excluir todas ou algumas folhas de BPA ou BPI 
+   de um estabelecimento) (pode excluir a remessa de APAC de um determinado 
+   estabelecimento) 
+
+ 
+
+-- Como o VERSIA vai validar ? 
+.. O VERSIA vai fazer leitura dos arquivos de processamento do SIASUS - 
+   obrigatoriamente apos o credito.  
+   Solicitamos que os usuarios guardem cuidadosamente cópias de segurança 
+   antes do Credito, - como eh de habito.
+
+
+
+-- Qual grande melhoria ocorreu - alem da tabela unificada ?
+.. funcionalidade de CONSISTENCIA (menu producao , submenu consistencia)
+   Finalmente implementa-se antigo requerimento, principalmente das 
+   Secretarias de grande volume de dados. Em caso de troca de 
+   tabelas nacionais (regras) ou de alteração cadastral, solicita-se 
+   a execucao da "CONSISTENCIA" que retirara a indicacao de erro
+   quando o aspecto ficou corrigido. 
+   A CONSISTENCIA pode ser de toda a base de dados ou de algum 
+   Estabelecimento
+
+
+
+-- Qual outra grande melhoria ? 
+.. As APAC´s sao importadas com algumas criticas - mas não todas - 
+   desta forma o processo de importacao ficou mais rapido. As demais 
+   criticas ficam no processo de CONSISTENCIA - que é obrigatorio 
+   antes do credito.  
+   A funcionalidade de CONSISTENCIA pode ser executada sem a presenca 
+   do operador, em qualquer hora, ao passo que a IMPORTACAO eh 
+   um processo interativo, e exige a intervencao do operador. 
+   Privilegiamos o tempo do operador.
+
+ 
+
+-- Dentre as novas funcionalidades, existe alguma com a qual devo me 
+   acostumar ? 
+.. O sistema nao impedira que seja realizado o calculo do credito a qualquer 
+   momento, mesmo que não tenha sido realizado o processo de CONSISTENCIA. 
+   O que ocorrera é que a producao nao consistida, fica marcada como errada 
+   e sera glosada. ACOSTUME-SE A PEDIR CONSISTENCIA ANTES DO CREDITO !
+
+
+-- Existiriam outras novidades e melhorias ? 
+.. O CBO 2002 do Ministerio da Saude esta adotado pelo SIASUS, desta forma 
+   nao mais se utiliza as Atividades Profissionais. O DEPARA se encarregara 
+   de importar os CBOs para o SIASUS. 
+ 
+.. Incremento:  Uma nova caracteristica da tabela de procedimentos, eh o de 
+   associar aumento ao valor unitario do procedimento (incremento), conforme
+   o estabelecimento que executa (produz) o procedimento tenha ou nao 
+   habilitacoes. 
+
+
+exemplos : 
+ Procedimento                                         Habilit.   Perc.  
+ 021107002 AUDIOMETRIA REFORCO VISUAL (VIASEA)         0302     100.00  
+ 021107002 AUDIOMETRIA REFORCO VISUAL (VIASEA)         0303     100.00  
+ 021107003 AUDIOMETRIA EM CAMPO LIVRE                  0302     100.00  
+ 021107003 AUDIOMETRIA EM CAMPO LIVRE                  0303     100.00  
+ 021107004 AUDIOMETRIA TONAL LIMIAR (VIA AA)           0302     100.00  
+ 021107004 AUDIOMETRIA TONAL LIMIAR (VIA AA)           0303     100.00  
+ 021107015 ESTUDO DE EMISSOES OTOACUSTICASRANSITORIAS  0302     100.00  
+ 021107015 ESTUDO DE EMISSOES OTOACUSTICASRANSITORIAS  0303     100.00  
+ 021107020 IMITANCIOMETRIA                             0302     100.00  
+ 021107020 IMITANCIOMETRIA                             0303     100.00  
+ 021107021 LOGOAUDIOMETRIA (LDV-IRF-LRF)               0302     100.00  
+ 021107021 LOGOAUDIOMETRIA (LDV-IRF-LRF)               0303     100.00  
+ 021107024 PESQUISA DE GANHO DE INSERCAO               0302     100.00  
+ 021107024 PESQUISA DE GANHO DE INSERCAO               0303     100.00  
+ 021107026 POTENCIAL EVOCADO AUDITIVO DE CE LONGA LATE 0302     100.00  
+ 021107026 POTENCIAL EVOCADO AUDITIVO DE CE LONGA LATE 0303     100.00  
+ 030111001 ACOMPANHAMENTO DE PACIENTE ME/GR QUEIMADO   2101      66.67  
+ 030111001 ACOMPANHAMENTO DE PACIENTE ME/GR QUEIMADO   2102      66.67  
+                                                                           
+.. Laudos novos para APACs - veja na pagina do SIASUS 
+   Portaria SAS nº. 768 de 26/10/2006  (que unifica os Laudos de APAC)
+
+   PORTARIA N. 719, DE 28 DE DEZEMBRO DE 2007
+  Incluir os campos Raça/Cor , Carater de atendimento e Motivo de Saída e
+  atualiza os laudos de AIH e APAC.
+
+ 
+
+.. BPA-I  Boletim de Producao Ambulatorial Individualizado  
+   Um novo instrumento de registro de atendimentos, que identifica o Paciente. 
+   Substitui as APACs na maioria dos procedimentos de EXAMES. 
+   Tem como caracteristica um numero de autorização opcional, determinado por
+   opcao do Gestor
+
+ 
+ 
+
+-- Quais criticas estarao temporariamente como ADVERTENCIA ? 
+.. A compatibilidade de Procedimento X CID,
+   para os aplicativos SISAIH01, SIHD,  BPA-I, APAC e SIASUS  
+   exceto para procedimentos do grupo 06 subgrupo 01 
+   (Medicamentos de dispensação excepcional)
+
+ 
+
+.. A compatibilidade de Procedimento X CBO 
+   para os aplicativos SISAIH01, SIHD,  BPA, BPA-I,APAC e SIA, 
+   exceto para os procedimentos do grupo 06 subgrupo 01 
+   (Medicamentos de dispensação excepcional)
+   
+   ... Note que EH CRITICA VIGENTE a existencia do profissional 
+   ... no cadstro CNES do Estabelecimento 
+
+
+-- O que fazer com a copia de seguranca obrigatoria ? 
+.. Guarde cuidadosamente - como eh tradicional que ocorra - a cópia de 
+   segurança de antes do crédito que foi enviado ao DATASUS numa media 
+   bem confiavel. 
+
+
+ 
+-- Sobre a producao atrasada de Dezembro, novembro e outubro de 2007 ? 
+   Qual a solucao ? 
+.. Após o SIASUS, processamento DEZEMBRO de 2007, ter importado a maior 
+   parte possivel de toda producao que chegou de dezembro, novembro 
+   e outubro, consistido e gerado credito, ter sido validado pelo VERSIA, 
+   ter carregado em base nacional para envio ao Fundo Nacional de Saúde
+   dos valores estratégicos e também geração dos arquivos para TABWIN, pode 
+   surgir nas SMS e SES, BPAs e APACs que não foram processadas a tempo. 
+   Como resolver ? 
+
+   Recomendamos que as SES e SMS mantenham, numa pasta separada, o ambiente 
+   de importação de DEZEMBRO de 2007, antes do credito.  
+   Esta copia do SIASUS de dezembro de 2007, antes do credito, ja com o 
+   DePara executado, já com as atualizações de FPO, pronto para importar as 
+   APACs e BPAs atrasados.
+   
+   Os documentos atrazados de BPA E APAC serao importados para o SIASUS 
+   
+   No SIASUS desta pasta separada - DEZEMBRO de 2007 - sera feita apenas a 
+   esporádica importacao de producao atrasada. 
+
+   Contando-se que até março poderá chegar ao MS solicitação de reprocessamento
+   da competência dezembro/07, O Ministerio da Saude irá autorizar, em caráter
+   excepcional, reprocessamento da referida competência no período de fevereiro
+   a abril/08, no cronograma estabelecido em cada mês.
+   Será permitido, por gestor, um único reprocessamento da competencia dezembro
+   de 2007.
+   
+   Esta remessa contera toda a producao ja enviada, junto da que veio atrasada. 
+   Desta forma encerra-se o periodo referente a 2007 (tabela anterior).
+
+
+- Telefones do setor de atendimento ao usuario
+  21 3985-7292 / 3985-7084 / 3985-7842.
+

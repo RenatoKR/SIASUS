@@ -18,10 +18,16 @@ Repositório automatizado com mirror dos arquivos do **Sistema de Informações 
 
 ## 🗃️ Arquivos BDSIA (Últimos 6 Meses)
 
-> **Total:** 0 arquivos | **Tamanho:** 4.0K
+> **Total:** 6 arquivos | **Tamanho:** 53M
 
 | Arquivo | Competência | Tamanho | Download |
 |---------|-------------|---------|----------|
+| `BDSIA202601a.exe` | Janeiro/2026 (rev. a) | 8.8M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202601a.exe) |
+| `BDSIA202512d.exe` | Dezembro/2025 (rev. d) | 8.8M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202512d.exe) |
+| `BDSIA202511b.exe` | Novembro/2025 (rev. b) | 9.0M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202511b.exe) |
+| `BDSIA202510b.exe` | Outubro/2025 (rev. b) | 9.0M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202510b.exe) |
+| `BDSIA202509b.exe` | Setembro/2025 (rev. b) | 9.0M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202509b.exe) |
+| `BDSIA202508b.exe` | Agosto/2025 (rev. b) | 8.2M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202508b.exe) |
 
 ## 📖 Sobre os Arquivos
 
@@ -43,7 +49,7 @@ Este repositório é atualizado **diariamente às 6h (horário de Brasília)** v
 
 **Fontes oficiais:**
 - BPA: [ftp://ftp.datasus.gov.br/siasus/BPA](ftp://ftp.datasus.gov.br/siasus/BPA)
-- BDSIA: [ftp://ftp.datasus.gov.br/siasus/bdsia](ftp://ftp.datasus.gov.br/siasus/bdsia)
+- BDSIA: [ftp://ftp.datasus.gov.br/siasus/SIA](ftp://ftp.datasus.gov.br/siasus/SIA)
 
 ## 💻 Como Usar
 
