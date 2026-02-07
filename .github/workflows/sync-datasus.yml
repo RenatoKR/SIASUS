@@ -71,7 +71,7 @@ jobs:
           lftp -c "
           set ftp:ssl-allow no;
           open ftp://anonymous:@ftp.datasus.gov.br;
-          cd /siasus/bdsia;
+          cd /siasus/SIA;
           cls -1 BDSIA*.exe > /tmp/bdsia_arquivos.txt
           "
           
@@ -86,7 +86,7 @@ jobs:
               lftp -c "
               set ftp:ssl-allow no;
               open ftp://anonymous:@ftp.datasus.gov.br;
-              cd /siasus/bdsia;
+              cd /siasus/SIA;
               get -c \"$arquivo\"
               "
             else
@@ -100,7 +100,7 @@ jobs:
               lftp -c "
               set ftp:ssl-allow no;
               open ftp://anonymous:@ftp.datasus.gov.br;
-              cd /siasus/bdsia;
+              cd /siasus/SIA;
               get -c $doc
               " || echo "⚠️  $doc não disponível"
             fi
@@ -246,7 +246,7 @@ jobs:
           
           **Fontes oficiais:**
           - BPA: [ftp://ftp.datasus.gov.br/siasus/BPA](ftp://ftp.datasus.gov.br/siasus/BPA)
-          - BDSIA: [ftp://ftp.datasus.gov.br/siasus/bdsia](ftp://ftp.datasus.gov.br/siasus/bdsia)
+          - BDSIA: [ftp://ftp.datasus.gov.br/siasus/SIA](ftp://ftp.datasus.gov.br/siasus/SIA)
           
           ## 💻 Como Usar
           
