@@ -131,6 +131,7 @@ jobs:
           echo "BPA_COUNT=$(ls -1 bpa/BPAMAG*.exe 2>/dev/null | wc -l)" >> $GITHUB_ENV
           echo "BDSIA_COUNT=$(ls -1 bdsia/BDSIA*.exe 2>/dev/null | wc -l)" >> $GITHUB_ENV
           echo "TOTAL_SIZE=$(du -sh . | cut -f1)" >> $GITHUB_ENV
+          echo "LAST_UPDATE=$(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_ENV
       
       - name: Generate README with file list
         run: |
@@ -144,41 +145,20 @@ jobs:
           - **BPA** - Boletim de Produção Ambulatorial
           - **BDSIA** - Base de Dados SIA (Tabelas Nacionais)
           
-          ## 📦 Arquivos BPA (Últimos 6 Meses)
+          ## 📦 Arquivos BPA (Últimos 6 Disponíveis)
           
           > **Total:** $BPA_COUNT arquivos | **Tamanho:** $BPA_SIZE
           
-          | Arquivo | Competência | Tamanho | Download |
-          |---------|-------------|---------|----------|
+          | Arquivo | Tamanho | Download |
+          |---------|---------|----------|
           EOF
           
           cd bpa
           for arquivo in $(ls -r BPAMAG*.exe 2>/dev/null); do
-            # Extrai competência (AAMM) do nome do arquivo
-            comp=$(echo "$arquivo" | grep -oP '(?<=BPAMAG)\d{4}')
-            ano="20${comp:0:2}"
-            mes="${comp:2:2}"
-            
-            # Formata mês
-            case $mes in
-              01) mes_nome="Janeiro" ;;
-              02) mes_nome="Fevereiro" ;;
-              03) mes_nome="Março" ;;
-              04) mes_nome="Abril" ;;
-              05) mes_nome="Maio" ;;
-              06) mes_nome="Junho" ;;
-              07) mes_nome="Julho" ;;
-              08) mes_nome="Agosto" ;;
-              09) mes_nome="Setembro" ;;
-              10) mes_nome="Outubro" ;;
-              11) mes_nome="Novembro" ;;
-              12) mes_nome="Dezembro" ;;
-            esac
-            
             tamanho=$(ls -lh "$arquivo" | awk '{print $5}')
             url="https://github.com/${{ github.repository }}/raw/main/bpa/$arquivo"
             
-            echo "| \`$arquivo\` | $mes_nome/$ano | $tamanho | [⬇️ Download]($url) |" >> ../README.md
+            echo "| \`$arquivo\` | $tamanho | [⬇️ Download]($url) |" >> ../README.md
           done
           cd ..
           
@@ -320,12 +300,13 @@ jobs:
           
           <div align="center">
           
-          **🤖 Atualizado automaticamente** | Última execução: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
-          
-          📦 Tamanho total: $TOTAL_SIZE
-          
-          </div>
           EOF
+          
+          echo "**🤖 Atualizado automaticamente** | Última execução: $LAST_UPDATE" >> README.md
+          echo "" >> README.md
+          echo "📦 Tamanho total: $TOTAL_SIZE" >> README.md
+          echo "" >> README.md
+          echo "</div>" >> README.md
       
       - name: Commit and push changes
         run: |
