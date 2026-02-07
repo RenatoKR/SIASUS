@@ -1,0 +1,1580 @@
+SUPORTE TÉCNICO AO SISTEMA DE INFORMAÇÃO AMBULATORIAL (SIA)
+
+ - Secretaria Estadual de Saúde: encaminhar dúvida ou sugestão para e-mail informado.
+
+ - Secretaria Municipal de Saúde: solicitamos que seu questionamento seja remetido 
+a sua Secretaria de Estado da Saúde (ou Regional de Saúde) para realização do 
+apoio técnico solicitado, conforme previsto no inciso IX do Art.7, III e 
+XI do Art.17 e X do Art. 18 da Lei 8080/90.
+
+ - Estabelecimento de Saúde: solicitamos que seu questionamento seja remetido a 
+sua Secretaria de Saúde gestora para realização do apoio técnico solicitado, 
+conforme previsto no inciso IX do Art.7, III e XI do Art.17 e X do Art. 18 da 
+Lei 8080/90. Para consultar seu respectivo gestor de saúde, acesse o endereço 
+eletrônico: http://cnes.saude.gov.br e consulte seu estabelecimento de saúde. 
+A informação de gestão, consta na seção identificação.
+
+Atenção: O telefone e e-mail de contato das referências técnicas nas Secretarias 
+de Saúde podem ser obtidos no endereço eletrônico: 
+http://cnes2.datasus.gov.br/Cad_Gestor_Listar.asp
+
+
+- Participe do FORUM DATASUS - SISTEMAS DE INFORMACOES AMBULATORIAIS         
+  http://forum.datasus.gov.br                                                
+
+- Participe do LISTA SIASUS
+  ENVIE UM E-MAIL PARA siasus@listas.datasus.gov.br
+                                                                             
+- ATENCAO : Nao utilize programas externos para abrir ou ler ou alterar os
+            arquivos .DBF do sistema, o DATASUS nao se responsabiliza por
+            programas externos, como por exemplo a planilha eletronica EXCEL.
+
+
+- Atenção : o mes e ano que é apresentado no inicio de cada versão, nao é a competencia    
+         que se deve utilizar o sistema, é apenas o mes em que foi lançada a versão.
+
+
+========================================================================================
+Versão 04.11 23/01/2026 Obrigatória competência 01/2026
+========================================================================================
+
+- Incluir 'I' como opção válida para sexo indeterminado, conforme padrão Cartão 
+Nacional de Saúde (CNS).
+
+- Atualizar tabela de referência para:
+    - F - Feminino
+    - M - Masculino
+    - I - Indeterminado 
+
+
+========================================================================================
+Versão 04.10 11/04/2025 Não Obrigatória competência 04/2025
+========================================================================================
+
+- Alterar na tela de Produção Individualizada o campo "Nome Profissional", para 
+"Nome/Nome Social Profissional". 
+
+========================================================================================
+Versão 04.09 10/01/2025 Não Obrigatória competência 12/2024
+========================================================================================
+
+  Ajuste na consistência, "Erro Could not convert varieant of type" Erro ao converter tipo diferentes. 
+
+========================================================================================
+Versão 04.08 02/12/2024 Obrigatória competência 12/2024
+========================================================================================
+  A partir da competência 12/2024, será possível informar se o paciente atendido 
+no SUS está em situação de rua ou não, no momento do atendimento. Essa alteração nos 
+sistemas é uma medida  relacionada ao Plano Nacional Ruas Visíveis (PNRV): Plano de Ação 
+e Monitoramento para a Efetiva Implementação da Política Nacional para a População 
+em Situação de Rua.
+
+========================================================================================
+Versão 04.07 21/11/2024 Obrigatória (competência 11/2024)                
+========================================================================================
+
+   Ajuste na consistência erro apresentado "025-PROCED.EXIGE CNS" ajuste na crítica ao 
+informar cpf, não é permitido informar ao mesmo tempo, o CNS e o CPF do paciente em um 
+mesmo atendimento. 
+
+========================================================================================
+Versão 04.06 30/10/2024 Obrigatória (competência 11/2024)                 
+========================================================================================
+
+   Ajuste na consistência, realizar a crítica não é permitido informar, ao mesmo tempo, 
+o CNS e o CPF do paciente em um mesmo atendimento.
+
+========================================================================================
+Versão 04.05 16/08/2024 Obrigatória                 
+========================================================================================
+
+   Ajuste na rotina de consistência. 
+   Ajuste na tela de cadastro de BPA-I ao recuperar dados de atendimento para edição. 
+
+========================================================================================
+Versão 04.04 24/05/2024 Não Obrigatória                 
+========================================================================================
+
+    Ajuste na rotina de validação de CPF no cadastro de BPA-I.
+
+========================================================================================
+Versão 04.03 21/05/2024 Não Obrigatória                 
+========================================================================================
+
+    Ajuste na rotina de consistência, informação de CPF quando importado de terceiros com 
+valor (00000000000).
+
+========================================================================================
+Versão 04.02 17/05/2024 Não Obrigatória                 
+========================================================================================
+
+Ajuste na rotina de atualizar paciente, no cadastro de BPA-I ao incluir atendimento sem 
+informação de CPF ou CNS para procedimentos que não exija CNS.
+
+========================================================================================
+Versão 04.01 26/04/2024 Não Obrigatória                 
+========================================================================================
+
+Ajuste no cadastro de BPA-I ao incluir paciente sem informação de CPF ou CNS para procedimentos 
+que não exija CNS. 
+
+Ajuste no cadastro de BPA-I ao incluir digitação de um segundo atendimento para um mesmo paciente
+de raça\cor diferente de 5 INDÍGENA o campo etnia estava habilitado exirgindo a digitação. 
+
+========================================================================================
+Versão 04.00 09/04/2024 Obrigatória                 
+========================================================================================
+
+Disponibilizar versão da BPA referente à competência 04/2024. 
+
+Implementar no campo CNS na tela de digitação de um atendimento, para que este possa receber também a informação do CPF ou CNS do paciente.  
+
+Implementar validação do campo CPF ou CNS na tela de consistência.   
+
+Implementar na rotina de exportação o campo CPF (prd_cpf_pcnte VARCHAR 11) 
+
+Implementar na rotina de importação o campo CPF (prd_cpf_pcnte VARCHAR 11). 
+
+========================================================================================
+Versão 03.01 31/03/2023 Obrigatória                 
+========================================================================================
+   Exclusão da opção "99 - Sem informação" no campo Raça/cor a partir da competência 04/2023, 
+para obedecer ao disposto na PORTARIA GM/MS Nº 344, DE 1º DE FEVEREIRO DE 2017.
+  
+========================================================================================
+Versão 03.00 05/12/2022 Obrigatória                 
+========================================================================================
+
+  Ajuste na consistência na implementação da versão 02.99.
+
+========================================================================================
+Versão 02.99 25/11/2022 Obrigatória                 
+========================================================================================
+
+  Ajuste na consistência na implementação da versão 02.98.
+
+========================================================================================
+Versão 02.98 04/11/2022 Obrigatória                 
+========================================================================================
+
+   Alterar regra de validação da quantidade registrada dos procedimentos apresentados 
+em BPA-I para o seguinte comportamento:
+   Fazer validação, independentemente de Folha e Linha de registro, da quantidade 
+apresentada do procedimento de acordo com o máximo estipulado no SIGTAP, por competência 
+de realização e CNS do indivíduo para os 32 procedimentos na lista anexa (0301130035,
+0303030089,0303030097,0301070105,0301130043,0301070121,0301070130,0301070210,0301070229,
+0302010017,0302010025,0302020012,0302020020,0302020039,0302030018,0302030026,0302040013,
+0302040021,0302040030,0302040048,0302040056,0302040064,0302050019,0302050027,0302060014,
+0302060022,0302060030,0302060049,0302060057,0302070010,0302070036,0306020203)
+
+
+========================================================================================
+Versão 02.97 31/08/2022 Não Obrigatória                 
+========================================================================================
+
+   Correção no instalador para inclusão do arquivo BPAMAG.new. 
+   Arquivo utilizado em novas instalações e na criação de uma nova base de dados. 
+
+========================================================================================
+Versão 02.96 11/07/2022 Obrigatória                 
+========================================================================================
+    Correção a implementação da Regra Condicionada 0001, para procedimentos (CEO).
+
+========================================================================================
+Versão 02.95 11/07/2022 Obrigatória                 
+========================================================================================
+   Retorno da opção "99 - Sem informação" no campo Raça/cor. A partir da competência 10/2022, 
+a versão obrigatória da BPA não vai permitir a opção "99 - Sem informação" no campo Raça/cor, 
+para obedecer ao disposto na PORTARIA GM/MS Nº 344, DE 1º DE FEVEREIRO DE 2017.
+
+========================================================================================
+Versão 02.94 04/07/2022 Obrigatória                 
+========================================================================================
+   Exclusão da opção "99 - Sem informação" no campo Raça/cor a partir da competência 07/2022, 
+para obedecer ao disposto na PORTARIA GM/MS Nº 344, DE 1º DE FEVEREIRO DE 2017.
+   Alterar a implementação da Regra Condicionada 0001, pois a aplicação não deve exigir sempre 
+o serviço/classificação 114/007 em todos os caso, não deve preencher automaticamente esse 
+serviço/classificação em todos os registros.
+
+
+========================================================================================
+Versão 02.93 10/02/2022 Obrigatória                 
+========================================================================================
+   Ajustar a crítica que não permite alteração dos dados de paciente vindos do CADSUS, 
+visto que o sistema não faz mais importação dos dados do barramento do CADSUS.
+   
+========================================================================================
+Versão 02.92 27/10/2021 Obrigatória                 
+========================================================================================
+   Correção na critica de validação de CID por grupo, na funcionalidade de consistência. 
+   Foi corrigido problema de componente ZIP na Tela "Importar Equipe". 
+   
+========================================================================================
+Versão 02.91 27/10/2021 Obrigatória                 
+========================================================================================
+   Necessário atualizar versão do sistema, incluir chamada a URL Https://cadastro.saude.gov.br/novocartao/ 
+nas telas de cadastro de BPA-I e tela de cadastro de paciente ao clicar no botão CNS. 
+todas atualizações obrigatórias. 
+
+========================================================================================
+Versão 02.90 17/09/2020 Obrigatória                 
+========================================================================================
+   Necessário atualizar versão do sistema, conversão de bibliotecas internas 
+todas atualizações obrigatórias. 
+
+========================================================================================
+Versão 02.89 19/10/2018 Não Obrigatória                 
+========================================================================================
+
+   A partir da versão 02.89, não impossibilitar o registro de procedimento “ação”, 
+para indivíduos de sexo diferente do sugerido na tabela SUS. Consequentemente 
+não impossibilita o registro de diagnostico “CID”, para indivíduos de sexo 
+diferente do sugerido na tabela SUS.
+  Vigência 03/2018. 
+
+========================================================================================
+Versão 02.88 14/05/2017 Obrigatória                   05/2018
+========================================================================================
+
+  Correção na validação da critica da versão 02.87, em BPA-C. 
+  
+========================================================================================
+Versão 02.87 09/05/2017 Obrigatória                   05/2018
+========================================================================================
+
+  Implementar no BPA a obrigatoriedade de CID e CNS no procedimento de monitoramento do câncer.
+  Procedimento que passará a ter estes atributos, para conhecimento: 
+  02.03.02.003-0 - EXAME ANATOMO-PATOLÓGICO PARA CONGELAMENTO / PARAFINA POR 
+PEÇA CIRURGICA OU POR BIOPSIA (EXCETO COLO UTERINO E MAMA)
+
+========================================================================================
+Versão 02.86 16/11/2017 não Obrigatória                   11/2017
+========================================================================================
+
+   Manutenção evolutiva na tela de cadastro BPA-I, validação do campo CID.
+
+========================================================================================
+Versão 02.85 18/04/2017 não Obrigatória                   04/2017
+========================================================================================
+
+Correção no modulo de exportação, para acessar críticas do modulo de consistência. 
+
+========================================================================================
+Versão 02.84 11/04/2017 não Obrigatória                   04/2017
+========================================================================================
+
+Melhoria no modulo de consistência, permitiu deixar mais rápido o processamento.  
+
+========================================================================================
+Versão 02.83 17/03/2016 não Obrigatória                   03/2016
+========================================================================================
+
+Consulta ao cartão nacional de saúde no sistema BPA. 
+
+Foi alterado rotina para consulta ao cartão nacional de saúde (CADSUS), os dados do 
+endereço do paciente, não retornará na consulta. 
+Deverá ser digitado no momento da captação. 
+
+========================================================================================
+Versão 02.82 07/03/2016 não Obrigatória                   03/2016
+========================================================================================
+
+Correção Consulta ao cartão nacional de saúde no sistema BPA, Versão 02.80.
+
+========================================================================================
+Versão 02.81 04/03/2016 não Obrigatória                   03/2016
+========================================================================================
+
+Correção Consulta ao cartão nacional de saúde no sistema BPA, Versão 02.80.
+
+========================================================================================
+Versão 02.80 02/03/2016 não Obrigatória                   03/2016
+========================================================================================
+
+Consulta ao cartão nacional de saúde no sistema BPA. 
+
+Foi implementado rotina para consulta ao cartão nacional de saúde (CADSUS), quando 
+houver conexão disponível à internet. 
+
+Tela de cadastro do BPA-I: Foi incluído um botão ao lado do campo do CNS, um botão 
+que possibilita a consulta ao cartão nacional. 
+
+Tela de cadastro de Paciente: Foi incluído um botão ao lado do campo do CNS, um botão 
+que possibilita a consulta ao cartão nacional.
+
+Comportamento da aplicação: Ao digitar o CNS, o sistema verifica na base local se 
+encontra os dados do cartão, encontrando os dados, preenche as informações do 
+paciente. Caso digitador queira consultar na base federal do cartão, ele vai clicar 
+no botão de consulta ao cartão que fica ao lado do campo do CNS, o sistema vai realizar 
+a consulta na base federal do cartão, caso encontre os dados o sistema vai preenche as 
+informações do paciente e atualizar o cadastro local do BPA. Informação de paciente 
+que vier (CADSUS), não podem ser alteradas no BPA. 
+
+A única forma de atualizar os dados vindo do cartão é alterando a informação do 
+paciente no (CADSUS), e depois realizando uma nova consulta no botão ao lado do 
+campo do CNS no BPA. 
+
+
+========================================================================================
+Versão 02.79 23/12/2015 não Obrigatória                   12/2015
+========================================================================================
+
+   Prorrogada apresentação temporária da produção do SISCAN, via BPA-Mag para 
+competência 06/2016.
+
+
+========================================================================================
+Versão 02.78 16/09/2015 não Obrigatória                   08/2015
+========================================================================================
+
+   Manutenção evolutiva, alteração do campo de Equipe no BPA-I.
+
+========================================================================================
+Versão 02.77 03/08/2015 não Obrigatória                   06/2015
+========================================================================================
+
+   Correção na crítica para importar produção do SISCAN, via BPA-Mag até competência 12/2015.
+
+========================================================================================
+Versão 02.76 27/07/2015 não Obrigatória                   06/2015
+========================================================================================
+
+   Prorrogada apresentação temporária da produção do SISCAN, via BPA-Mag para 
+competência 12/2015.
+
+========================================================================================
+Versão 02.75 03/06/2015 não Obrigatória                   05/2015
+========================================================================================
+
+   Prorrogada apresentação temporária da produção do SISCAN, via BPA-Mag para 
+competência 05/2015.
+
+
+========================================================================================
+Versão 02.74 25/05/2015 não Obrigatória                   04/2015
+========================================================================================
+
+Tendo em vista que os sistemas de captação ambulatorial ainda utilizam as informações 
+de município+área+sequencia para identificar as equipes de saúde atualmente,e tendo em 
+vista que atualmente o CNES já utiliza o código INE (Identificação Nacional de Equipes) 
+para identificar as equipes de saúde.
+
+SOLICITAMOS QUE:
+1) Os instrumentos de registro do SIA (BPA, APAC, RAAS) passarão a utilizar o INE para 
+registrar a atuação das equipes na execução de ações de saúde.
+2) O SIA deverá passar a utilizar o código INE para consistir as informações de equipe 
+informadas no BPA, APAC e RAAS.
+3) As regras de consistência de equipes no SIA serão as mesmas utilizadas atualmente.
+4)VIGÊNCIA: AGOSTO/2015
+
+--------------
+
+Apresentação temporária da produção do SISCAN via BPA-Mag
+
+CONSIDERANDO:
+OS problemas de geração dos BPA-I no sistema SISCAN, para faturamento em tempo oportuno 
+no Sistema de Informação Ambulatorial (SIA).
+
+SOLICITAMOS QUE:
+Em caráter temporário os procedimentos apresentados exclusivamente pelo sistema SISCAN, 
+marcados no SIGTAP através do atributo complementar 040 - Registro no SISCAN, possam 
+também ser apresentados manualmente via BPA-Mag.
+
+REGRAS:
+- Os procedimentos com atributo complementar 040 - Registro no SISCAN poderão ser 
+apresentados via aplicativo BPA-Mag. (10 procedimentos listado abaixo)
+- Aplica-se a regra de retroatividade de apresentação (3 competências anteriores) 
+para registro na competência vigente.
+- Os procedimentos de um estabelecimento de saúde, e de mesma competência de apresentação, 
+deverão ser apresentados exclusivamente pelos sistemas SISCAN-SISCOLO-SISMAMA 
+(com as regra atuais) OU exclusivamente pelo sistema BPA-Mag.
+- Caso parte da produção do SISCAN esteja gerada corretamente e exista a necessidade 
+de complementar/corrigir a produção através de BPA-Mag, deve-se importar o arquivo de 
+BPA-I no BPA-Mag e efetuar a complementação/correção através deste sistema, podendo 
+importar no SIA apenas este arquivo do BPA-Mag.
+- O SIA deverá permitir a apresentação desta produção registrada via BPA-Mag, 
+em conformidade com estas regras.
+- O VERSIA deverá permitir a consistência desta produção registrada via BPA-Mag, em 
+conformidade com estas regras.
+
+VIGENCIA:
+Processamento ABRIL/2015
+Listagem de Procedimentos Registrados Via SISCAN
+0203010019 EXAME CITOPATOLOGICO CERVICO-VAGINAL/MICROFLORA
+0203010043 EXAME CITOPATOLOGICO DE MAMA
+0203010078 CONTROLE DE QUALIDADE DO EXAME CITOPATOLÓGICO CERVICO VAGINAL
+0203010086 EXAME CITOPATOLÓGICO CERVICO VAGINAL/MICROFLORA-RASTREAMENTO
+0203020065 EXAME ANATOMOPATOLOGICO DE MAMA - BIOPSIA
+0203020022 EXAME ANATOMO-PATOLOGICO DO COLO UTERINO - PECA CIRURGICA
+0203020073 EXAME ANATOMOPATOLOGICO DE MAMA - PECA CIRURGICA
+0203020081 EXAME ANATOMO-PATOLOGICO DO COLO UTERINO - BIOPSIA
+0204030030 MAMOGRAFIA
+0204030188 MAMOGRAFIA BILATERAL PARA RASTREAMENTO
+
+
+========================================================================================
+Versão 02.73 18/05/2015 não Obrigatória                   04/2015
+========================================================================================
+
+  Com o objetivo de permitir captar os dados das demais equipes no aplicativo BPA, 
+foi ampliada o filtro que restringia a exibição das equipes em (EMAD/EMAP). Passando a 
+exibir todas as equipes cadastradas no arquivo Equipes Brasil,levando em conta 
+estabelecimento e município.
+
+========================================================================================
+Versão 02.72 07/04/2015 não Obrigatória                   03/2015
+========================================================================================
+  Correção na tela de consistência, retirada de uma mensagem no meio do processamento.
+
+
+========================================================================================
+Versão 02.71 31/03/2015 não Obrigatória                   03/2015
+========================================================================================
+  Atualização na funcionalidade de importação e consistência em decorrência da 
+importação do arquivo de produção do E-SUS AB.
+
+========================================================================================
+Versão 02.70  05/09/2014 não Obrigatória                   09/2014
+========================================================================================
+MEMORANDO INTERNO DA CGSI, DEVIDO A UM ERRO NO SIGTAP, O PROCEDIMENTO 
+  030103004-9 - SAMU 192:ATENDIMENTO PRÉ-HOSPITALAR MOVEL REALIZADO POR AEROMÉDICO
+  APRESENTA A CLASSIFICAO 12, AO INVEZ DA CLASSIFICACAO 012, ESTE PROBLEMA FOI
+  RESOLVIDO NA VERSAO BDSIA201408b EM DIANTE.
+  O SIA/VERSIA/BPA, DEVEM ACEITAR A PRODUCAO BPA DESTE PROCEDIMENTO, MESMO COM
+  A CLASS.12 APRESENTADA NO BPA-I. DESDE QUE O CNES ESTEJA COM A CLASS.012 INFORMADA.
+  RESUMINDO : PRODUCAO DESTE PROCEDIMENTO COM O PAR SERV/CLASS. 103/12, DEVE SER ACEITA
+  COMO 103/012.
+
+========================================================================================
+Versão 02.69  26/08/2014 Obrigatória                      08/2014
+========================================================================================
+Retirada critica de CBO
+"Procedimentos de Média complexidade CBO informado pertence a mesma "família" 
+  (4 primeiros digitos) igual a um CBO exigido no SIGTAP, aprovado e não rejeitado".
+
+========================================================================================
+Versão 02.68  30/04/2014 Obrigatória                      04/2014
+========================================================================================
+
+Alteração de Folhas/Linhas de BPA
+Considerando a crescente individualização de procedimentos em BPA-I, passe a aceitar 
+registros de 999 Folhas e 99 Linhas, que permitirá o registro de 98.901 (4 vezes mais).
+
+Atributo PA_DOC= "E" - BPAc,BPAi,AD,APAC - ELETROCARDIOGRAMA
+Descrição a partir da competência Abril/2014, o procedimento 021102003-6 
+Eletrocardiograma, foi incluído no instrumento de registro APAC, desta 
+forma este procedimento é aceito em BPA-C,BPA-I, AD e APAC
+
+
+========================================================================================
+Versão 02.67  05/02/2014 Obrigatória PARA	           01/2014
+========================================================================================
+
+Correção na consistencia de BPA-C. Referente a alteração realizada na versão 02.65. 
+
+========================================================================================
+Versão 02.66  30/01/2014 Obrigatória PARA	           01/2014
+========================================================================================
+
+Correção na crítica, referente a alteração realizada na versão 02.65. 
+
+========================================================================================
+Versão 02.65  30/01/2014 Obrigatória PARA	           01/2014
+========================================================================================
+
+A portaria Nº 1.362, DE 4 DE DEZEMBRO DE 2013, no Art. 2º O Estabelecimento que optar 
+pelo registro de determinado procedimento em BPA-C ou BPA-I em uma competência, deverá 
+registrar todos estes procedimentos utilizando um mesmo instrumento de registro durante 
+esta competência de atendimento.
+Exceto Os procedimentos com regra condicionada 001 (CEO) serão os únicos que podem ser 
+BPA-C e BPA-I no mesmo estabelecimento no mesmo mês.
+
+========================================================================================
+Versão 02.64  23/01/2014 Obrigatória PARA	           01/2014
+========================================================================================
+
+INCLUSAO DO TIPO DE DOCUMENTO NO BDSIA : BPA-C ou BPA-I ou APAC
+Alteração na rotina de consistência.
+
+========================================================================================
+Versão 02.63  17/12/2013 não Obrigatória PARA	           Dez/2013
+========================================================================================
+
+Alteração na rotina de consistência. Crítica da regra condicionada 001, informações 
+importadas de sistema de terceiro.  
+
+========================================================================================
+Versão 02.62  18/07/2013 Obrigatória PARA	           Julho/2013
+========================================================================================
+
+Altera validação CBO usando primeiros 4 de 6 de procedimento x cbo no cadastro
+caracteres  (SIGTAP e CNES)
+
+========================================================================================
+Versão 02.61  05/07/2013 Obrigatória PARA	           Julho/2013
+========================================================================================
+
+Correção na rotina verificação de procedimento x cbo no cadastro de bpa-c 
+
+========================================================================================
+Versão 02.60  04/06/2013 Obrigatória PARA	           Junho/2013
+
+========================================================================================
+Correção na critica do campo abaixo a partir da competência Junho/2013
+
++ NÚMERO
+No caso de não haver número de endereço, utilizar (00 ou SN)
+
+
+========================================================================================
+Versão 02.59  03/06/2013 Obrigatória PARA	           Junho/2013
+
+========================================================================================
+Criticar campos abaixo a partir da competência 06/2013
+
++ CÓDIGO DO LOGRADOURO: 
++ CEP: 
++ ENDEREÇO:
++ NÚMERO
++ BAIRRO
+
+
+========================================================================================
+Versão 02.58  02/04/2013 Obrigatória PARA	           ABRIL/2013
+
+========================================================================================
+
+Atualização BPAMAG. 
+
+
+========================================================================================
+Versão 02.57  05/03/2013 Obrigatória PARA	           MARÇO/2013
+
+========================================================================================
+
+Atualizar tabela BPAMAG.GDB. 
+
+
+
+========================================================================================
+Versão 02.56  01/03/2013 Obrigatória PARA	           MARÇO/2013
+Versão 02.55  26/02/2013 Obrigatória PARA	           MARÇO/2013
+========================================================================================
+Com a unificação do layout dos instrumentos de registro ambulatoriais.
+- Sejam uniformizados os dados de endereço dos instrumentos de registro
+ambulatoriais, utilizando a mesma posição do layout para os dados que serão
+adicionados.
+
+- Dados que deverão constar em todos instrumentos de registro individualizados:
+
++ CÓDIGO DO LOGRADOURO: 
+  ..não existe em nenhum instrumento ambulatorial 
++ CEP: 
+  .. não existe no BPA-I
+  .. utilizar tabela de CEP
++ ENDEREÇO:
+  .. não existe no BPA-I
++ COMPLEMENTO
+ .. não existe no BPA-I
+ .. opcional
++ NÚMERO
+ .. não existe no BPA-I
++ BAIRRO
+  ..não existe em nenhum instrumento ambulatorial 
++ TELEFONE PARA CONTATO
+ .. não existe no BPA-I e APAC
++ EMAIL
+ ..não existe em nenhum instrumento ambulatorial 
+
+
+
+
+========================================================================================
+
+Versão 02.54 04/02/2013 Não Obrigatória.	           Fevereiro/2013
+========================================================================================
+ 
+- Correção na rotina de conexão em rede, correção na rotina de backup; 
+
+
+========================================================================================
+
+Versão 02.53 30/01/2013 Não Obrigatória.	           Janeiro/2013
+========================================================================================
+ 
+- Correção na rotina de Backup do BPA.
+
+========================================================================================
+
+Versão 02.52 30/01/2013 Não Obrigatória.	           Janeiro/2013
+========================================================================================
+ 
+
+- Correção na visualização no cadastro de BPA-I e BPA-C
+
+
+========================================================================================
+
+Versão 02.51 29/01/2013 Não Obrigatória.	           Janeiro/2013
+========================================================================================
+ 
+
+Regra 0002: Regra da “oftalmologia
+
+- Fica restrita ao SIA e VERSIA.
+
+
+========================================================================================
+
+Versão 02.50 07/12/2012  Não Obrigatória.	           Dezembro/2012
+========================================================================================
+
+Regra 0001: esta é a regra da “saúde bucal”
+
+- registrado em BPA-I ser preenchido com serv/class 114/007
+ 
+
+Regra 0002: é regra da “oftalmologia
+
+- registro em BPA-C ou BPA-I, pois os procedimentos estão com os 2 instrumentos.
+
+- registrado em BPA-I deverá obrigatoriamente escolher entre os serv/class 
+cadastrados no SIGTAP para este procedimento, que nesta caso podem ser: 
+serv 131/004 ou 131/005 ou 131/006 ou 131/007
+
+========================================================================================
+
+Versão 02.49 04/12/2012  Não Obrigatória.	           Dezembro/2012
+========================================================================================
+
+Regra 0001: esta é a regra da “saúde bucal”
+
+- registrado em BPA-I deverá obrigatoriamente ser preenchido com serv/class 114/007
+ 
+
+Regra 0002: é regra da “oftalmologia
+
+O que deve ser feito no BPA:
+
+- Permitir o registro em BPA-C ou BPA-I, pois os procedimentos estão com os 2 instrumentos.
+
+- registrado em BPA-I deverá obrigatoriamente escolher entre os serv/class 
+cadastrados no SIGTAP para este procedimento, que nesta caso são: 
+serv 131/004 ou 131/005 ou 131/006 ou 131/007
+========================================================================================
+
+Versão 02.48 30/11/2012  Não Obrigatória.	           Novembro/2012
+
+Atenção, Procedimentos que se aplica a regra condicionado 0001, serv/class receberão por padrão 114/007.
+
+
+========================================================================================
+
+
+Versão 02.47 28/11/2012  Obrigatória.		           Novembro/2012
+
+CORREÇÃO NA CRITICA DOS PROCEDIMENTOS BPA-I E BPA-C (CEO E PCD)
+
+
+- Os procedimentos com regra condicionada 0001 estão com instrumento de
+registro BPA-C e BPA-I cadastrados no SIGTAP. (alem de outros)
+
+
+========================================================================================
+
+Versão 02.46 26/11/2012  Obrigatória.		           Novembro/2012
+
+ALTERAÇÃO NO BPA-I E BPA-C (CEO E PCD)
+
+- Os procedimentos com regra condicionada 0001 estão com instrumento de
+registro BPA-C e BPA-I cadastrados no SIGTAP. (alem de outros)
+
+- Portanto nos sistemas de captação o operador poderá escolher livremente o
+instrumento em que irá registrar.
+
+- Entretanto esta regra irá determinar a condicionalidade de aceitação no SIA
+desta produção.
+
+REGRA no SIA:
+
+- Quando o procedimento estiver com a Regra Condicionada 0001 cadastrada
+E
+- Quando for apresentado em um estabelecimento de saúde que tenha Habilitação 0403, 0404, 0405
+ENTÃO
+- O procedimento deverá estar em BPA-I
+SENÃO
+- Deverá ser glosado pelo motivo: Instrumento de Registro inválido quando
+
+registrado em CEO (Registro deve ser em BPA-I)
+
+
+========================================================================================
+
+Versão 02.45 06/11/2012  Não Obrigatória.		           Novembro/2012
+
+
+- Correção na importação da produção BPA-I, 
+ref. a seleção importar de dados do paciente junto com a produção.
+
+
+========================================================================================
+
+Versão 02.44 17/10/2012  Obrigatória.			           Outubro/2012
+
+
+- Cadastro do BPA-I 
+Correção do erro Dynamic SQL Error SQL error code = -804 Function unknown RTRIM
+
+ 
+========================================================================================
+
+Versão 02.43 09/10/2012  Obrigatória.			           Outubro/2012
+
+
+- Cadastro do BPA-I 
+Correção na critica do Serviço/classificação.
+
+- Novo "Listagen de BPA-c"
+Habilitar teclas DEL, INS e ESC.
+
+========================================================================================
+
+Versão 02.42 05/10/2012  Obrigatória.			           Outubro/2012
+
+- Cadastro de BPA-I
+
+Tendo em vista a PORTARIA Nº 971, DE 13 DE SETEMBRO DE 2012 que define a informação 
+de CNPJ para algumas próteses informadas em BPA-I. Conforme o texto abaixo:
+
+Art. 5º Fica incluído na Tabela de Serviços Especializados do SCNES o 
+serviço 164 - SERVIÇO DE ÓRTESES, PRÓTESES E MATERIAIS ESPECIAIS EM REABILITAÇÃO, 
+com as  espectivas classificações, conforme a seguir:
+§1º Estabelecer que deverão ser registradas em BPA/I o CNPJ da empresa que realizou a 
+manutenção ou adaptação da OPM ou do próprio estabelecimento, caso seja ele o executor 
+do procedimento.
+
+- Cadastro do BPA-I 
+
+Alteração nos campos de serviço e classificação, tecla F1 pesquisar. 
+
+- Listagen de BPA-I 
+
+Grid de “Detalhe do Boletins” quando houver erro de preenchimento a linha de seqüência 
+ficara na cor vermelha, indicando erro. 
+
+
+- Novo "Listagen de BPA-c"
+Nova tela de listagem de BPA-C utilizando as mesmas funcionalidades existente na tela do BPA-I
+
+- Importação do KIT do SIA BDSIA
+
+Manutenção na rotina de importação das tabelas do SIA. 
+
+- Novo "Menu Operação\Gerenciar Banco de Dados"
+
+Essa opção serve para melhorar desempenho do banco de dados do BPA, reconstruir índices, 
+desfragmentando páginas de dados. 
+Gera um Backup do banco de dados e uma copia de segurança do BPAMAG.GDB.
+
+
+- Novo "Menu Operação\ Configurar Donwload"
+Usuario vai informar se deseja se informado automaticamente sobre a liberação de uma nova versao do BPA e do BDSIA.
+
+- Novo "Menu Operação\ Baixar Versões do BPA"
+
+Essa opção será executada caso exista uma conexão de internet, entrando no BPA o sistema 
+vai verificar se existe uma nova versão do BPA e do BDSIA.
+
+Em caso de nova versão o sistema vai informa e perguntar se deseja baixar a atualização. 
+
+  BDSIA – Terminando de baixar o BDSIA o sistema vai informa onde foi salvo o kit do SIA, 
+cabe ao usuário descompactar o arquivo e depois seguir o tramite normal do sistema para 
+atualizar o KIT do SIA.
+
+  BPAXXXX.EXE – Terminando de baixar o arquivo o sistema vai perguntar de deseja atualizar 
+a versão do BPA, caso queira atualizar a versão o sistema vai perguntar se deseja realizar 
+o Backup, depois o BPA vai fechar, vai abrir uma tela para descompactar o BPAXXXX.EXE, 
+terminando de descompactar o arquivo o sistema vai abrir novamente o BPA. 
+
+OBS: 
+Todos os arquivos baixados serão salvos na pasta da aplicação.
+
+- Novo "Install.exe"
+Novo arquivo no KIT do BPA auxilia na opção de baixar versão automático é necessário para 
+funcionamento da nova versão, o arquivo deve estar na pasta do BPA. 
+
+
+OBS: LTRIM ou RTRIM 
+Em caso de erro LTRIM ou RTRIM na tela cadastro de BPA-I verificar se o arquivo ib_udf.dll esta na pasta do firebird.
+EX: 
+  C:\Program Files\Firebird\Firebird_1_5\UDF\ib_udf.dll
+
+
+ 
+========================================================================================
+
+
+Versão 02.41 14/09/2012 						   Setembro/2012
+
+Alteração na critica do Serviço/classificação.
+  - Quando o serviço for informado à classificação será obrigatória.
+
+========================================================================================
+
+Versão 02.40 04/09/2012 						   Setembro/2012
+
+Correção na Exportação. 
+- Correção na geração da produção separada em 2 arquivos (um PAB e outro MAC/FAEC).
+
+Serviço e Classificação. 
+- Os campos de Serviço e classificação deixaram de ser obrigatórios. 
+
+========================================================================================
+
+VERSAO 02.39 27/08/2012 - VERSAO NÃO OBRIGATORIA                           Agosto/2012
+
+- acerto BPA utilizado em REDE.
+
+========================================================================================
+
+VERSAO 02.38 20/08/2012 - VERSAO NÃO OBRIGATORIA                           Agosto/2012
+
+- acerto de erro na consistencia
+
+========================================================================================
+
+VERSAO 02.37 09/08/2012 - VERSAO NÃO OBRIGATORIA                           Agosto/2012
+
+- acerto na critica da classificacao para o adiantamento da producao 
+
+- acerto na critica de procedimentos AD e BPA-I, ou AD e APAC no BPA-C
+
+========================================================================================
+
+VERSAO 02.36 03/08/2012 - VERSAO NÃO OBRIGATORIA                           Agosto/2012
+
+- Para os usuário que já estão digitando a produção do mês 08/2012 utilizando o 
+BDSIA do mês 07/2012.
+
+========================================================================================
+
+VERSAO 02.35 02/08/2012 - VERSAO OBRIGATORIA                               Agosto/2012
+
+- PORTARIA Nº 643, DE 11 DE JULHO DE 2012
+  INCLUSAO DA INFORMACAO DO SERVICO/CLASSIFICACAO NO PROCEDIMENTO PRINCIPAL
+  INCLUSAO DA EQUIPE 
+  A PARTIR DA COMPETENCIA AGOSTO/2012
+
+- NOVO LAYOUT DE EXPORTACAO DO BPA PARA O SIA A PARTIR DA COMPETENCIA AGOSTO/2012
+
+- NOVA OPCAO DE IMPORTACAO DE EQUIPES DO SITE DO CNES.
+
+  MANUAL : O USUARIO DEVE BAIXAR O ARQUIVO EQUIPESBRASILaaaamm.ZIP NO SITE
+           ftp://ftp.datasus.gov.br/cnes/, SENDO aaaa = ANO, mm = MES
+           PARA A PASTA DO APAC, E INFORMAR O ANO/MES NA OPCAO DE IMPORTACAO
+           MANUAL
+  
+- NOVA OPCAO NO MENU OPERADOR - Importar Equipe
+
+
+- ALTERACAO NO cADASTRO DE BPA-I :
+  INCLUSAO DA EQUIPE 
+  INCLUSAO DO SERV/CLASS DO PROCEDIMENTO PRINCIPAL
+
+========================================================================================
+
+VERSAO 02.34 25/06/2012 - VERSAO NAO OBRIGATORIA                               Junho/2012
+
+- CORREÇÃO NA CONSISTENCIA PARA PROCEDIMENTOS VISA.
+
+VERSAO 02.33 05/05/2012 - VERSAO NAO OBRIGATORIA                               Junho/2012
+
+- CORREÇÃO NO CALCULO DO DIGITO DO CNS PARA CARTÕES COM INICIO 7.
+
+VERSAO 02.32 23/05/2012 - VERSAO NAO OBRIGATORIA                               MAIO/2012
+
+- CORREÇÃO NO CALCULO DO DIGITO DO CNS PARA CARTÕES COM INICIO 7.
+
+
+VERSAO 02.31 04/05/2012 VERSAO OBRIGATORIA                                     MAIO/2012
+
+Alteração no instalador do BPA.
+
+VERSAO 02.30 04/04/2012 VERSAO OBRIGATORIA                                     Abril/2012
+
+
+- Correção na consistência para validar o campo de caráter de atendimento 
+  PARTIR DE ABRIL/2012
+
+VERSAO 02.29 30/03/2012 VERSAO OBRIGATORIA                                     Março/2012
+
+
+- MEMO SAS - CARATER DE ATENDIMENTO OBRIGATORIO PARA OS BPAI INICIADAS A
+  PARTIR DE ABRIL/2012
+
+
+- NOVO TIPO DE TIPO DE DOCUMENTO (PA_DOC) PARA OS PROCEDIMENTOS
+	Codigo     Descricao
+	------------------------------------
+	0        ¦ BPA-C
+	1        ¦ BPA-I
+	2        ¦ BPA-I E APAC
+	4        ¦ BPA-C E APAC
+	6        ¦ AD e BPA-C
+	7        ¦ AD e BPA-I	
+	9        ¦ AD e BPA-I e APAC
+
+
+VERSAO 02.28 06/03/2012                                                       Março/2012
+
+- Versões dos sistemas ambulatoriais que não exijam o preenchimento do CNS para 
+os procedimentos de modalidade BPA-I, exceto se o procedimento estiver com 
+atributo complementar “Exige CNS” cadastrado.
+A PT 763 está sendo republicada, retirando-se a exigência de CNS para
+Instrumento de Registro BPA-I, mantando-se assim o atributo complementar
+“Exige CNS”.
+
+- BPA-Mag: Nova versão onde os BPA-I somente exigiram o CNS do paciente quando
+cadastrados com o atributo “Exige CNS”, os demais não eixigirão.
+- SIA/SUS: Nova versão criticando CNS dos atendimentos que tiverem o atributo
+“Exige CNS” cadastrado.
+- VERSIA: Nova versão criticando CNS dos atendimentos que tiverem o atributo
+“Exige CNS” cadastrado.
+
+
+VERSAO 02.27 01/03/2012                                                       FEVEREIRO/2012
+
+- Correção da rotina de consistência para os procedimentos abaixo:
+Conforme Portaria SAS/MS 763, de 20/07/2011, a partir da competência 02/2012.
+Os procedimentos abaixo relacionados não exigirão o preenchiimento de CNS dos pacientes. T
+
+BPA-I
+    05.01.04.002-1 IDENTIFICACAO DE DOEDOR FALECIDO DE RIM / PANCREAS
+    05.01.04.006-4 PROVAS CRUZADAS EM DOADOR FALECIDO APAC
+    05.03.01.001-4 ACOES RELACIONADAS A DOACAO DE ORGAOS TECIDOS E CELULAS
+    05.03.01.002-2 ACOES RELACIONADAS A DOACAO DE ORGAOS TECIDOS E CELULAS 
+                   REALIZADAS POR EQUIPE DE OUTRO ESTABELECIMENTO DE SAUDE
+    05.04.01.002-6 PROCESSAMENTO DE CORNEA / ESCLERA
+    05.04.04.001-4 PROCESSAMENTO DE PELE EM GLICEROL (ATE 1000 CM) PARA ADULTO
+    05.04.04.002-2 PROCESSAMENTO DE PELE EM GLICEROL (ATE 500 CM) INFANTIL
+
+
+
+VERSAO 02.26 27/02/2012                                                       FEVEREIRO/2012
+Conforme Portaria SAS/MS 763, de 20/07/2011, a partir da competência 02/2012.
+Os procedimentos abaixo relacionados não exigirão o preenchiimento de CNS dos pacientes. T
+
+BPA-I
+    05.01.04.002-1 IDENTIFICACAO DE DOEDOR FALECIDO DE RIM / PANCREAS
+    05.01.04.006-4 PROVAS CRUZADAS EM DOADOR FALECIDO APAC
+    05.03.01.001-4 ACOES RELACIONADAS A DOACAO DE ORGAOS TECIDOS E CELULAS
+    05.03.01.002-2 ACOES RELACIONADAS A DOACAO DE ORGAOS TECIDOS E CELULAS 
+                   REALIZADAS POR EQUIPE DE OUTRO ESTABELECIMENTO DE SAUDE
+    05.04.01.002-6 PROCESSAMENTO DE CORNEA / ESCLERA
+    05.04.04.001-4 PROCESSAMENTO DE PELE EM GLICEROL (ATE 1000 CM) PARA ADULTO
+    05.04.04.002-2 PROCESSAMENTO DE PELE EM GLICEROL (ATE 500 CM) INFANTIL
+
+VERSAO 02.25 06/02/2012 						      FEVEREIRO/2012
+Conforme Portaria SAS/MS 763, de 20/07/2011, a partir da competência 02/2012, 
+na produção apresentada por BPA-Individualizado o preenchimento do CNS do paciente será obrigatório.
+
+ 
+
+VERSAO 02.24 27/01/2012 						      JANEIRO/2012
+  Correção no formulário do BPA-C no campo folha.
+
+  Antes de atualizar o sistema BPA 0222 para 0223, você deve sempre fazer um backup da base do BPA. 
+Isso é muito importante caso você encontre erros inesperados ou se você precisar restaurar a 
+versão anterior. 
+
+Para realizar o backup:
+- Menu Operação - Backup/Restauração da Base.
+- Copiar o arquivo BPAMAG.GDB para outra pasta.
+
+
+VERSAO 02.23 26/01/2012 						      JANEIRO/2012
+Acrítica de quantidade máxima quando um paciente realiza um mesmo procedimento na mesma competência em dias diferentes que o total ultrapasse a quantidade máxima do procedimento no mês, sofreu uma alteração nesses casos, será colocado uma advertência no lançamento.
+
+  Antes de atualizar o sistema BPA 0222 para 0223, você deve sempre fazer um backup da base do BPA. 
+Isso é muito importante caso você encontre erros inesperados ou se você precisar restaurar a 
+versão anterior. 
+
+Para realizar o backup:
+- Menu Operação - Backup/Restauração da Base.
+- Copiar o arquivo BPAMAG.GDB para outra pasta.
+
+
+
+VERSAO 02.22 09/12/2011 						      DEZEMBRO/2011
+Correção na critica do campo Procedimento.
+
+VERSAO 02.21 08/12/2011 						      DEZEMBRO/2011
+Correção na critica de quantidade máxima. Iportação de BPA de sistemas próprios, CNS valor ZERO. 
+
+
+VERSAO 02.20 06/12/2011 						      DEZEMBRO/2011
+Inclusão das criticas de procedimentos excludentes e da critica de quantidade máxima, 
+por procedimento para um mesmo paciente no mesmo mês de competência. 
+
+
+VERSAO 02.19 06/10/2011                                                        SETEMBRO/2011
+
+- ALTERACAO NA OPCAO PARA CONVERSAO DE CBO's ANTIGOS, PARA A COMPETENCIA SETEMBRO/2011
+  
+AVISO : Para os usuários que ainda não se adaptaram aos novos cbo´s incluídos no sigtap. 
+        devem providenciar a conversão na origem ou realiza-la manualmente para a proxima
+        competência, pois não haverá conversão de cbo´s para a competência outubro/2011 em 
+        diante.
+
+
+VERSAO 02.18 05/09/2011                                                        AGOSTO/2011
+
+- ACERTO NO RELATORIO DE PRODUÇÃO BPA-C E BPA-I, ESTAVA SAINDO 6 LINHAS POR FOLHA/SEQUENCIA.
+
+- ACERTO NA EXPORTAÇÃO DA PRODUÇÃO, DEMORA NA APRESENTAÇÃO DA TELA, DEPENDENDO DA
+  QUANTIDADE DE LINHAS DIGITADAS.
+
+- ACERTO NA POSSIBILIDADE DE ADIANTAR A PRODUÇÃO DA PROXIMA COMPETENCIA SEM O BDSIA DO
+  MES.
+
+
+
+VERSAO 02.17 02/09/2011                                                        AGOSTO/2011
+
+- ACERTO NA OPCAO DE CONVERSAO DE CBO´s ANTIGOS PARA A COMPETENCIA AGOSTO/2011
+   CONVERSÃO DO CBO 223148 PARA 225335. 
+   CONVERSÃO DO CBO 225325 para 225335.
+
+- ALTERACAO NA DIGITAÇÃO DE BPA-I, EXCLUSAO DA CRITICA DE QTD.MAXIMA POR PROCEDIMENTOS 
+  NA FOLHA PARA O MESMO CNS DE PACIENTE.
+
+- ALTERACAO NA ESTRUTURA INTERNA DO BANCO DE DADOS DO SISTEMA, INCLUSAO DO CAMPO COMPETENCIA NAS TABELAS.
+  ASSIM O SISTEMA PASSA A RESPEITAR O SIGTAP DE COMPETENCIAS ANTERIORES PARA PRODUCAO ATRASADA, PODENDO DIGITAR
+  TODA A PRODUCAO ATRASADA E ATUAL EM UM MESMO MOVIMENTO SEM ERROS.
+  SERA NECESSARIO RE-IMPORTAR O KIT DE TABELAS (BDSIA) DA COMPETENCIA ATUAL NOVAMENTE.
+
+
+
+VERSAO 02.16 19/08/2011 
+
+- NOVA OPCAO PARA CONVERSAO DE CBO's ANTIGOS, UTILIZADOS NA COMPETENCIA AGOSTO/2011
+  .O SISTEMA EMITE UM RELATORIO EM ARQUIVO, CONTENDO A PRODUCAO ALTERADA NA CONVERSAO.
+  .NAO SERA POSSIVEL RETORNAR DE FORMA AUTOMATICA PARA OS CBO's ANTIGOS, REALIZE
+   UMA COPIA DE SEGURANCA ANTES DA EXECUCAO DA ROTINA
+  .A COVERSAO DE PRODUCAO BPA-I DE UM CBO ANTIGO PARA UM CBO NOVO JA DIGITADO PARA O MESMO PROFISSIONAL 
+   E MESMA FOLHA NAO SERA POSSIVEL, DEVENDO O USUARIO DECIDIR MANUALMENTE QUAL PRODUÇÃO DEVE SER EXCLUIDA.
+
+  .ENCONTRA-SE DISPONIVEL NO SITE DO SIA, AREA DOCUMENTOS, A RELACAO DE CBO's
+   ALTERADOS, EM FORMATO PLANILHA EXCEL.
+
+ 
+VERSAO 02.15 10/08/2011 - VERSÃO BETA 
+Correção na critica quantidade máxima por paciente, na releitura do paciente, estava calculando errado. 
+
+VERSAO 02.14 10/08/2011 - VERSÃO BETA 
+Correção na critica que exigir CBO para os procedimentos visa.
+
+VERSAO 02.13 08/08/2011 - VERSÃO BETA 
+Permitir digitação de procedimentos VISA até cinco competências.
+
+Não será permitido a digitação dos CBOS abaixo na competência julho/2011
+
+    131215 TECNOLOGO EM GESTAO HOSPITALAR
+    141525 GERENTE DE TURISMO
+    142120 TECNOLOGO EM GESTAO ADMINISTRATIVO FINANCEIRA
+    142535 TECNOLOGO EM GESTAO DA TECNOLOGIA DA INFORMACAO
+    142710 TECNOLOGO EM SISTEMAS BIOMEDICOS
+    212320 ADMINISTRADOR EM SEGURANCA DA INFORMACAO
+    213215 TECNOLOGO EM PROCESSOS QUIMICOS
+    214005 ENGENHEIRO AMBIENTAL
+    214010 TECNOLOGO EM MEIO AMBIENTE
+    214280 TECNOLOGO EM CONSTRUCAO CIVIL
+    214370 TECNOLOGO EM TELECOMUNICACOES
+    214435 TECNOLOGO EM FABRICACAO MECANICA
+    214535 TECNOLOGO EM PRODUCAO SULCROALCOOLEIRA
+    214615 TECNOLOGO EM METALURGIA
+    214745 TECNOLOGO EM PETROLEO E GAS
+    214750 TECNOLOGO EM ROCHAS ORNAMENTAIS
+    214930 TECNOLOGO EM PRODUCAO INDUSTRIAL
+    214935 TECNOLOGO EM SEGURANCA DO TRABALHO
+    222205 ENGENHEIRO DE ALIMENTOS
+    222215 TECNOLOGO EM ALIMENTOS
+    223293 CIRURGIAO DENTISTA DA ESTRATEGIA DE SAUDE DA FAMILIA
+    223565 ENFERMEIRO DA ESTRATEGIA DE SAUDE DA FAMILIA
+    223570 PERFUSIONISTA
+    223915 MUSICOTERAPEUTA
+    225103 MEDICO INFECTOLOGISTA
+    225105 MEDICO ACUPUNTURISTA
+    225106 MEDICO LEGISTA
+    225109 MEDICO NEFROLOGISTA
+    225110 MEDICO ALERGISTA E IMUNOLOGISTA
+    225112 MEDICO NEUROLOGISTA
+    225115 MEDICO ANGIOLOGISTA
+    225118 MEDICO NUTROLOGISTA
+    225120 MEDICO CARDIOLOGISTA
+    225122 MEDICO CANCEROLOGISTA PEDIATRICO
+    225124 MEDICO PEDIATRA
+    225125 MEDICO CLINICO
+    225127 MEDICO PNEUMOLOGISTA
+    225130 MEDICO DE FAMILIA E COMUNIDADE
+    225133 MEDICO PSIQUIATRA
+    225135 MEDICO DERMATOLOGISTA
+    225136 MEDICO REUMATOLOGISTA
+    225139 MEDICO SANITARISTA
+    225140 MEDICO DO TRABALHO
+    225142 MEDICO DA ESTRATEGIA DE SAUDE DA FAMILIA
+    225145 MEDICO EM MEDICINA DE TRAFEGO
+    225148 MEDICO ANATOMOPATOLOGISTA
+    225150 MEDICO EM MEDICINA INTENSIVA
+    225151 MEDICO ANESTESIOLOGISTA
+    225155 MEDICO ENDOCRINOLOGISTA E METABOLOGISTA
+    225160 MEDICO FISIATRA
+    225121 MEDICO ONCOLOGISTA CLINICO
+    225165 MEDICO GASTROENTEROLOGISTA
+    225170 MEDICO GENERALISTA
+    225175 MEDICO GENETICISTA
+    225180 MEDICO GERIATRA
+    225185 MEDICO HEMATOLOGISTA
+    225190 MEDICO HEMOTERAPEUTA
+    225195 MEDICO HOMEOPATA
+    225203 MEDICO EM CIRURGIA VASCULAR
+    225210 MEDICO CIRURGIAO CARDIOVASCULAR
+    225215 MEDICO CIRURGIAO DE CABECA E PESCOCO
+    225220 MEDICO CIRURGIAO DO APARELHO DIGESTIVO
+    225225 MEDICO CIRURGIAO GERAL
+    225230 MEDICO CIRURGIAO PEDIATRICO
+    225235 MEDICO CIRURGIAO PLASTICO
+    225240 MEDICO CIRURGIAO TORACICO
+    225245 MEDICO FONIATRA
+    225250 MEDICO GINECOLOGISTA E OBSTETRA
+    225255 MEDICO MASTOLOGISTA
+    225260 MEDICO NEUROCIRURGIAO
+    225265 MEDICO OFTALMOLOGISTA
+    225270 MEDICO ORTOPEDISTA E TRAUMATOLOGISTA
+    225275 MEDICO OTORRINOLARINGOLOGISTA
+    225280 MEDICO COLOPROCTOLOGISTA
+    225285 MEDICO UROLOGISTA
+    225290 MEDICO CANCEROLOGISTA CIRURGICO
+    225295 MEDICO CIRURGIAO DA MAO
+    225305 MEDICO CITOPATOLOGISTA
+    225310 MEDICO EM ENDOSCOPIA
+    225315 MEDICO EM MEDICINA NUCLEAR
+    225320 MEDICO EM RADIOLOGIA E DIAGNOSTICO POR IMAGEM
+    225325 MEDICO PATOLOGISTA
+    225330 MEDICO RADIOTERAPEUTA
+    225335 MEDICO PATOLOGISTA CLINICO  MEDICINA LABORATORIAL
+    225345 MEDICO HIPERBARISTA
+    225350 MEDICO NEUROFISIOLOGISTA CLINICO
+    252320 TECNOLOGO EM SECRETARIADO ESCOLAR
+    252605 GESTOR EM SEGURANCA
+    262130 TECNOLOGO EM PRODUCAO FONOGRAFICA
+    262135 TECNOLOGO EM PRODUCAO AUDIOVISUAL
+    262420 DESENHISTA INDUSTRIAL DE PRODUTO (DESIGNER DE PRODUTO)
+    262425 DESENHISTA INDUSTRIAL DE PRODUTO DE MODA (DESIGNER DE MODA)
+    271105 CHEFE DE COZINHA
+    271110 TECNOLOGO EM GASTRONOMIA
+    322130 ESTETICISTA
+    322245 TECNICO DE ENFERMAGEM DA ESTRATEGIA DE SAUDE DA FAMILIA
+    322250 AUXILIAR DE ENFERMAGEM DA ESTRATEGIA DE SAUDE DA FAMILIA
+    322425 TECNICO EM SAUDE BUCAL DA ESTRATEGIA DE SAUDE DA FAMILIA
+    322430 AUXILIAR EM SAUDE BUCAL DA ESTRATEGIA DE SAUDE DA FAMILIA
+    324120 TECNOLOGO EM RADIOLOGIA
+    334115 MONITOR DE TRANSPORTE ESCOLAR
+    342125 TECNOLOGO EM LOGISTICA DE TRANSPORTE
+    375120 DECORADOR DE EVENTOS
+    411050 AGENTE DE MICROCREDITO
+    423110 DESPACHANTE DE TRANSITO
+    515125 AGENTE INDIGENA DE SAUDE
+    515130 AGENTE INDIGENA DE SANEAMENTO
+    515135 SOCORRISTA (EXCETO MEDICOS E ENFERMEIROS)
+    516220 CUIDADOR EM SAUDE
+    517335 GUARDA PORTUARIO
+    519210 SELECIONADOR DE MATERIAL RECICLAVEL
+    519215 OPERADOR DE PRENSA DE MATERIAL RECICLAVEL
+    782725 MARINHEIRO DE ESPORTE E RECREIO
+    791105 ARTESAO BORDADOR
+    791110 ARTESAO CERAMISTA
+    791115 ARTESAO COM MATERIAL RECICLAVEL
+    791120 ARTESAO CONFECCIONADOR DE BIOJOIAS E ECOJOIAS
+    791125 ARTESAO DO COURO
+    791130 ARTESAO ESCULTOR
+    791135 ARTESAO MOVELEIRO (EXCETO RECICLADO)
+    791140 ARTESAO TECELAO
+    791145 ARTESAO TRANCADOR
+    791150 ARTESAO CROCHETEIRO
+    791155 ARTESAO TRICOTEIRO
+    791160 ARTESAO RENDEIRO
+
+
+
+VERSAO 02.12 06/07/2011 - VERSÃO BETA 
+- manutenção na Importação de Remessa TXT, manutenção na rotina de backup.
+
+
+VERSAO 02.11 20/05/2011 - VERSÃO BETA 
+- Correção ao gravar com a tecla de atalho F4 no BPA-C" Atendendo a solicitação dos usuários,
+para facilitar na digitação do BPA-C ou BPA-I, ao salvar uma folha será feito uma pergunta
+para manter a digitação com os dados do ultimo registro gravado."
+
+
+VERSAO 02.10 19/05/2011 - VERSÃO BETA 
+  - Correção no modulo alteração da listagem de BPA-I.
+  - Atendendo a solicitação dos usuários, para facilitar na digitação do BPA-C ou BPA-I, 
+ao salvar uma folha será feito uma pergunta para manter a digitação com os dados do 
+ultimo registro gravado. 
+
+Messagem: “Atenção deseja continuar a inclusão.
+           Mantendo o cabeçalho?”
+  Versão não Obrigatória!
+
+
+VERSAO 2.0.09 12/05/2011 - VERSÃO BETA 
+  Correção na ordenação da listagem de BPA-I.
+  Versão não Obrigatória!
+
+
+
+VERSAO 02.08 15/04/2011 - VERSÃO BETA 
+  Os usuários podem experimentar e testar características novas e detalhes da nova versão.
+  Inclusão de filtro de ordenação da grid ao clicar na coluna da tela de listagem de BPA-I.
+  Alteração na consistência, erro de caráter de atendimento.
+
+VERSAO 02.07 14/04/2011 - VERSÃO BETA 
+  Os usuários podem experimentar e testar características novas e detalhes da nova versão.
+Correção na consistência ‘Erro’ is not a valid integer value.
+
+VERSAO 02.06 13/04/2011 - VERSÃO BETA 
+  Os usuários podem experimentar e testar características novas e detalhes da nova versão.
+  Apos digitar a Quantidade, seguir para a proxima linha.
+
+
+VERSAO 02.05 12/04/2011 - VERSÃO BETA 
+  Os usuários podem experimentar e testar características novas e detalhes da nova versão.
+  O nome do profissional, não obrigatorio.
+
+VERSAO 02.04 12/04/2011 - VERSÃO BETA 
+  Os usuários podem experimentar e testar características novas e detalhes da nova versão.
+  Acerto na critica da competência com data de Atendimento.
+
+VERSAO 02.03 12/04/2011 - VERSÃO BETA 
+  Os usuários podem experimentar e testar características novas e detalhes da nova versão.
+  Exibir na Grid do BPA-I o nome do profissional. 
+
+
+VERSAO 02.02 11/04/2011 - VERSÃO BETA 
+  Os usuários podem experimentar e testar características novas e detalhes da nova versão.
+  Acerto na tala do BPAI no campo raça cor.
+
+
+
+VERSAO 02.01 05/04/2011 - VERSÃO BETA 
+  Os usuários podem experimentar e testar características novas e detalhes da nova versão.
+  Acerto na tala do BPAI no campo nome do paciente e do Profissional <<ESPAÇO>>
+
+VERSAO 02.00 05/04/2011 - VERSÃO BETA 
+  Os usuários podem experimentar e testar características novas e detalhes da nova versão.
+
+
+VERSAO 01.30 24/02/2011 - VERSÃO 
+   CORREÇÃO NA VALIDAÇÃO DA CONSISTÊNCIA.
+
+VERSAO 01.29 24/01/2011 - VERSÃO 
+   CORREÇÃO DO  RELATÓRIOS DE BPA INDIVIDUALIZADO.
+
+
+VERSAO 01.28 18/01/2011 - VERSÃO OBRIGATÓRIA
+   INCLUSAO DO CAMPO NACIONALIDADE EM APAC E BPA-I.
+   PARA A COMPETENCIA JANEIRO/2011 EM DIANTE.
+
+
+VERSAO 01.27 25/10/2010 - VERSÃO OBRIGATÓRIA
+   PT/SAS No.508 DE 28 DE SETEMBRO DE 2010
+   INCLUSAO DO CAMPO ETNIA EM APAC E BPA-I PARA OS USUARIOS DE RACA/COR = INDIGENA
+   PARA A COMPETENCIA OUTUBRO/2010 EM DIANTE.
+
+
+VERSAO 01.26 09/09/2010
+- versao não obrigatoria.
+
+- Correção na importação do kit do SAI, competências inferiores a 08/2010. 
+- Valido para competência 08/2010
+
+
+VERSAO 01.25 24/08/2010
+- versao obrigatoria
+
+- Alteração nos procedimentos de Vigilância Sanitária em BPAC, permitindo que CBO esteja em branco. 
+- Valido para competência 08/2010
+
+  
+
+
+VERSAO 01.24 04/05/2009
+- versao não obrigatoria
+
+  CORREÇÃO BPA.
+
+
+VERSAO 01.23 03/05/2009
+- versao não obrigatoria
+
+  ACERTO NA CRITICA PARA VALIDAR DATA DE NASCIMENTO, EM BRANCO NO BPA-I .
+
+
+
+VERSAO 01.22 06/11/2009
+
+- versao não obrigatoria
+
+- CORRECAO DO MENU CONSULTAS 
+   - PROCEDIMENTOS
+   - CBO
+   - MUNICIPIOS
+   - COMPLEXIDADE
+   - TIPO DE FINANCIAMENTO
+   - CID
+
+VERSAO 01.21 15/10/2009
+
+- versao obrigatoria
+
+- CORRECAO DA CRITICA DO CNS DO USUARIO(PACIENTE) - BPA-I
+
+
+
+
+VERSAO 01.20 9/10/2009
+
+
+- CORRECAO DA CRITICA DO CNS DO PROFISSIONAL - BPA-I
+
+- OPCAO DA TECLA F1 PARA CONSULTA DE PROCEDIMENTOS/CBO/CID/MUNICIPIOS/C.ATEND.
+
+
+
+VERSAO 01.19 26/05/2009
+
+- PT/SAS No- 215, DE 25 DE JUNHO DE 2009
+  PROCEDIMENTOS EXCLUSIVOS DO SISTEMA SISMAMA A PARTIR DA COMPETENCIA SETEMBRO DE 2009.
+
+
+
+VERSAO 01.18 6/05/2009
+
+
+- ACERTO DA GERACAO DE ARQUIVO PARA O SIA SEPARANDO PRODUCAO PAB/MAC/FAEC
+  A REGRA PASSA PARA PRODUCAO DE COMPLEXIDADE PAB E/OU FINANCIAMENTO EM VIGILANCIA EM SAUDE NO ARQUIVO PAB
+  E OS OUTROS PROCEDIMENTOS NO SEGUNDO ARQUIVO
+
+- RETIFICACAO DA PT/SAS 779 DE 31/DEZ/2008 - PROCEDIMENTOS EXCLUSIVOS DO SISTEMA SISMAMA A PARTIR DA
+  COMPETENCIA JUNHO DE 2009.
+
+
+
+VERSAO 01.17 16/04/2009
+
+- CONVERSAO DE LETRA MINUSCULA PARA MAIUSCULA NO CODIGO DE CBO DO BPA-C E BPA-I
+
+- PADRONIZAÇÃO DE MENSAGENS DE ERRO.
+  JUNTO AO KIT DO BPA, ENCONTRA-SE O ARQUIVO "MENSAGENS DE ERROS BPA.DOC" COM AS MENSAGENS DA CONSISTENCIA
+  DO BPA E POSSIVEL SOLUCAO
+
+
+
+VERSAO 01.16 10/03/2009
+
+- ACERTO NA ROTINA DE EXPORTACAO
+  ACERTO DA PRODUCAO BPA-C COM ERRO APENAS NO CBO, NÃO EXPORTAR PARA O SIA!
+  ACERTO NA ROTINA DE EXPORTACAO EM 2 ARQUIVOS EM SEPARADO.
+
+- ACERTO NO CALCULO DA IDADE DE BPA-I
+
+- ACERTO NO RELATORIO DE BPA-C
+  OPCAO DE APENAS COM ERRO - IMPRIMIR AS LINHAS COM ERRO APENAS NO CBO
+
+
+
+VERSAO 01.15 20/02/2009
+
+- NÃO EXPORTA AS LINHAS MARCADAS COM ERRO PARA O SIA
+
+- CONSISTENCIA OBRIGATORIA ANTES DA EXPORTACAO
+
+- IMPORTACAO DE REMESSA
+  NAO IMPORTA AS LINHAS COM COMPETENCIAS INFERIORES A 4 COMPETENCIAS DA ATUAL
+
+
+
+VERSAO 01.14 12/12/2008
+
+- E-MAIL DA SAS :
+  - PERMITIR PRODUCAO DE BPA-I PARA O PROCEDIMENTO 020101056 NA COMPETENCIA 10/2008
+  INDEPENDENTE DO SIGTAP
+
+
+VERSAO 01.13 3/12/2008
+
+- ACERTO NOS RELATORIOS COM EMISSAO DE PAGINAS EM BRANCO
+
+- IMPEDE A IMPORTACAO DE ARQUIVOS GERADOS PELO SISCOLO
+
+
+
+VERSAO 01.12 5/11/2008
+
+- ACERTO NOS RELATORIOS COM PREVIA DE VALORES
+
+
+VERSAO 01.11 29/10/2008
+
+- ACERTO DA MENSAGEM DE ERRO DAS COLUNAS "PA_LAUDO" E "PA_PRINC" :
+  NA IMPORTACAO DO KIT DE TABELAS
+  NO CADASTRO DE PRODUCAO
+  NA CONSISTENCIA
+
+
+VERSAO 01.10 28/10/2008
+
+- OPÇÃO DE RELATORIOS DE PRODUÇÃO CONSOLIDADA OU INDIVIDUALIZADA COM PREVIA DE VALORES.
+  ATENÇÃO : VALORES SUJEITOS A CONFRONTAÇÃO COM CADASTRO E TABELA DE PROCEDIMENTOS PELO 
+            GESTOR.
+
+- OPÇÃO DE GERAÇÃO DE ARQUIVOS DE PRODUÇÃO PARA O SIA-SUS SEPARANDO OS PROCEDIMENTOS COM
+  TIPO DE FINANCIAMENTO PAB EM UM ARQUIVO E OS DEMAIS TIPOS DE FINANCIAMENTO (MAC/FAEC)
+  EM OUTRO ARQUIVO.
+
+- ACERTO NA IMPORTAÇÃO DE ARQUIVO DE REMESSA.
+
+
+
+                                                                                   JUNHO/2008
+
+VERSAO 01.09
+
+- ACERTO DO ERRO DE IDADE INVALIDA PARA BPA-I SEM DATA DE ATENDIMENTO NA CONSISTENCIA
+
+
+
+                                                                                   ABRIL/2008
+
+VERSAO 01.08
+
+- CADASTRO DE BPA-C
+  A OPÇÃO DA COPIA DA LINHA ANTERIOR (TECLA F8) TAMBEM PODE SER UTILIZADA PELA TECLA "+"
+
+- EXPORTAÇÃO PARA O SIA
+  PERMITE VISUALIZAR/IMPRIMIR A CAPA DE LOTE.
+  INCLUSAO DA VERSAO DO BANCO DE DADOS NA CAPA DE LOTE.
+
+- ACERTO DA MENSAGEM DE ERRO "IS NOT A VALID" NA EXPORTAÇÃO PARA O SIA
+
+- MUDANÇA NA ROTINA DE IMPORTAÇÃO DE REMESSA
+  PERMITE VISUALIZAÇÃO DAS LINHAS (PRODUÇÃO) DUPLICADAS
+
+- RELATORIOS DE BPA-C E BPA-I, OPÇÃO DE SAIDA EM IMPRESSORA, ARQUIVO TXT OU ARQUIVO PDF
+
+
+
+                                                                                   MARCO/2008
+
+VERSAO 01.07
+
+- NAO POSSUI KIT DE TABELAS. BAIXAR EM ARQUIVO SEPARADO. LEIA ABAIXO:
+
+- O KIT do BPA passa a ser distribuido em 2 arquivos, um com o sistema e outro
+  com as tabelas em DBF, desta forma poderemos utilizar uma mesma versao de
+  sistema com kit de tabelas diferentes ou vice-e-versa, o BPA apresenta as 2
+  versoes na parte inferior a versao da tabela tem formato <AAAAMML> onde
+  AAAA = ANO,  MM = MES e L = Letra e o formato da versao do sistema e <NN.NN>
+
+  nome do arquivo com a versao do sistema : BPANNNN.EXE, onde NNNN = NN.NN versao
+  do sistema
+
+  nome do arquivo com a versao da tabela : BDSIAAAAAMML.EXE, onde AA = ano,
+  MM = Mes e L = letra
+
+  para atualizar qualquer uma das versoes acima, basta executar o aplicativo
+  na pasta do BPA e teclar Y para sobrepor todos os arquivos.
+
+- NAO EXIGE DATA DE ATENDIMENTO NO BPA-I PARA OS PROCEDIMENTOS '080301'
+  GRUPO 08, SUB-GRUPO 03, NIVEL 01.
+
+
+                                                                                   FEVEREIRO/2008
+
+
+VERSAO 01.06
+
+- BASE TXT GERADA DIA 22/FEV/08
+
+- ACERTO NO CBO ALFANUMERO NO BPA-I
+
+- NAO PERMITE ALTERACAO DE COMPETENCIA COM PRODUCAO EXISTENTE.
+  O USUARIO DEVE REALIZAR A EXPORTACAO PARA O SIA ANTES DE MUDAR A COMPETENCIA
+
+
+
+VERSAO 01.05
+
+- BASE TXT GERADA DIA 18/FEV/08
+
+- NAO GERA ARQUIVO PARA O SIA SEM A PRODUCAO DIGITADA.
+
+
+VERSAO 01.04
+
+- BASE TXT GERADA DIA 07/FEV/08
+
+
+VERSAO 01.03
+
+- BASE TXT GERADA DIA 31/JAN/08
+
+
+                                                                                     JANEIRO/2008
+
+
+
+VERSAO 01.02
+
+- BASE TXT GERADA DIA 29/JAN/08
+
+- Nova opção de importação de remessa.
+  As folhas não devem estar cadastradas no BPA.
+
+- Para agilizar a solução dos problemas encontrados na Tabela Unificada.
+  A critica entre o Procedimento e CBO fica desabilitada.
+  e a critica entre o Procedimento e o CID fica desabilitada.
+
+  OBS : A SAS realizara auditoria na remessa, para acertar a tabela unificada.
+        portanto, cabe ao gestor coerencia na informação da produção.
+
+
+VERSAO 01.01
+
+MUDANCAS NO BPA-I
+
+- BASE TXT GERADA DIA 22/JAN/08
+
+- O CARATER DE ATENDIMENTO FICA OPCIONAL, ISTO E, PODE FICAR EM BRANCO.
+
+- O CID E OPCIONAL PARA OS PROCEDIMENTOS QUE NAO POSSUEM CID'S RELACIONADOS
+  NA TABELA., PODENDO FICAR EM BRANCO OU INFORMAR CID VALIDO.
+
+
+VERSAO 01.00  
+
+- BASE TXT GERADA DIA 10/JAN/08
+
+- IMPORTACAO DO KIT DE TABELAS DBF DEVE SER FEITA EM PASTA COM A DESCRIÇÃO CURTA
+  PASTA COM NOMES LONGOS PODEM APRESENTAR PROBLEMAS
+
+- PORTARIA N° 719, DE 28 DE DEZEMBRO DE 2007
+  Incluir os campos Raça/Cor e Carater de atendimento.
+
+- Portaria GM/MS nº. 2.848 DE 06 de Novembro de 2007
+  Publica a Tabela de Procedimentos, Medicamentos,Órteses, Próteses e Materiais Especiais - OPM do
+  Sistema Único de Saúde.
+
+- versão deve ser utilizada na produção ambulatorial da competencia Janeiro de 2007 em diante.
+  para o SIA/SUS com a tabela unificada.
