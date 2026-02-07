@@ -30,7 +30,7 @@ jobs:
           lftp -c "
           set ftp:ssl-allow no;
           open ftp://anonymous:@ftp.datasus.gov.br;
-          cd /dissemin/publicos/SIA/BPA;
+          cd /siasus/BPA;
           cls -1 BPAMAG*.exe > /tmp/bpa_arquivos.txt
           "
           
@@ -45,7 +45,7 @@ jobs:
               lftp -c "
               set ftp:ssl-allow no;
               open ftp://anonymous:@ftp.datasus.gov.br;
-              cd /dissemin/publicos/SIA/BPA;
+              cd /siasus/BPA;
               get -c \"$arquivo\"
               "
             else
@@ -58,9 +58,9 @@ jobs:
             lftp -c "
             set ftp:ssl-allow no;
             open ftp://anonymous:@ftp.datasus.gov.br;
-            cd /dissemin/publicos/SIA/BPA;
+            cd /siasus/BPA;
             get -c BPA_LEIAME.txt
-            "
+            " || echo "⚠️  BPA_LEIAME.txt não disponível"
           fi
       
       - name: Download BDSIA files (últimos 6 meses)
@@ -70,8 +70,8 @@ jobs:
           
           lftp -c "
           set ftp:ssl-allow no;
-          open ftp://anonymous:@arpoador.datasus.gov.br;
-          cd /siasus/sia;
+          open ftp://anonymous:@ftp.datasus.gov.br;
+          cd /siasus/bdsia;
           cls -1 BDSIA*.exe > /tmp/bdsia_arquivos.txt
           "
           
@@ -85,8 +85,8 @@ jobs:
               echo "⬇️  Baixando: $arquivo"
               lftp -c "
               set ftp:ssl-allow no;
-              open ftp://anonymous:@arpoador.datasus.gov.br;
-              cd /siasus/sia;
+              open ftp://anonymous:@ftp.datasus.gov.br;
+              cd /siasus/bdsia;
               get -c \"$arquivo\"
               "
             else
@@ -99,8 +99,8 @@ jobs:
             if [ ! -f "$doc" ]; then
               lftp -c "
               set ftp:ssl-allow no;
-              open ftp://anonymous:@arpoador.datasus.gov.br;
-              cd /siasus/sia;
+              open ftp://anonymous:@ftp.datasus.gov.br;
+              cd /siasus/bdsia;
               get -c $doc
               " || echo "⚠️  $doc não disponível"
             fi
@@ -155,7 +155,7 @@ jobs:
           cd bpa
           for arquivo in $(ls -r BPAMAG*.exe 2>/dev/null); do
             # Extrai competência (AAMM) do nome do arquivo
-            comp=$(echo "$arquivo" | grep -oP '(?<=BPAMAG)\\d{4}')
+            comp=$(echo "$arquivo" | grep -oP '(?<=BPAMAG)\d{4}')
             ano="20${comp:0:2}"
             mes="${comp:2:2}"
             
@@ -178,7 +178,7 @@ jobs:
             tamanho=$(ls -lh "$arquivo" | awk '{print $5}')
             url="https://github.com/${{ github.repository }}/raw/main/bpa/$arquivo"
             
-            echo "| \\`$arquivo\\` | $mes_nome/$ano | $tamanho | [⬇️ Download]($url) |" >> ../README.md
+            echo "| \`$arquivo\` | $mes_nome/$ano | $tamanho | [⬇️ Download]($url) |" >> ../README.md
           done
           cd ..
           
@@ -195,10 +195,10 @@ jobs:
           cd bdsia
           for arquivo in $(ls -r BDSIA*.exe 2>/dev/null); do
             # Extrai competência (AAAAMM) do nome
-            comp=$(echo "$arquivo" | grep -oP '(?<=BDSIA)\\d{6}')
+            comp=$(echo "$arquivo" | grep -oP '(?<=BDSIA)\d{6}')
             ano="${comp:0:4}"
             mes="${comp:4:2}"
-            versao=$(echo "$arquivo" | grep -oP '[a-z](?=\\.exe)')
+            versao=$(echo "$arquivo" | grep -oP '[a-z](?=\.exe)')
             
             case $mes in
               01) mes_nome="Janeiro" ;;
@@ -220,7 +220,7 @@ jobs:
             comp_label="$mes_nome/$ano"
             [ -n "$versao" ] && comp_label="$comp_label (rev. $versao)"
             
-            echo "| \\`$arquivo\\` | $comp_label | $tamanho | [⬇️ Download]($url) |" >> ../README.md
+            echo "| \`$arquivo\` | $comp_label | $tamanho | [⬇️ Download]($url) |" >> ../README.md
           done
           cd ..
           
@@ -245,8 +245,8 @@ jobs:
           Este repositório é atualizado **diariamente às 6h (horário de Brasília)** via GitHub Actions.
           
           **Fontes oficiais:**
-          - BPA: [ftp://ftp.datasus.gov.br/dissemin/publicos/SIA/BPA](ftp://ftp.datasus.gov.br/dissemin/publicos/SIA/BPA)
-          - BDSIA: [ftp://arpoador.datasus.gov.br/siasus/sia](ftp://arpoador.datasus.gov.br/siasus/sia)
+          - BPA: [ftp://ftp.datasus.gov.br/siasus/BPA](ftp://ftp.datasus.gov.br/siasus/BPA)
+          - BDSIA: [ftp://ftp.datasus.gov.br/siasus/bdsia](ftp://ftp.datasus.gov.br/siasus/bdsia)
           
           ## 💻 Como Usar
           
