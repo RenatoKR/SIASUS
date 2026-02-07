@@ -1,0 +1,360 @@
+name: Sync DATASUS SIASUS
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Diariamente às 9h UTC (6h BRT)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+        
+      - name: Download BPA files (últimos 6 meses)
+        run: |
+          mkdir -p bpa
+          cd bpa
+          
+          lftp -c "
+          set ftp:ssl-allow no;
+          open ftp://anonymous:@ftp.datasus.gov.br;
+          cd /dissemin/publicos/SIA/BPA;
+          cls -1 BPAMAG*.exe > /tmp/bpa_arquivos.txt
+          "
+          
+          tail -n 6 /tmp/bpa_arquivos.txt > /tmp/bpa_ultimos6.txt
+          
+          echo "📥 Arquivos BPA a serem baixados:"
+          cat /tmp/bpa_ultimos6.txt
+          
+          while IFS= read -r arquivo; do
+            if [ ! -f "$arquivo" ]; then
+              echo "⬇️  Baixando: $arquivo"
+              lftp -c "
+              set ftp:ssl-allow no;
+              open ftp://anonymous:@ftp.datasus.gov.br;
+              cd /dissemin/publicos/SIA/BPA;
+              get -c \"$arquivo\"
+              "
+            else
+              echo "✅ Já existe: $arquivo"
+            fi
+          done < /tmp/bpa_ultimos6.txt
+          
+          # Baixa documentação
+          if [ ! -f "BPA_LEIAME.txt" ]; then
+            lftp -c "
+            set ftp:ssl-allow no;
+            open ftp://anonymous:@ftp.datasus.gov.br;
+            cd /dissemin/publicos/SIA/BPA;
+            get -c BPA_LEIAME.txt
+            "
+          fi
+      
+      - name: Download BDSIA files (últimos 6 meses)
+        run: |
+          mkdir -p bdsia
+          cd bdsia
+          
+          lftp -c "
+          set ftp:ssl-allow no;
+          open ftp://anonymous:@arpoador.datasus.gov.br;
+          cd /siasus/sia;
+          cls -1 BDSIA*.exe > /tmp/bdsia_arquivos.txt
+          "
+          
+          tail -n 6 /tmp/bdsia_arquivos.txt > /tmp/bdsia_ultimos6.txt
+          
+          echo "📥 Arquivos BDSIA a serem baixados:"
+          cat /tmp/bdsia_ultimos6.txt
+          
+          while IFS= read -r arquivo; do
+            if [ ! -f "$arquivo" ]; then
+              echo "⬇️  Baixando: $arquivo"
+              lftp -c "
+              set ftp:ssl-allow no;
+              open ftp://anonymous:@arpoador.datasus.gov.br;
+              cd /siasus/sia;
+              get -c \"$arquivo\"
+              "
+            else
+              echo "✅ Já existe: $arquivo"
+            fi
+          done < /tmp/bdsia_ultimos6.txt
+          
+          # Baixa documentação
+          for doc in BDNOTAS.TXT LERNOTAS.TXT; do
+            if [ ! -f "$doc" ]; then
+              lftp -c "
+              set ftp:ssl-allow no;
+              open ftp://anonymous:@arpoador.datasus.gov.br;
+              cd /siasus/sia;
+              get -c $doc
+              " || echo "⚠️  $doc não disponível"
+            fi
+          done
+      
+      - name: Clean old files
+        run: |
+          cd bpa
+          for arquivo in BPAMAG*.exe; do
+            if [ -f "$arquivo" ] && ! grep -q "$arquivo" /tmp/bpa_ultimos6.txt; then
+              echo "🗑️  Removendo BPA antigo: $arquivo"
+              rm "$arquivo"
+            fi
+          done
+          
+          cd ../bdsia
+          for arquivo in BDSIA*.exe; do
+            if [ -f "$arquivo" ] && ! grep -q "$arquivo" /tmp/bdsia_ultimos6.txt; then
+              echo "🗑️  Removendo BDSIA antigo: $arquivo"
+              rm "$arquivo"
+            fi
+          done
+      
+      - name: Generate file statistics
+        run: |
+          echo "BPA_SIZE=$(du -sh bpa | cut -f1)" >> $GITHUB_ENV
+          echo "BDSIA_SIZE=$(du -sh bdsia | cut -f1)" >> $GITHUB_ENV
+          echo "BPA_COUNT=$(ls -1 bpa/BPAMAG*.exe 2>/dev/null | wc -l)" >> $GITHUB_ENV
+          echo "BDSIA_COUNT=$(ls -1 bdsia/BDSIA*.exe 2>/dev/null | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_SIZE=$(du -sh . | cut -f1)" >> $GITHUB_ENV
+      
+      - name: Generate README with file list
+        run: |
+          cat > README.md << EOF
+          # 📊 DATASUS - SIASUS (SIA/BPA)
+          
+          [![Sync Status](https://github.com/${{ github.repository }}/actions/workflows/sync-datasus.yml/badge.svg)](https://github.com/${{ github.repository }}/actions/workflows/sync-datasus.yml)
+          [![Última Atualização](https://img.shields.io/badge/última%20atualização-$(date -u '+%Y--%m--%d')-blue)](https://github.com/${{ github.repository }}/commits/main)
+          
+          Repositório automatizado com mirror dos arquivos do **Sistema de Informações Ambulatoriais do SUS (SIA)** do DATASUS, incluindo:
+          - **BPA** - Boletim de Produção Ambulatorial
+          - **BDSIA** - Base de Dados SIA (Tabelas Nacionais)
+          
+          ## 📦 Arquivos BPA (Últimos 6 Meses)
+          
+          > **Total:** $BPA_COUNT arquivos | **Tamanho:** $BPA_SIZE
+          
+          | Arquivo | Competência | Tamanho | Download |
+          |---------|-------------|---------|----------|
+          EOF
+          
+          cd bpa
+          for arquivo in $(ls -r BPAMAG*.exe 2>/dev/null); do
+            # Extrai competência (AAMM) do nome do arquivo
+            comp=$(echo "$arquivo" | grep -oP '(?<=BPAMAG)\\d{4}')
+            ano="20${comp:0:2}"
+            mes="${comp:2:2}"
+            
+            # Formata mês
+            case $mes in
+              01) mes_nome="Janeiro" ;;
+              02) mes_nome="Fevereiro" ;;
+              03) mes_nome="Março" ;;
+              04) mes_nome="Abril" ;;
+              05) mes_nome="Maio" ;;
+              06) mes_nome="Junho" ;;
+              07) mes_nome="Julho" ;;
+              08) mes_nome="Agosto" ;;
+              09) mes_nome="Setembro" ;;
+              10) mes_nome="Outubro" ;;
+              11) mes_nome="Novembro" ;;
+              12) mes_nome="Dezembro" ;;
+            esac
+            
+            tamanho=$(ls -lh "$arquivo" | awk '{print $5}')
+            url="https://github.com/${{ github.repository }}/raw/main/bpa/$arquivo"
+            
+            echo "| \\`$arquivo\\` | $mes_nome/$ano | $tamanho | [⬇️ Download]($url) |" >> ../README.md
+          done
+          cd ..
+          
+          cat >> README.md << EOF
+          
+          ## 🗃️ Arquivos BDSIA (Últimos 6 Meses)
+          
+          > **Total:** $BDSIA_COUNT arquivos | **Tamanho:** $BDSIA_SIZE
+          
+          | Arquivo | Competência | Tamanho | Download |
+          |---------|-------------|---------|----------|
+          EOF
+          
+          cd bdsia
+          for arquivo in $(ls -r BDSIA*.exe 2>/dev/null); do
+            # Extrai competência (AAAAMM) do nome
+            comp=$(echo "$arquivo" | grep -oP '(?<=BDSIA)\\d{6}')
+            ano="${comp:0:4}"
+            mes="${comp:4:2}"
+            versao=$(echo "$arquivo" | grep -oP '[a-z](?=\\.exe)')
+            
+            case $mes in
+              01) mes_nome="Janeiro" ;;
+              02) mes_nome="Fevereiro" ;;
+              03) mes_nome="Março" ;;
+              04) mes_nome="Abril" ;;
+              05) mes_nome="Maio" ;;
+              06) mes_nome="Junho" ;;
+              07) mes_nome="Julho" ;;
+              08) mes_nome="Agosto" ;;
+              09) mes_nome="Setembro" ;;
+              10) mes_nome="Outubro" ;;
+              11) mes_nome="Novembro" ;;
+              12) mes_nome="Dezembro" ;;
+            esac
+            
+            tamanho=$(ls -lh "$arquivo" | awk '{print $5}')
+            url="https://github.com/${{ github.repository }}/raw/main/bdsia/$arquivo"
+            comp_label="$mes_nome/$ano"
+            [ -n "$versao" ] && comp_label="$comp_label (rev. $versao)"
+            
+            echo "| \\`$arquivo\\` | $comp_label | $tamanho | [⬇️ Download]($url) |" >> ../README.md
+          done
+          cd ..
+          
+          cat >> README.md << 'EOF'
+          
+          ## 📖 Sobre os Arquivos
+          
+          ### BPA - Boletim de Produção Ambulatorial
+          - Programa para processamento da produção ambulatorial
+          - Registra procedimentos realizados em estabelecimentos de saúde
+          - Formato: arquivo executável auto-extraível (.exe)
+          - Gera base de dados DBase após instalação
+          
+          ### BDSIA - Base de Dados SIA
+          - Contém as **tabelas nacionais** do Sistema de Informações Ambulatoriais
+          - Inclui: procedimentos, CBO, CID-10, ocupações, financiamento
+          - Atualizada mensalmente com novas portarias e alterações
+          - Essencial para validação e processamento do BPA
+          
+          ## 🔄 Atualização Automática
+          
+          Este repositório é atualizado **diariamente às 6h (horário de Brasília)** via GitHub Actions.
+          
+          **Fontes oficiais:**
+          - BPA: [ftp://ftp.datasus.gov.br/dissemin/publicos/SIA/BPA](ftp://ftp.datasus.gov.br/dissemin/publicos/SIA/BPA)
+          - BDSIA: [ftp://arpoador.datasus.gov.br/siasus/sia](ftp://arpoador.datasus.gov.br/siasus/sia)
+          
+          ## 💻 Como Usar
+          
+          ### Download via wget/curl
+          ```bash
+          # Última versão do BPA
+          wget https://github.com/${{ github.repository }}/raw/main/bpa/BPAMAG2601.exe
+          
+          # Última versão do BDSIA
+          wget https://github.com/${{ github.repository }}/raw/main/bdsia/BDSIA202601a.exe
+          ```
+          
+          ### Clone do repositório
+          ```bash
+          git clone https://github.com/${{ github.repository }}.git
+          cd SIASUS
+          ```
+          
+          ### GitHub API (programático)
+          ```bash
+          # Listar todos os arquivos BPA
+          curl -s https://api.github.com/repos/${{ github.repository }}/contents/bpa | jq -r '.[].download_url'
+          
+          # Listar todos os arquivos BDSIA
+          curl -s https://api.github.com/repos/${{ github.repository }}/contents/bdsia | jq -r '.[].download_url'
+          ```
+          
+          ### Instalação no Windows
+          ```cmd
+          # Execute os arquivos .exe para instalar
+          BPAMAG2601.exe
+          BDSIA202601a.exe
+          ```
+          
+          ## 📊 Estrutura dos Arquivos
+          
+          ```
+          SIASUS/
+          ├── bpa/                        # BPA Magnético (6 mais recentes)
+          │   ├── BPAMAG*.exe
+          │   └── BPA_LEIAME.txt
+          └── bdsia/                      # Base de Dados SIA (6 mais recentes)
+              ├── BDSIA*.exe
+              ├── BDNOTAS.TXT
+              └── LERNOTAS.TXT
+          ```
+          
+          ## 📝 Formato dos Arquivos
+          
+          ### Nomenclatura BPA
+          - **BPAMAG**AAMM**.exe** (ex: BPAMAG2601.exe)
+            - AA = Ano (26 = 2026)
+            - MM = Mês (01 = Janeiro)
+          
+          ### Nomenclatura BDSIA
+          - **BDSIA**AAAAMM**x.exe** (ex: BDSIA202601a.exe)
+            - AAAA = Ano completo (2026)
+            - MM = Mês (01 = Janeiro)
+            - x = Revisão (a, b, c, d...)
+          
+          ## 🔗 Repositórios Relacionados
+          
+          - [SIGTAP](https://github.com/${{ github.repository_owner }}/SIGTAP) - Tabela Unificada de Procedimentos
+          
+          ## ⚖️ Licença e Dados Públicos
+          
+          Os dados são de **domínio público** e mantidos pelo Ministério da Saúde do Brasil.
+          Este repositório apenas facilita o acesso aos arquivos oficiais.
+          
+          ---
+          
+          <div align="center">
+          
+          **🤖 Atualizado automaticamente** | Última execução: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+          
+          📦 Tamanho total: $TOTAL_SIZE
+          
+          </div>
+          EOF
+      
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git fetch origin main
+          git reset --soft origin/main
+          
+          git add -A
+          
+          if ! git diff --staged --quiet; then
+            CHANGES=$(git diff --staged --name-status | head -10)
+            
+            git commit -m "🔄 Atualização automática SIASUS - $(date -u '+%Y-%m-%d %H:%M')" \
+                       -m "Alterações:" \
+                       -m "$CHANGES"
+            
+            for i in {1..3}; do
+              if git push origin HEAD:main; then
+                echo "✅ Alterações enviadas com sucesso"
+                break
+              else
+                echo "⚠️  Tentativa $i falhou, sincronizando..."
+                git fetch origin main
+                git rebase origin/main
+                sleep 2
+              fi
+            done
+          else
+            echo "ℹ️  Nenhuma alteração detectada"
+          fi
