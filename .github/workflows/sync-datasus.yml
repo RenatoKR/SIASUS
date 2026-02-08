@@ -131,7 +131,7 @@ jobs:
           echo "BPA_COUNT=$(ls -1 bpa/BPAMAG*.exe 2>/dev/null | wc -l)" >> $GITHUB_ENV
           echo "BDSIA_COUNT=$(ls -1 bdsia/BDSIA*.exe 2>/dev/null | wc -l)" >> $GITHUB_ENV
           echo "TOTAL_SIZE=$(du -sh . | cut -f1)" >> $GITHUB_ENV
-          echo "LAST_UPDATE=$(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_ENV
+          echo "LAST_UPDATE=$(TZ='America/Sao_Paulo' date '+%Y-%m-%d %H:%M:%S BRT')" >> $GITHUB_ENV
       
       - name: Generate README with file list
         run: |
