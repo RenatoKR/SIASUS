@@ -1,7 +1,7 @@
 # 📊 DATASUS - SIASUS (SIA/BPA)
 
 [![Sync Status](https://github.com/RenatoKR/SIASUS/actions/workflows/sync-datasus.yml/badge.svg)](https://github.com/RenatoKR/SIASUS/actions/workflows/sync-datasus.yml)
-[![Última Atualização](https://img.shields.io/badge/última%20atualização-2026--02--18-blue)](https://github.com/RenatoKR/SIASUS/commits/main)
+[![Última Atualização](https://img.shields.io/badge/última%20atualização-2026--02--19-blue)](https://github.com/RenatoKR/SIASUS/commits/main)
 
 Repositório automatizado com mirror dos arquivos do **Sistema de Informações Ambulatoriais do SUS (SIA)** do DATASUS, incluindo:
 - **BPA** - Boletim de Produção Ambulatorial
@@ -22,12 +22,12 @@ Repositório automatizado com mirror dos arquivos do **Sistema de Informações 
 
 | Arquivo | Competência | Tamanho | Download |
 |---------|-------------|---------|----------|
+| `BDSIA202602a.exe` | Fevereiro/2026 (rev. a) | 8.0M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202602a.exe) |
 | `BDSIA202601b.exe` | Janeiro/2026 (rev. b) | 8.4M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202601b.exe) |
 | `BDSIA202512d.exe` | Dezembro/2025 (rev. d) | 8.8M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202512d.exe) |
 | `BDSIA202511b.exe` | Novembro/2025 (rev. b) | 9.0M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202511b.exe) |
 | `BDSIA202510b.exe` | Outubro/2025 (rev. b) | 9.0M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202510b.exe) |
 | `BDSIA202509b.exe` | Setembro/2025 (rev. b) | 9.0M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202509b.exe) |
-| `BDSIA202508b.exe` | Agosto/2025 (rev. b) | 8.2M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202508b.exe) |
 
 ## 📖 Sobre os Arquivos
 
@@ -123,7 +123,7 @@ Este repositório apenas facilita o acesso aos arquivos oficiais.
 
 <div align="center">
 
-**🤖 Atualizado automaticamente** | Última execução: 2026-02-18 06:43:11 BRT
+**🤖 Atualizado automaticamente** | Última execução: 2026-02-19 06:41:49 BRT
 
 📦 Tamanho total: 143M
 
