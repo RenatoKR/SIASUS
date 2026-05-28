@@ -1,7 +1,7 @@
 # 📊 DATASUS - SIASUS (SIA/BPA)
 
 [![Sync Status](https://github.com/RenatoKR/SIASUS/actions/workflows/sync-datasus.yml/badge.svg)](https://github.com/RenatoKR/SIASUS/actions/workflows/sync-datasus.yml)
-[![Última Atualização](https://img.shields.io/badge/última%20atualização-2026--05--27-blue)](https://github.com/RenatoKR/SIASUS/commits/main)
+[![Última Atualização](https://img.shields.io/badge/última%20atualização-2026--05--28-blue)](https://github.com/RenatoKR/SIASUS/commits/main)
 
 Repositório automatizado com mirror dos arquivos do **Sistema de Informações Ambulatoriais do SUS (SIA)** do DATASUS, incluindo:
 - **BPA** - Boletim de Produção Ambulatorial
@@ -13,17 +13,17 @@ Repositório automatizado com mirror dos arquivos do **Sistema de Informações 
 
 | Arquivo | Tamanho | Download |
 |---------|---------|----------|
-| `BPAMAG0413.exe` | 7.3M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bpa/BPAMAG0413.exe) |
+| `BPAMAG0414.exe` | 7.3M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bpa/BPAMAG0414.exe) |
 
 ## 🗃️ Arquivos BDSIA (Últimos 6 Meses)
 
-> **Total:** 6 arquivos | **Tamanho:** 53M
+> **Total:** 6 arquivos | **Tamanho:** 52M
 
 | Arquivo | Competência | Tamanho | Download |
 |---------|-------------|---------|----------|
 | `BDSIA202605b.exe` | Maio/2026 (rev. b) | 8.8M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202605b.exe) |
-| `BDSIA202604c.exe` | Abril/2026 (rev. c) | 9.0M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202604c.exe) |
-| `BDSIA202603c.exe` | Março/2026 (rev. c) | 8.6M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202603c.exe) |
+| `BDSIA202604d.exe` | Abril/2026 (rev. d) | 8.9M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202604d.exe) |
+| `BDSIA202603d.exe` | Março/2026 (rev. d) | 8.5M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202603d.exe) |
 | `BDSIA202602b.exe` | Fevereiro/2026 (rev. b) | 8.6M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202602b.exe) |
 | `BDSIA202601b.exe` | Janeiro/2026 (rev. b) | 8.3M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202601b.exe) |
 | `BDSIA202512d.exe` | Dezembro/2025 (rev. d) | 8.8M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202512d.exe) |
@@ -122,8 +122,8 @@ Este repositório apenas facilita o acesso aos arquivos oficiais.
 
 <div align="center">
 
-**🤖 Atualizado automaticamente** | Última execução: 2026-05-27 09:18:03 BRT
+**🤖 Atualizado automaticamente** | Última execução: 2026-05-28 09:23:43 BRT
 
-📦 Tamanho total: 208M
+📦 Tamanho total: 216M
 
 </div>
