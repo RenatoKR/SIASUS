@@ -1,7 +1,7 @@
 # 📊 DATASUS - SIASUS (SIA/BPA)
 
 [![Sync Status](https://github.com/RenatoKR/SIASUS/actions/workflows/sync-datasus.yml/badge.svg)](https://github.com/RenatoKR/SIASUS/actions/workflows/sync-datasus.yml)
-[![Última Atualização](https://img.shields.io/badge/última%20atualização-2026--07--09-blue)](https://github.com/RenatoKR/SIASUS/commits/main)
+[![Última Atualização](https://img.shields.io/badge/última%20atualização-2026--07--10-blue)](https://github.com/RenatoKR/SIASUS/commits/main)
 
 Repositório automatizado com mirror dos arquivos do **Sistema de Informações Ambulatoriais do SUS (SIA)** do DATASUS, incluindo:
 - **BPA** - Boletim de Produção Ambulatorial
@@ -9,10 +9,11 @@ Repositório automatizado com mirror dos arquivos do **Sistema de Informações 
 
 ## 📦 Arquivos BPA (Últimos 6 Disponíveis)
 
-> **Total:** 1 arquivos | **Tamanho:** 7.4M
+> **Total:** 2 arquivos | **Tamanho:** 15M
 
 | Arquivo | Tamanho | Download |
 |---------|---------|----------|
+| `BPAMAG0500.exe` | 7.5M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bpa/BPAMAG0500.exe) |
 | `BPAMAG0414.exe` | 7.3M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bpa/BPAMAG0414.exe) |
 
 ## 🗃️ Arquivos BDSIA (Últimos 6 Meses)
@@ -122,8 +123,8 @@ Este repositório apenas facilita o acesso aos arquivos oficiais.
 
 <div align="center">
 
-**🤖 Atualizado automaticamente** | Última execução: 2026-07-09 08:53:29 BRT
+**🤖 Atualizado automaticamente** | Última execução: 2026-07-10 08:47:49 BRT
 
-📦 Tamanho total: 268M
+📦 Tamanho total: 284M
 
 </div>
