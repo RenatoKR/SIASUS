@@ -1,7 +1,7 @@
 # 📊 DATASUS - SIASUS (SIA/BPA)
 
 [![Sync Status](https://github.com/RenatoKR/SIASUS/actions/workflows/sync-datasus.yml/badge.svg)](https://github.com/RenatoKR/SIASUS/actions/workflows/sync-datasus.yml)
-[![Última Atualização](https://img.shields.io/badge/última%20atualização-2026--07--14-blue)](https://github.com/RenatoKR/SIASUS/commits/main)
+[![Última Atualização](https://img.shields.io/badge/última%20atualização-2026--07--15-blue)](https://github.com/RenatoKR/SIASUS/commits/main)
 
 Repositório automatizado com mirror dos arquivos do **Sistema de Informações Ambulatoriais do SUS (SIA)** do DATASUS, incluindo:
 - **BPA** - Boletim de Produção Ambulatorial
@@ -18,16 +18,16 @@ Repositório automatizado com mirror dos arquivos do **Sistema de Informações 
 
 ## 🗃️ Arquivos BDSIA (Últimos 6 Meses)
 
-> **Total:** 6 arquivos | **Tamanho:** 53M
+> **Total:** 6 arquivos | **Tamanho:** 54M
 
 | Arquivo | Competência | Tamanho | Download |
 |---------|-------------|---------|----------|
+| `BDSIA202607a.exe` | Julho/2026 (rev. a) | 9.1M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202607a.exe) |
 | `BDSIA202606b.exe` | Junho/2026 (rev. b) | 9.2M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202606b.exe) |
 | `BDSIA202605d.exe` | Maio/2026 (rev. d) | 9.0M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202605d.exe) |
 | `BDSIA202604d.exe` | Abril/2026 (rev. d) | 8.9M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202604d.exe) |
 | `BDSIA202603d.exe` | Março/2026 (rev. d) | 8.5M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202603d.exe) |
 | `BDSIA202602b.exe` | Fevereiro/2026 (rev. b) | 8.6M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202602b.exe) |
-| `BDSIA202601b.exe` | Janeiro/2026 (rev. b) | 8.3M | [⬇️ Download](https://github.com/RenatoKR/SIASUS/raw/main/bdsia/BDSIA202601b.exe) |
 
 ## 📖 Sobre os Arquivos
 
@@ -123,8 +123,8 @@ Este repositório apenas facilita o acesso aos arquivos oficiais.
 
 <div align="center">
 
-**🤖 Atualizado automaticamente** | Última execução: 2026-07-14 07:41:33 BRT
+**🤖 Atualizado automaticamente** | Última execução: 2026-07-15 07:45:41 BRT
 
-📦 Tamanho total: 291M
+📦 Tamanho total: 292M
 
 </div>
